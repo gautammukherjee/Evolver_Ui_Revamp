@@ -1,0 +1,497 @@
+<app-header></app-header>
+
+<div class="dashboard-main-wrapper">
+    <div class="preview-filters">
+        <div class="horizontal-filters-wrapper">
+
+            <div class="horizonal-filter-bar">
+                <div class="filter-inner" style="width: 98%;">
+                    <div class="filter-left-heading" style="font-size:16px;">
+                        First Degree
+                    </div>
+                    <div class="filter-single" style="width:15%;">
+                        <div class="sidebar-card">
+                            <div class="body">
+                                <div class="search-input">
+                                    <img *ngIf="loadingFirstNode" width="20px"
+                                        src="../../assets/images/loader_small.gif" />
+                                    <select name="" id="" class="form-control">
+                                        <option *ngFor="let node_select1 of node_selects1; let i = index">
+                                            {{ node_select1.pair_name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-single" style="width:30%;">
+                        <div class="sidebar-card">
+                            <div class="body">
+                                <div class="search-input">
+                                    <img *ngIf="loadingFirstSource" width="20px"
+                                        src="../../assets/images/loader_small.gif" />
+                                    <select name="" id="" class="form-control">
+                                        <option *ngIf="sourceNodesFirst.length==0">No source selected</option>
+                                        <option *ngFor="let sourceNode of sourceNodesFirst; let i = index">
+                                            {{ sourceNode.source_node_name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-single" style="width:25%;">
+                        <div class="sidebar-card">
+                            <div class="body">
+                                <div class="search-input">
+                                    <img *ngIf="loadingFirstEdgeType" width="20px"
+                                        src="../../assets/images/loader_small.gif" />
+                                    <select name="" id="" class="form-control">
+                                        <option *ngIf="edgeTypesFirst.length==0">No edge type selected</option>
+                                        <option *ngFor="let edgeTypesFirst of edgeTypesFirst; let i = index">
+                                            {{ edgeTypesFirst.edge_type_name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-single" style="width:30%;">
+                        <div class="sidebar-card">
+                            <div class="body">
+                                <div class="search-input">
+                                    <img *ngIf="loadingFirstDestination" width="20px"
+                                        src="../../assets/images/loader_small.gif" />
+                                    <select name="" id="" class="form-control">
+                                        <option *ngIf="destinationNodesFirst.length==0">No destination selected
+                                        </option>
+                                        <option *ngFor="let destinationNode1 of destinationNodesFirst; let i = index">
+                                            {{ destinationNode1.destination_node_name }}
+                                        </option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="horizonal-filter-bar" *ngIf="node_selects2.length > 0">
+                <div class="filter-inner" style="width: 98%;">
+                    <div class="filter-left-heading" style="font-size:16px;">
+                        Second Degree
+                    </div>
+                    <div class="filter-single" style="width:15%;">
+                        <div class="sidebar-card">
+                            <div class="body">
+                                <div class="search-input">
+                                    <img *ngIf="loadingSecondNode" width="20px"
+                                        src="../../assets/images/loader_small.gif" />
+                                    <select name="" id="" class="form-control">
+                                        <option *ngFor="let node_select2 of node_selects2; let i = index">
+                                            {{ node_select2.pair_name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-single" style="width:30%;">
+                        <div class="sidebar-card">
+                            <div class="body">
+                                <div class="search-input">
+                                    <img *ngIf="loadingSecondSource" width="20px"
+                                        src="../../assets/images/loader_small.gif" />
+                                    <select name="" id="" class="form-control">
+                                        <option *ngIf="sourceNodesSecond.length==0">No source selected</option>
+                                        <option *ngFor="let sourceNode2 of sourceNodesSecond; let i = index">
+                                            {{ sourceNode2.source_node_name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-single" style="width:25%;">
+                        <div class="sidebar-card">
+                            <div class="body">
+                                <div class="search-input">
+                                    <img *ngIf="loadingSecondEdgeType" width="20px"
+                                        src="../../assets/images/loader_small.gif" />
+                                    <select name="" id="" class="form-control">
+                                        <option *ngIf="edgeTypesSecond.length==0">No edge type selected</option>
+                                        <option *ngFor="let edgeTypesSecond of edgeTypesSecond; let i = index">
+                                            {{ edgeTypesSecond.edge_type_name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-single" style="width:30%;">
+                        <div class="sidebar-card">
+                            <div class="body">
+                                <div class="search-input">
+                                    <img *ngIf="loadingSecondDestination" width="20px"
+                                        src="../../assets/images/loader_small.gif" />
+                                    <select name="" id="" class="form-control">
+                                        <option *ngIf="destinationNodesSecond.length==0">No destination selected
+                                        </option>
+                                        <option *ngFor="let destinationNode2 of destinationNodesSecond; let i = index">
+                                            {{ destinationNode2.destination_node_name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="horizonal-filter-bar" *ngIf="node_selects3.length>0">
+                <div class="filter-inner" style="width: 98%;">
+                    <div class="filter-left-heading" style="font-size:16px;">
+                        Third Degree
+                    </div>
+                    <div class="filter-single" style="width:15%;">
+                        <div class="sidebar-card">
+                            <div class="body">
+                                <div class="search-input">
+                                    <img *ngIf="loadingThirdNode" width="20px"
+                                        src="../../assets/images/loader_small.gif" />
+                                    <select name="" id="" class="form-control">
+                                        <option *ngFor="let node_select3 of node_selects3; let i = index">
+                                            {{ node_select3.pair_name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-single" style="width:30%;">
+                        <div class="sidebar-card">
+                            <div class="body">
+                                <div class="search-input">
+                                    <img *ngIf="loadingThirdSource" width="20px"
+                                        src="../../assets/images/loader_small.gif" />
+                                    <select name="" id="" class="form-control">
+                                        <option *ngIf="sourceNodesThird.length==0">No source selected</option>
+                                        <option *ngFor="let sourceNode3 of sourceNodesThird; let i = index">
+                                            {{ sourceNode3.source_node_name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-single" style="width:25%;">
+                        <div class="sidebar-card">
+                            <div class="body">
+                                <div class="search-input">
+                                    <img *ngIf="loadingThirdEdgeType" width="20px"
+                                        src="../../assets/images/loader_small.gif" />
+                                    <select name="" id="" class="form-control">
+                                        <option *ngIf="edgeTypesThird.length==0">No edge type selected</option>
+                                        <option *ngFor="let edgeTypesThird of edgeTypesThird; let i = index">
+                                            {{ edgeTypesThird.edge_type_name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="filter-single" style="width:30%;">
+                        <div class="sidebar-card">
+                            <div class="body">
+                                <div class="search-input">
+                                    <img *ngIf="loadingThirdDestination" width="20px"
+                                        src="../../assets/images/loader_small.gif" />
+                                    <select name="" id="" class="form-control">
+                                        <option *ngIf="destinationNodesThird.length==0">No destination selected
+                                        </option>
+                                        <option *ngFor="let destinationNode3 of destinationNodesThird; let i = index">
+                                            {{ destinationNode3.destination_node_name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Result set Shown here -->
+    <div class="preview-data-table px-3"
+        [ngClass]="node_selects3.length>0 ? 'level3' : !node_selects3.length && node_selects2.length>0 ? 'level2' : 'level1'">
+        <div class="search-options">
+            <div class="card-panel-box">
+                <div class="customTable" style="border: 0px solid #ddd; min-height:400px;">
+
+                    <!-- <div class="text-muted fs-2 text-center mb-4" *ngIf="(masterListsDataDetailsLengthLevelOne==0)">
+                        Please
+                        select
+                        with user dashboard</div> -->
+
+                    <div class="card-panel-box-detail p-0">
+                        <div class="customTable " id="eventListTable">
+                            <div class="overlay text-center" *ngIf="loadingDesc">
+                                <img style="margin:155px 508px;" src="../../assets/images/loader_big.gif" />
+                            </div>
+                            <div class="table-responsive position-relative custom-fixed-header-table table table-striped table-hover"
+                                [ngClass]="node_selects3.length>0 ? 'level3' : !node_selects3.length && node_selects2.length>0 ? 'level2' : 'level1'">
+
+                                <h5>
+                                    <span
+                                        *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">{{scenarioName
+                                        | titlecase}}</span>
+                                    <div class="d-inline-block ms-3">
+                                        <span class="btn btn-primary bg-primary btn-sm text-white p-1 mr-2 level1-title"
+                                            *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">First
+                                            Degree Combinations
+                                            <span
+                                                class="badge bg-light text-primary">{{masterListsDataDetailsLengthLevelOne}}</span></span>
+                                        <span class="btn btn-primary btn-sm bg-primary text-white p-1 level2-title ms-2"
+                                            *ngIf="secondLoadApiResult!=undefined && masterListsDataDetailsLengthLevelTwo > 0">Second
+                                            Degree Combinations
+                                            <span
+                                                class="badge bg-light text-primary">{{masterListsDataDetailsLengthLevelTwo}}</span></span>
+                                        <span class="btn btn-primary btn-sm bg-primary text-white p-1 level3-title ms-2"
+                                            *ngIf="thirdLoadApiResult!=undefined && masterListsDataDetailsLengthLevelThree > 0">Third
+                                            Degree Combinations
+                                            <span
+                                                class="badge bg-light text-primary">{{masterListsDataDetailsLengthLevelThree}}</span></span>
+                                    </div>
+                                </h5>
+
+                                <div style="position: absolute;top: 48px;font-size: 12px;"><a
+                                        [routerLink]="['/user-dashboard']">Go to Dashboard</a></div>
+                                <div style="position: absolute;top: 48px;left:102px;font-size: 12px;"
+                                    *ngIf="uploadedFileUrl!='null'"><a href="{{uploadedFileUrl}}">Download Saved
+                                        Result</a></div>
+
+                                <table id="showEventDescriptionP" data-toolbar="#toolbar" data-search="true"
+                                    data-show-export="true" data-export-options='{"fileName": "evolverAI"}'
+                                    data-show-columns="true" data-page-size="100" data-filter-control="true"
+                                    data-page-list="[10, 25, 50, 100, all]" class="table-striped">
+                                    <!--<table id="showEventDescription" data-toolbar="#toolbar" data-search="true" data-page-size="50" data-page-list="[10, 25, 50, 100, All]">-->
+                                    <thead>
+                                        <tr>
+                                            <th data-field="news_id" data-sortable="true" width="10%">#</th>
+                                            <th data-field="sourcenode_name" data-sortable="true" width="10%"
+                                                data-filter-control="input">Source</th>
+                                            <th data-field="destinationnode_name" data-sortable="true" width="10%"
+                                                data-filter-control="input">Destination</th>
+                                            <th data-field="level" data-sortable="true" width="10%"
+                                                data-filter-control="select" data-tableexport-value="Level">
+                                                Level</th>
+                                            <!-- <th data-field="edgeTypes" data-sortable="true" width="10%"
+                                                data-filter-control="input">
+                                                Edge Type</th> -->
+                                            <th data-field="pmidCount" data-sortable="true" width="10%"
+                                                data-filter-control="select" data-tableexport-value="PMID Count">
+                                                PMID Count</th>
+                                            <th data-field="rank_score" data-sortable="true" width="10%"
+                                                data-filter-control="select" data-tableexport-value="Rank">
+                                                Rank</th>
+                                            <!-- <th data-filter-control="select" data-field="article_count" data-sortable="true" width="10%">
+                                                    Articles Count</th> -->
+                                            <th data-field="edgeNeCount" width="10%">
+                                            </th>
+
+                                            <!-- <th data-field="edgeNe" data-sortable="true" width="10%">
+                                                Get Edge Type Article</th> -->
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="!notEmptyPost">
+                        <div class="alert alert-warning">
+                            No More Records..
+                        </div>
+                    </div>
+
+                    <div class="text-center" *ngIf="isloading"><img src="./assets/images/spinner_small_loader.gif">
+                    </div>
+                    <div class="text-center">
+                        <button *ngIf="!isloading && notEmptyPost && firstCompleteApiResult!=undefined"
+                            (click)="onDescScroll()" class="loadMoreBtn">Load More</button>
+                    </div>
+
+                    <!-- <a class="dropdown-item" class="text-dark m-1" style="cursor: pointer;"
+                        (click)="captureScenario(userScenario)">
+                        <span class="fa fa-save"></span> Save Query
+                      </a> -->
+
+                </div>
+
+            </div>
+
+            <!-- <button class="btn btn-primary" (click)="gotoPageTop()">Go to top</button> -->
+
+        </div>
+    </div>
+</div>
+
+<ng-template #articleModal let-c="close" let-d="dismiss">
+    <div class="modal-content modal-fullscreen" id="articleModal">
+        <div class="modal-header blue_bg_hdr modal-lg">
+            <h4 class="modal-title">Article(s) </h4>
+            <button class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body white_bg without_bord_rad">
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles modal-event-articles">
+
+                    <div class="m-1">
+                        <div class="fade show">
+
+                            <!-- <div *ngFor="let article of articleHere">
+                            <p>PMID: {{article.pmid}}</p>
+                            <p>Publication Date: {{article.publication_date}}</p>
+                            <p>Title: {{article.title}}</p>
+                            <hr>
+                        </div> -->
+                            <table id="articles_details" data-toolbar="#toolbar" data-search="true"
+                                data-show-export="true" data-show-columns="true" data-page-size="50"
+                                data-filter-control="true" data-page-list="[10, 25, 50, 100, All]">
+                                <thead>
+                                    <tr>
+                                        <th data-field="state" data-checkbox="true">ID</th>
+                                        <th data-field="id" data-sortable="true" width="2%">
+                                            #
+                                        </th>
+                                        <th data-field="source" data-sortable="true" width="10%"
+                                            data-filter-control="input">
+                                            Source
+                                        </th>
+                                        <th data-field="destination" data-sortable="true" width="10%"
+                                            data-filter-control="input">
+                                            Destination
+                                        </th>
+                                        <th data-field="pmid" data-sortable="true" width="10%"
+                                            data-filter-control="input">
+                                            PMID
+                                        </th>
+                                        <th data-field="publication_date" data-sortable="true" width="10%"
+                                            data-filter-control="input">
+                                            Publication Date
+                                        </th>
+                                        <th data-field="title" data-sortable="true" width="10%"
+                                            data-filter-control="input">
+                                            Title
+                                        </th>
+                                        <th data-field="edge_type" data-sortable="true" width="10%"
+                                            data-filter-control="input">
+                                            Edge Type
+                                        </th>
+                                        <th data-field="sentence_btn" data-sortable="false" width="10%">
+                                            Evidence
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div class="text-center" *ngIf="loaderArticle">
+                                <img src="../../assets/images/loader_big.gif" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overlay" *ngIf="loaderEvidence">
+                <img style="margin:155px 508px;" src="../../assets/images/loader_big.gif" />
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <a class="btn btn-primary" (click)="captureSentences(userSentences)">
+                <i class="bi bi-download" title="Download & Save"></i></a>
+            <a class="btn btn-primary " (click)="scrollTop()"><i class="bi bi-arrow-up-circle"
+                    title="Go to Top"></i></a>
+        </div>
+    </div>
+
+</ng-template>
+
+<!--------------------- SAVE article sentences ----------------------------->
+<ng-template #userSentences let-c="close" let-d="dismiss">
+
+    <div class="overlay text-center" *ngIf="loadingArticleSaved">
+        <img style="margin:155px 508px;" src="../../assets/images/loader_big.gif" />
+    </div>
+
+    <form autocomplete="nope" class="form-signin" [formGroup]="sentenceForm">
+        <!-- <form #myForm="ngForm" method="post" class="form" role="form"> -->
+        <div class="modal-header blue_bg_hdr modal-lg">
+            <h4 class="modal-title">Save Article Sentences</h4>
+            <button class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body white_bg without_bord_rad">
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles">
+                    <label for="filter1_name">Scenario Name</label>
+                    <input type="text" ngModel class="form-control" formControlName="filter1_name" name="filter1_name"
+                        value="" autocomplete="off" (input)="onScenarioChoose('input')">
+                </div>
+                <span class="text-danger" *ngIf="sentenceForm.controls['filter1_name'].hasError('minlength')">
+                    Name minimum 5 characters long.
+                </span>
+                <span class="text-danger" *ngIf="sentenceForm.controls['filter1_name'].hasError('maxlength')">
+                    Name maximum 15 characters long.
+                </span>
+            </div>
+            <div>OR</div>
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles">
+                    <label for="filter1_name">Select Existing Scenario</label>
+                    <span *ngIf="loadingArticleScenarioLists"><img
+                            src="./assets/images/spinner_small_loader.gif"></span>
+                    <select ngModel class="form-control" formControlName="scenario_exist_name"
+                        name="scenario_exist_name" (change)="onScenarioChoose('dropdown')">
+                        <option value="" selected>--Select existing scenario--</option>
+                        <option *ngFor="let scenarionName of scenarioExistName" [value]="scenarionName['id']">
+                            {{scenarionName['name']}}</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles">
+                    <label for="old_pwd">Comments</label>
+                    <textarea id="user1_comments" ngModel formControlName="user1_comments" name="user1_comments"
+                        class="form-control">
+                    </textarea>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles">
+                    <div class="pull-left" style="margin-right: 10px; float:left;">
+                        <button (click)="articlesWithEvidenceData()" type="submit"
+                            class="btn btn-success btn-block mb-4" [disabled]="sentenceForm.invalid">Save</button>
+                    </div>
+                    <div class="pull-left">
+                        <button class="btn btn-danger" (click)="closePopup2()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- comment from piyush -->
+</ng-template>
+<!-- SAVE articles and sentences with result set -->

@@ -1,0 +1,133 @@
+<!-- <div class="text-white fs-5 text-center mb-2">Direct Level Association <img *ngIf="loading" src="../../assets/images/loader_small.gif" /></div> -->
+
+<div class="sidebar-card">
+  <div class="body">
+    <div class="dropdown">
+      <div class="dropdown-toggle" id="filter-node-select" data-bs-toggle="dropdown" aria-expanded="false">
+        <!-- <div class="search-input" appClickDirective> -->
+        <div class="search-input">
+          <input class="form-control" type="text" [value]="nodeSelectsFilterText2">         
+          <img *ngIf="loading" width="20px" src="../../assets/images/loader_small.gif" />
+        </div>
+      </div>
+
+      <ul class="dropdown-menu" aria-labelledby="filter-node-select">
+        <div class="body">
+          <div class="search-options" style="width: 150%;">            
+            <div class="">
+              <input class="form-control" type="text" placeholder="Search Pair Type" [(ngModel)]="nodeSelectsFilterText1">
+              <span class="fa fa-search"></span>
+            </div>
+            
+            <li *ngFor="let node_select of node_selects | PairTypeFilterPipe:nodeSelectsFilterText1; let i = index" (click)="selectNode(node_select.nnrt_id, node_select.pair_name)">
+              {{ node_select.pair_name }}
+            </li>
+          </div>
+        </div>
+      </ul>
+      <!-- <span *ngIf="node_selects.length > 2" style="cursor: pointer" class="text-white float-right"
+        (click)="SeeMore($event,seeMoreGeneModal);">
+        See More Pair Type</span> -->
+      <!-- <img *ngIf="loading" width="20px" src="../../assets/images/loader_small.gif" /> -->
+    </div>
+  </div>
+</div>
+
+
+<!--<div class="card-panel-box bg-theme top-tile">
+  <div class="card-panel-box-heading">
+    <img src="../../assets/images/associated_company.png" />
+    Nodes <img *ngIf="loading" src="../../assets/images/small-loader.gif" width="18px" />
+    <i *ngIf="nodeSelectsCheck==true" (click)="reloadNode()"
+      style="color:white; float:right; cursor: pointer; margin-right: 8px;" title="Reload"
+      class="ion-refresh">Reload</i>
+  </div>
+  <div class="card-panel-box-detail" *ngIf="node_selects.length > 0" style="height: 150px;overflow: auto;">
+      <div class="checkbox-group" style="min-height: 183px; color: aliceblue;">
+      <div class="search-input">
+        <input class="form-control" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="nodeSelectsFilter" />
+      </div>
+      <div class="sidebar-card">
+        <div class="heading">
+            <h4>Level 1 Pair Type</h4>
+        </div>
+        <div class="body">
+            <select name="" id="" class="form-control" *ngFor="let node_select of node_selects | NodeFilterPipe:nodeSelectsFilter">
+                <option value="node_select.nnrt_id" [selected]="selectedNodeSelects.indexOf(node_select.nnrt_id)>-1 ">{{node_select.pair_name}}</option>
+            </select>
+        </div>
+      </div>
+    </div>
+    <span *ngIf="selectedNodeSelects.length > 0" style="cursor: pointer;font-size: 13px;float: right;margin-top: 10px;clear:both;" class="text-white float-left"
+      (click)="resetNode();">Reset</span>
+    <span *ngIf="node_selects.length > 2" style="cursor: pointer" class="text-white float-right"
+      (click)="SeeMore($event,seeMoreGeneModal);">{{node_selects.length-10}}
+      More</span>
+  </div>
+  <div class="card-panel-box-detail" *ngIf="node_selects.length <= 0">
+    <div class="" *ngIf="(nodeSelectsCheck==false)">
+      <i (click)="reloadNode()" style="color:white; cursor: pointer;" title="Reload" class="fa fa-refresh">&nbsp;
+        Click here to load Nodes</i>
+    </div>
+    <div *ngIf="(nodeSelectsCheck==true)">
+      <i style="color:white" title="Reload">&nbsp;
+        No news exists for any node</i>
+    </div>
+  </div>
+</div>
+
+<ng-template #nodeSelectsWarningModal let-c="close" let-d="dismiss">
+  <div class="modal-header    modal-lg" style="background: #ff0c66 !important;">
+    <h4 class="modal-title">Warning</h4>
+    &nbsp;
+    <button class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body white_bg without_bord_rad">
+    <h6 style="color:#ff0c66">You unchecked the "Select All" option. If you will Proceed with this then result-set
+      of
+      with all gene(s).
+      Otherwise you may choose indications and proceed.</h6>
+    <div class="pull-right">
+      <button class="btn btn-hero-info btn-demo" (click)="closePopup()">Okay</button>
+    </div>
+  </div>
+</ng-template>-->
+
+<ng-template #seeMoreGeneModal let-c="close" let-d="dismiss">
+  <div class="modal-body without_bord_rad indicators-modal">
+    <div class="modal-header">
+      <div class="row">
+        <div class="col-md-12">
+          <h6 class="text-white">Select Nodes
+            <span aria-hidden="true" aria-label="Close" (click)="seeMoreClosePopup()"
+              class="close pull-right">&times;</span>
+            <div class="clearfix"></div>
+          </h6>
+        </div>
+        <div class="col-md-12">
+          <div class="indicator_search">
+            <input class="form-control" type="text" [(ngModel)]="nodeSelectsFilterText1">
+            <span class="fa fa-search "></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ul>
+      <li class="form-control" *ngFor="let node_select of node_selects | PairTypeFilterPipe:nodeSelectsFilterText1;">
+        <input type="radio" name="node_selects" [value]="node_select.nnrt_id"
+          [checked]="(node_select.nnrt_id==2?'checked':'')">
+        &nbsp;<label>{{ node_select.pair_name }}</label>
+      </li>
+    </ul>
+
+    <div class="modal-footer">
+      <div class="demo-checkboxes-radio">
+      </div>
+      <button class="btn btn-outline-primary" [disabled]="disableProceed" (click)="seeMoreproceed()">Proceed</button>
+      <button class="btn btn-danger" (click)="seeMoreClosePopup()">Close</button>
+    </div>
+  </div>
+</ng-template>

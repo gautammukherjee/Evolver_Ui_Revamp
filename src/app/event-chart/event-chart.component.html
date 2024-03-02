@@ -1,0 +1,56 @@
+<div class="tab-slider--nav">
+    <div class="custom-nav-tabs">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="tab0-tab" data-bs-toggle="tab" data-bs-target="#tab0" type="button"
+                    role="tab" aria-controls="tab0" aria-selected="true">Network Map</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab1-tab" data-bs-toggle="tab" data-bs-target="#tab1" type="button"
+                    role="tab" aria-controls="tab1" aria-selected="true">Details of Associated data</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab2-tab" data-bs-toggle="tab" data-bs-target="#tab2" type="button"
+                    role="tab" aria-controls="tab2" aria-selected="false">Distribution
+                    by Relation Group</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab3-tab" data-bs-toggle="tab" data-bs-target="#tab3" type="button"
+                    role="tab" aria-controls="tab3" aria-selected="false">Distribution
+                    by Association Type</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab4-tab" data-bs-toggle="tab" data-bs-target="#tab4" type="button"
+                    role="tab" aria-controls="tab4" aria-selected="false">Count of
+                    PMID with Relevant Genes or Diseases</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tab5-tab" data-bs-toggle="tab" data-bs-target="#tab5" type="button"
+                    role="tab" aria-controls="tab5" aria-selected="false">Distribution
+                    by Relation Type</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane p-2 fade show active" id="tab0" role="tabpanel" aria-labelledby="tab0-tab">
+                <!--<app-network-map [ProceedDoFilterApply]="doFilterApply"
+                    (onGraphSelection)='graphSelected("clickOnEventDetails")'></app-network-map>-->
+            </div>
+            <div class="tab-pane p-2 fade" id="tab1" role="tabpanel" aria-labelledby="tab1-tab">
+                <app-details-of-assoc-data></app-details-of-assoc-data>
+                First tab
+            </div>
+            <div class="tab-pane p-2 fade" id="tab2" role="tabpanel" aria-labelledby="tab2-tab">
+                <app-distribution-by-rel-grp></app-distribution-by-rel-grp>
+            </div>
+            <div class="tab-pane p-2 fade" id="tab3" role="tabpanel" aria-labelledby="tab3-tab">
+                Third tab
+            </div>
+            <div class="tab-pane p-2 fade" id="tab4" role="tabpanel" aria-labelledby="tab4-tab">
+                Fourth tab
+            </div>
+            <div class="tab-pane p-2 fade" id="tab5" role="tabpanel" aria-labelledby="tab5-tab">
+                
+            </div>
+        </div>
+    </div>
+</div> 

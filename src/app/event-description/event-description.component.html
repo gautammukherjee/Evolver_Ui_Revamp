@@ -1,0 +1,496 @@
+<!-- <div class="search-options event-desc-wrapper" infinite-scroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50"
+    (scrolled)="onDescScroll()" [scrollWindow]="false"> -->
+<div class="save-query-top-btn" *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">
+    <button class="btn btn-primary btn-sm" (click)="captureScenario(userScenario)">
+        <i class="bi bi-sd-card" title="Save"></i>&nbsp;Save Query
+    </button>
+</div>
+<div class="search-options">
+    <div class="card-panel-box">
+        <div class="customTable" style="border: 0px solid #ddd; min-height:400px;">
+            <div class="text-muted fs-2 text-center mb-4" *ngIf="(masterListsDataDetailsLengthLevelOne==0)">Please
+                select
+                entities to
+                generate Details</div>
+
+            <!--<div class="card-panel-box-heading">
+            Event List
+        </div>-->
+            <!--<i (click)="reloadDescription()" class="fa fa-expand text-white"
+            style="position: absolute; top: 10px; right: 30px; font-size: 21px;"></i>-->
+
+            <!-- <i (click)="help(helpDesc)" class="fa fa-info-circle text-white"
+            style="position: absolute; top: 10px; right: 72px; font-size: 22px;"></i> -->
+
+            <!--<div class="card-panel-box-detail" [hidden]="hideCardBody">-->
+            <div class="card-panel-box-detail p-0">
+                <div class="customTable " id="eventListTable">
+                    <!-- <div class="text-muted fs-2 text-center mb-4">Please select entities to generate Details</div> -->
+                    <div class="overlay text-center" *ngIf="loadingDesc">
+                        <img style="margin:155px 508px;" src="../../assets/images/loader_big.gif" />
+                    </div>
+
+                    <div *ngIf="noDataFoundDetails" class="bg-danger"
+                        style="color:#fff; text-align: center; font-weight: bold;">
+                        Please Choose Pair Type and Source for Second Degree
+                    </div>
+                    <div class="table-responsive custom-fixed-header-table table table-striped table-hover"
+                        *ngIf="noSourceNodeSelected==0"
+                        [ngClass]="toggleLevels == false ? 'hiddenLevels' : currentLevel == '1' ? 'level1' : currentLevel == 2 ? 'level2' : 'level3'">
+
+                        <div>
+                            <span class="float-start text-white p-1 mr-2 level1-title"
+                                *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">First
+                                Degree Combinations
+                                <span
+                                    class="badge bg-primary text-white">{{masterListsDataDetailsLengthLevelOne}}</span></span>
+                            <span class="float-start text-white p-1 level2-title"
+                                *ngIf="secondLoadApiResult!=undefined && masterListsDataDetailsLengthLevelTwo > 0">Second
+                                Degree Combinations
+                                <span
+                                    class="badge bg-primary text-white">{{masterListsDataDetailsLengthLevelTwo}}</span></span>
+                            <span class="float-start text-white p-1 level3-title"
+                                *ngIf="thirdLoadApiResult!=undefined && masterListsDataDetailsLengthLevelThree > 0">Third
+                                Degree Combinations
+                                <span
+                                    class="badge bg-primary text-white">{{masterListsDataDetailsLengthLevelThree}}</span></span>
+                        </div>
+
+                        <table id="showEventDescription" data-toolbar="#toolbar" data-search="true"
+                            data-show-export="true" data-export-options='{"fileName": "evolverAI"}'
+                            data-show-columns="true" data-page-size="1000" data-filter-control="true"
+                            data-page-list="[10, 25, 50, 100, 500, all]" class="table-striped">
+                            <!--<table id="showEventDescription" data-toolbar="#toolbar" data-search="true" data-page-size="50" data-page-list="[10, 25, 50, 100, All]">-->
+                            <thead>
+                                <tr>
+                                    <th data-field="news_id" data-sortable="true" width="10%">#</th>
+                                    <th data-field="sourcenode_name" data-sortable="true" width="10%"
+                                        data-filter-control="input">Source</th>
+                                    <th data-field="destinationnode_name" data-sortable="true" width="10%"
+                                        data-filter-control="input">Destination</th>
+                                    <th data-field="level" data-sortable="true" width="10%" data-filter-control="select"
+                                        data-tableexport-value="Level">
+                                        Level</th>
+                                    <!-- <th data-field="edgeTypes" data-sortable="true" width="10%"
+                                        data-filter-control="input">
+                                        Edge Type</th> -->
+                                    <th data-field="pmidCount" data-sortable="true" width="10%"
+                                        data-filter-control="select" data-tableexport-value="PMID Count">
+                                        PMID Count</th>
+                                    <th data-field="rank_score" data-sortable="true" width="10%"
+                                        data-filter-control="select" data-tableexport-value="Rank">
+                                        Rank</th>
+                                    <th data-field="edgeNeCount" width="10%">
+                                    <th data-field="ctLists" width="10%">
+                                    </th>
+
+                                    <!-- <th data-field="edgeNe" data-sortable="true" width="10%">
+                                        Get Edge Type Article</th> -->
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <!-- Total Records:{{masterListsData.length}} *ngIf="masterListsData.length>1999"-->
+                <!-- <select class="form-select" style="width: 150px;" name="load_dataset"
+                    (change)="loadNextDataSet($event)">
+                    <option value="0" selected>1-8000</option>
+                    <option value="8001">8001-16000</option>
+                    <option value="16001">16001-24000</option>
+                    <option value="24001">24001-32000</option>
+                </select> -->
+            </div>
+
+            <div *ngIf="!notEmptyPost">
+                <div class="alert alert-warning">
+                    No More Records..
+                </div>
+            </div>
+
+            <div class="text-center" *ngIf="isloading"><img src="./assets/images/spinner_small_loader.gif"></div>
+            <div class="text-center" style="margin-top: 40px;">
+                <button
+                    *ngIf="!isloading && notEmptyPost && firstCompleteApiResult!=undefined && noSourceNodeSelected==0"
+                    (click)="onDescScroll()" class="loadMoreBtn">Load More</button>
+            </div>
+
+            <!-- <a class="dropdown-item" class="text-dark m-1" style="cursor: pointer;"
+                (click)="captureScenario(userScenario)">
+                <span class="fa fa-save"></span> Save Query
+              </a> -->
+
+            <div class="text-center"
+                *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0 && noSourceNodeSelected==0">
+                <button class="btn btn-primary btn-sm save-query" (click)="captureScenario(userScenario)"><i
+                        class="bi bi-sd-card" title="Save"></i>&nbsp;Save Query</button>
+            </div>
+            <!-- <div style="position: absolute;float: left;right: 341px;"
+                *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">
+                <button class="saveFilterBtn" (click)="captureScenarioWithResult(userScenarioWithResult)">Save Result</button>
+            </div> -->
+
+        </div>
+
+    </div>
+
+    <!-- <button class="btn btn-primary" (click)="gotoPageTop()">Go to top</button> -->
+
+</div>
+
+<!-- help section goes here -->
+<!-- <ng-template #edgeTypeDescModal let-c="close" let-d="dismiss">
+    <div class="modal-header blue_bg_hdr  modal-lg">
+        <h4 class="modal-title">Edge Type Name(s) </h4>
+        <button class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body white_bg without_bord_rad">
+        <div class="row">
+            <div class="col-md-12 bottam-buffer home_tiles">
+                <div class="m-1">
+                    <div class="fade show">
+                        <table id="articles_details_pmid" data-toolbar="#toolbar" data-search="true"
+                            data-show-export="true" data-show-columns="true" data-page-size="50"
+                            data-filter-control="true" data-page-list="[10, 25, 50, 100, 500, All]">
+                            <thead>
+                                <tr>
+                                    <th data-field="source" data-sortable="true" width="10%"
+                                        data-filter-control="input">
+                                        Source
+                                    </th>
+                                    <th data-field="destination" data-sortable="true" width="10%"
+                                        data-filter-control="input">
+                                        Destination
+                                    </th>
+                                    <th data-field="pmid" data-sortable="true" width="10%" data-filter-control="input">
+                                        PMID
+                                    </th>
+                                    <th data-field="publication_date" data-sortable="true" width="10%"
+                                        data-filter-control="input">
+                                        Publication Date
+                                    </th>
+                                    <th data-field="title" data-sortable="true" width="10%" data-filter-control="input">
+                                        Title
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                        <img class="text-center" src="../../assets/images/loader_big.gif" *ngIf="loaderEdgeType" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template> -->
+
+<ng-template #articleModal let-c="close" let-d="dismiss">
+    <div class="modal-content modal-fullscreen" id="articleModal">
+        <div class="modal-header blue_bg_hdr modal-lg">
+            <h4 class="modal-title">Article(s) </h4>
+            <button class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body white_bg without_bord_rad">
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles modal-event-articles">
+
+                    <div class="m-1">
+                        <div class="fade show">
+
+                            <!-- <div *ngFor="let article of articleHere">
+                            <p>PMID: {{article.pmid}}</p>
+                            <p>Publication Date: {{article.publication_date}}</p>
+                            <p>Title: {{article.title}}</p>
+                            <hr>
+                        </div> -->
+                            <table id="articles_details" data-toolbar="#toolbar" data-search="true"
+                                data-show-export="true" data-show-columns="true" data-page-size="50"
+                                data-filter-control="true" data-page-list="[10, 25, 50, 100, 500, All]">
+                                <thead>
+                                    <tr>
+                                        <th data-field="state" data-checkbox="true">ID</th>
+                                        <th data-field="id" data-sortable="true" width="2%">
+                                            #
+                                        </th>
+                                        <th data-field="source" data-sortable="true" width="10%"
+                                            data-filter-control="input">
+                                            Source
+                                        </th>
+                                        <th data-field="destination" data-sortable="true" width="10%"
+                                            data-filter-control="input">
+                                            Destination
+                                        </th>
+                                        <th data-field="pmid" data-sortable="true" width="10%"
+                                            data-filter-control="input">
+                                            PMID
+                                        </th>
+                                        <th data-field="publication_date" data-sortable="true" width="10%"
+                                            data-filter-control="input">
+                                            Publication Date
+                                        </th>
+                                        <th data-field="title" data-sortable="true" width="10%"
+                                            data-filter-control="input">
+                                            Title
+                                        </th>
+                                        <th data-field="edge_type" data-sortable="true" width="10%"
+                                            data-filter-control="input">
+                                            Edge Type
+                                        </th>
+                                        <th data-field="sentence_btn" data-sortable="false" width="10%">
+                                            Evidence
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div class="text-center" *ngIf="loaderArticle">
+                                <img src="../../assets/images/loader_big.gif" />
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overlay" *ngIf="loaderEvidence">
+                <img style="margin:155px 508px;" src="../../assets/images/loader_big.gif" />
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <!-- <div class="float-end" *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">
+                <button class="btn btn-primary" (click)="captureScenario(userScenario)">Save Query</button>
+            </div> -->
+
+            <a class="btn btn-primary" (click)="captureSentences(userSentences)">
+                <i class="bi bi-sd-card" title="Download & Save"></i></a>
+            <!-- <a class="btn btn-primary " (click)="articlesWithEvidenceData()">Download</a> -->
+            <a class="btn btn-primary " (click)="scrollTop()">
+                <i class="bi bi-arrow-up-circle" title="Go to Top"></i></a>
+        </div>
+    </div>
+
+</ng-template>
+
+<!-- //CT lists -->
+<ng-template #ctModal let-c="close" let-d="dismiss">
+    <div class="modal-content modal-fullscreen" id="articleModal">
+        <div class="modal-header blue_bg_hdr modal-lg">
+            <h4 class="modal-title">Trials(s) </h4>
+            <button class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body white_bg without_bord_rad">
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles modal-event-articles">
+
+                    <div class="m-1">
+                        <div class="fade show">                            
+                            <table id="ct_details" data-toolbar="#toolbar" data-search="true"
+                                data-show-export="true" data-show-columns="true" data-page-size="50"
+                                data-filter-control="true" data-page-list="[10, 25, 50, 100, 500, All]">
+                                <thead>
+                                    <tr>
+                                        <!-- <th data-field="state" data-checkbox="true">ID</th> -->
+                                        <th data-field="id" data-sortable="true" width="2%">
+                                            #
+                                        </th>
+                                        <th data-field="nctid" data-sortable="true" width="10%"
+                                            data-filter-control="input">
+                                            NCTID
+                                        </th>
+                                        <th data-field="title" data-sortable="true" width="10%"
+                                            data-filter-control="input">
+                                            Title
+                                        </th>
+                                        <th data-field="disease_name" data-sortable="true" width="10%"
+                                            data-filter-control="input">
+                                            Disease Name
+                                        </th>
+                                        <th data-field="phase_name" data-sortable="true" width="10%"
+                                            data-filter-control="select">
+                                            Phase Name
+                                        </th>
+                                        <th data-field="verification_date" data-sortable="true" width="10%"
+                                            data-filter-control="input">
+                                            Verification Date
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div class="text-center" *ngIf="loaderCTLists">
+                                <img src="../../assets/images/loader_big.gif" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="overlay" *ngIf="loaderEvidence">
+                <img style="margin:155px 508px;" src="../../assets/images/loader_big.gif" />
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <!-- <a class="btn btn-primary" (click)="captureSentences(userSentences)">
+                <i class="bi bi-download" title="Download & Save"></i></a> -->
+            <!-- <a class="btn btn-primary " (click)="articlesWithEvidenceData()">Download</a> -->
+            <a class="btn btn-primary " (click)="scrollTop()">
+                <i class="bi bi-arrow-up-circle" title="Go to Top"></i></a>
+        </div>
+    </div>
+
+</ng-template>
+
+<!-- SAVE scenario -->
+<ng-template #userScenario let-c="close" let-d="dismiss">
+
+    <div class="overlay text-center" *ngIf="loadingScenario">
+        <img style="margin:155px 508px;" src="../../assets/images/loader_big.gif" />
+    </div>
+
+    <form autocomplete="nope" class="form-signin" [formGroup]="scenarioForm">
+        <!-- <form #myForm="ngForm" method="post" class="form" role="form"> -->
+        <div class="modal-header blue_bg_hdr modal-lg">
+            <h4 class="modal-title">Save Query</h4>
+            <button class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body white_bg without_bord_rad">
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles">
+                    <label for="filter_name">Scenario Name</label>
+                    <input type="text" ngModel class="form-control" formControlName="filter_name" name="filter_name"
+                        value="" autocomplete="off">
+                </div>
+                <span class="text-danger" *ngIf="scenarioForm.controls['filter_name'].hasError('minlength')">
+                    Scenario name minimum 5 characters long.
+                </span>
+                <span class="text-danger" *ngIf="scenarioForm.controls['filter_name'].hasError('maxlength')">
+                    Scenario name maximum 15 characters long.
+                </span>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles">
+                    <label for="old_pwd">Comments</label>
+                    <textarea id="user_comments" ngModel formControlName="user_comments" name="user_comments"
+                        class="form-control">
+                    </textarea>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles">
+                    <input type="checkbox" ngModel class="form-check-input" style="border: 1px solid #32404E"
+                        formControlName="result_set_checked" name="result_set_checked" value="1"
+                        (change)="saveWithResultsetData($event)" autocomplete="off">
+                    &nbsp;<label for="result_set_checked">Save with result-set</label>
+                    <span *ngIf="returnResultsetData" style="position: absolute;top: 194px;">&nbsp;<img src="./assets/images/spinner_small_loader.gif"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles">
+                    <input type="checkbox" ngModel class="form-check-input" style="border: 1px solid #32404E"
+                        formControlName="result_set_with_edge_type" name="result_set_with_edge_type" value="1"
+                        (change)="saveWithEdgeTypeResultsetData($event)" autocomplete="off">
+                    &nbsp;<label for="result_set_with_edge_type">Save with Edge Type</label>
+                    <span *ngIf="returnWithEdgeTypeResultsetData" style="position: absolute;top: 214px;">&nbsp;<img
+                            src="./assets/images/spinner_small_loader.gif"></span>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles">
+                    <div class="pull-left" style="margin-right: 10px; float:left;">
+                        <button (click)="saveCaptureScenario()" type="submit" class="btn btn-success btn-block mb-4"
+                            [disabled]="scenarioForm.invalid || returnResultsetData || returnWithEdgeTypeResultsetData">Save</button>
+                    </div>
+                    <div class="pull-left">
+                        <button class="btn btn-danger" (click)="closePopup()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- comment from piyush -->
+</ng-template>
+<!-- SAVE scenario with result set -->
+
+<!--------------------- SAVE article sentences ----------------------------->
+<ng-template #userSentences let-c="close" let-d="dismiss">
+
+    <div class="overlay text-center" *ngIf="loadingArticleSaved">
+        <img style="margin:155px 508px;" src="../../assets/images/loader_big.gif" />
+    </div>
+
+    <form autocomplete="nope" class="form-signin" [formGroup]="sentenceForm">
+        <!-- <form #myForm="ngForm" method="post" class="form" role="form"> -->
+        <div class="modal-header blue_bg_hdr modal-lg">
+            <h4 class="modal-title">Save Article Sentences</h4>
+            <button class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body white_bg without_bord_rad">
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles">
+                    <label for="filter1_name">Scenario Name</label>
+                    <input type="text" ngModel class="form-control" formControlName="filter1_name" name="filter1_name"
+                        value="" autocomplete="off" (input)="onScenarioChoose('input')">
+                </div>
+                <span class="text-danger" *ngIf="sentenceForm.controls['filter1_name'].hasError('minlength')">
+                    Name minimum 5 characters long.
+                </span>
+                <span class="text-danger" *ngIf="sentenceForm.controls['filter1_name'].hasError('maxlength')">
+                    Name maximum 15 characters long.
+                </span>
+            </div>
+            <div>OR</div>
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles">
+                    <label for="filter1_name">Select Existing Scenario</label>
+                    <span *ngIf="loadingArticleScenarioLists"><img
+                            src="./assets/images/spinner_small_loader.gif"></span>
+                    <select ngModel class="form-control" formControlName="scenario_exist_name"
+                        name="scenario_exist_name" (change)="onScenarioChoose('dropdown')">
+                        <option value="" selected>--Select existing scenario--</option>
+                        <option *ngFor="let scenarionName of scenarioExistName" [value]="scenarionName['id']">
+                            {{scenarionName['name']}}</option>
+                    </select>
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles">
+                    <label for="old_pwd">Comments</label>
+                    <textarea id="user1_comments" ngModel formControlName="user1_comments" name="user1_comments"
+                        class="form-control">
+                    </textarea>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles">
+                    <div class="pull-left" style="margin-right: 10px; float:left;">
+                        <button (click)="articlesWithEvidenceData()" type="submit"
+                            class="btn btn-success btn-block mb-4" [disabled]="sentenceForm.invalid">Save</button>
+                    </div>
+                    <div class="pull-left">
+                        <button class="btn btn-danger" (click)="closePopup2()">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!-- comment from piyush -->
+</ng-template>
+
+<!-- SAVE scenario with result set -->

@@ -1,0 +1,170 @@
+.navbar-light .navbar-nav .nav-link {
+	color: #1E2661 !important;
+}
+
+.two-side-wrapper {
+	display: flex;
+	background: #f8f9fa;
+}
+
+.two-side-wrapper .left-filter-panel {
+	width: 330px;
+	min-width: 330px;
+	max-width: 330px;
+	padding: 20px;
+}
+
+.two-side-wrapper .right-detail-panel {
+	width: 100%;
+	padding: 20px;
+}
+
+.card-panel-box {
+	margin-bottom: 20px;
+	box-shadow: 0px 1px 5px #ddd;
+	background: #FFF;
+}
+
+.card-panel-box .card-panel-box-heading {
+	font-size: 17px;
+	padding: 7px 15px;
+	background: #7880BA;
+	color: #fff;
+}
+
+.card-panel-box .card-panel-box-detail {
+	padding: 20px;
+}
+
+.card-panel-box .card-panel-box-detail .search-input {
+	margin-bottom: 10px;
+}
+
+.card-panel-box .card-panel-box-detail .search-input input:focus {
+	border: 1px solid #187ebc;
+	outline: none;
+	box-shadow: none;
+}
+
+.card-panel-box .card-panel-box-detail .checkbox-group .form-check {
+	margin-bottom: 3px;
+}
+
+.heat-maps {
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.heat-maps .card-panel-box {
+	width: 32%;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.modal.right .modal-dialog {
+    position: fixed;
+    margin: auto;
+    width: 350px;
+    height: 100%;
+    -webkit-transform: translate3d(0%, 0, 0);
+    -ms-transform: translate3d(0%, 0, 0);
+    -o-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0);
+}
+
+.modal.right .modal-content {
+    height: 100%;
+    overflow-y: auto;
+    background-color: #fafbfc;
+    color: lightgray;
+}
+
+.modal.right .modal-body {
+    padding: 15px 15px 80px;
+}
+
+.modal.right.fade .modal-dialog {
+    right: 0px;
+    -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+    transition: opacity 0.3s linear, right 0.3s ease-out;
+}
+
+.modal.right.fade.in .modal-dialog {
+    right: 0;
+}
+
+.modal-content {
+    border-radius: 0;
+    border: none;
+}
+
+.modal-header {
+    border-bottom-color: #EEEEEE;
+    background-color: #32404E;
+    color: #fff;
+    display: inline !important;
+}
+
+.close span {
+    color: #fff;
+}
+
+.overlay {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 65px;
+	left: 0px;
+	background-color: rgba(255, 255, 255, 0.7);
+	z-index: 9999;
+	padding-top: 10px;
+}
+
+////////////// 
+
+// #CT_InvestigatorRoleData {
+//     height: 543px; 
+//     transform: rotate(270deg);
+// }
+
+.highcharts-figure, .highcharts-data-table table {
+    min-width: 360px; 
+    max-width: 600px;
+    margin: 1em auto;
+}
+.highcharts-label.highcharts-data-label text{  
+  transform: rotate(90deg);
+}
+
+.highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #EBEBEB;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+.highcharts-data-table th {
+	font-weight: 600;
+    padding: 0.5em;
+}
+.highcharts-data-table td, .highcharts-data-table th, .highcharts-data-table caption {
+    padding: 0.5em;
+}
+.highcharts-data-table thead tr, .highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}

@@ -1,0 +1,81 @@
+<app-header></app-header>
+
+<div class="user-dashboard-wrapper">
+    <div class="page-title bg-secondary bg-gradient text-light">
+        <h3>My Articles & Sentences</h3>
+    </div>
+    <!-- <div class="filter-bar">
+        <div class="query-selector">
+            <select name="" id="" class="form-select">
+                <option value="">With Resultset</option>
+                <option value="">Without Resultset</option>
+            </select>
+        </div>
+        <div class="items-deletion">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input mt-0" id="selectAll">
+                <label class="form-check-label" for="selectAll">Select All to Delete</label>
+            </div>
+            <i class="bi bi-trash3 text-danger"></i>
+        </div>
+    </div> -->
+
+    <!-- <div class="overlay text-center" *ngIf="loadingSenarios">
+        <img src="../../assets/images/loader_big.gif" />
+    </div> -->
+    <!-- <div class="overlay text-center" *ngIf="loadingDel">
+        <img src="../../assets/images/loader_big.gif" />
+    </div> -->
+
+    <div class="loading-custom" *ngIf="loadingSenarios"><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</div>
+    <div class="loading-custom" *ngIf="loadingDel"><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</div>
+
+    <div *ngIf="scenarioListsTables.length" class="col-md-3 col-lg-3 col-xl-3 col-sm-6 col-xs-12" style="padding: 10px 0px 10px 0px;">
+        <input type="text" name="search" class="form-control" [(ngModel)]="searchText2"
+            placeholder="Search with File Name" style="background-color: #f4f5f5;font-size: 13px">
+    </div>
+    <div *ngIf="scenarioListsTables.length" class="table-responsive query-table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Sr No</th>
+                    <th>File Name</th>
+                    <!-- <th>Username</th> -->
+                    <th>URL</th>
+                    <th>Created</th>
+                    <th>Comments</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let scenario of scenarioListsTables | ArticleFilterPipe:searchText2; let i = index;">
+                    <td >{{i+1}}</td>
+                    <td>
+                        <span
+                            class="">{{scenario.name}}
+                    </span>
+                    </td>
+                    <!-- <td >{{scenario.user_name}}</td> -->
+                    <td *ngIf="scenario.uploaded_file_url!=null"><a href="{{scenario.uploaded_file_url}}">Download Saved Result</a></td>
+                    <td *ngIf="scenario.uploaded_file_url==null">NA</td>
+                    <td >{{scenario.created_at | date: 'MM-dd-yyyy'}}</td>
+                    <td >
+                        <!-- {{ (scenario.user_comments.length>15)? (scenario.user_comments |
+              slice:0:15)+'..':(scenario.user_comments) }} -->
+                        <div class="containerComment" [class.show]="scenario.visible">
+                            {{scenario.description}}
+                        </div>
+                        <!-- <button (click)="scenario.visible = !scenario.visible">{{ scenario.visible ? '&laquo;&laquo;':
+                        '&raquo;&raquo;'
+                        }}</button> -->
+                    </td>
+                    <td >
+                        <i class="bi bi-trash3 text-danger cursor-pointer" [ngStyle]="{'pointer-events' : currentUser.user_id!=scenario.user_id ? 'none' : ''}"
+                        (click)="delArticleSentencesScenario(scenario.id)"></i>
+                        <!-- <input type="radio" name="scenario" [value]="scenario" (change)="selectscenario(scenario,$event)"> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

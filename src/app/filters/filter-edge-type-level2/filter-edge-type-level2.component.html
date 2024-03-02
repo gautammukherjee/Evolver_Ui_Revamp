@@ -1,0 +1,54 @@
+<div class="sidebar-card">
+  <div class="dropdown">
+    <div class="dropdown-toggle" id="edge-type-filter2" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+      <div class="body">
+        <div class="search-input">
+          <input class="form-control" type="text" value="{{selectedEdgeTypesNames2.join(', ')}}" placeholder="Search Edge Type Second Degree" aria-label="Search" [(ngModel)]="edgeTypeFilter" />
+          <img *ngIf="loading" src="../../assets/images/loader_small.gif" width="20px"/>
+        </div>
+      </div>
+    </div>
+
+    <ul class="dropdown-menu" aria-labelledby="edge-type-filter2">
+      <div class="body">
+        <div *ngIf="edgeTypes2.length">
+          <div class="search-options">
+            <input type="checkbox" name="edgeTypes2" [(ngModel)]="isAllSelected" [value]="edgeTypes2" [checked]=""
+            (change)="selectAll($event);">
+            <span class="custom-control-description text-dark">&nbsp;Select All</span>
+            <button class="btn btn-outline-primary" style="float: right;" [disabled]="disableProceed" (click)="seeMoreproceed()"><i class="bi bi-arrow-right-circle-fill" title="Proceed"></i></button>
+            
+            <div class="mb-1 form-check" *ngFor="let edgeType of edgeTypes2 | EdgeTypeFilterPipe:edgeTypeFilter">
+              <input class="form-check-input border border-secondary" type="checkbox" name="edgeTypes2"  [value]="edgeType"
+                [checked]="selectedEdgeTypesByGroup2.indexOf(edgeType.edge_group_id)>-1 " (change)="selectEdgeType(edgeType,$event)">
+              <label class="form-check-label">
+                {{edgeType.edge_group_name}}
+              </label>
+            </div>            
+          </div>
+        </div>
+      </div>      
+    </ul>
+  </div>
+</div>
+
+<!-- <ng-template #edgeSelectsWarningModal let-c="close" let-d="dismiss">
+  <div class="modal-header    modal-lg" style="background: #ff0c66 !important;">
+    <h4 class="modal-title">Warning</h4>
+    &nbsp;
+    <button class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body white_bg without_bord_rad">
+    <h6 style="color:#ff0c66">You unchecked the "Select All" option. If you will Proceed with this then result-set
+      of
+      with all gene(s).
+      Otherwise you may choose indications and proceed.</h6>
+    <div class="pull-right">
+      <button class="btn btn-hero-info btn-demo" (click)="closePopup()">Okay</button>
+    </div>
+  </div>
+</ng-template> -->
+
+

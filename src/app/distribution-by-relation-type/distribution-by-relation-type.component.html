@@ -1,0 +1,83 @@
+<div class="card-panel-box">
+    <div class="card-panel-box-heading">
+        Distribution By Relation Type
+    </div>
+    <!--<i (click)="reloadDescription()" class="fa fa-expand text-white"
+        style="position: absolute; top: 10px; right: 30px; font-size: 21px;"></i>-->
+
+    <!-- <i (click)="help(helpDesc)" class="fa fa-info-circle text-white"
+        style="position: absolute; top: 10px; right: 72px; font-size: 22px;"></i> -->
+
+    <!--<div class="card-panel-box-detail" [hidden]="hideCardBody">-->
+    <div class="card-panel-box-detail">
+        <div class="customTable">
+
+            <!-- <div class="overlay" *ngIf="loadingDesc">
+                <img src="../../assets/images/loader_big.gif" style="margin:185px 653px;" />
+            </div> -->
+            <div *ngIf="noDataFound" class="bg-danger" style="color:#fff; text-align: center; font-weight: bold;">
+                Please Choose Pair Type and Source Node for level 2
+            </div>
+            <div class="table-responsive custom-fixed-header-table" style="max-height:600px"
+                *ngIf="noSourceNodeSelected==0">
+                <table id="showDistributionRelationData" data-toolbar="#toolbar" data-search="true"
+                    data-show-export="true" data-show-columns="true" data-page-size="50" data-filter-control="true"
+                    data-page-list="[10, 25, 50, 100, All]">
+                    <!--<table id="showDistributionRelationData" data-toolbar="#toolbar" data-search="true" data-page-size="50" data-page-list="[10, 25, 50, 100, All]">-->
+                    <thead>
+                        <tr>
+                            <!-- <th data-field="news_id" data-sortable="true" width="10%">News ID</th> -->
+                            <th data-field="source_node_name" data-sortable="true" width="10%"
+                                data-filter-control="input">Source</th>
+                            <th data-field="destination_node_name" data-sortable="true" width="10%"
+                                data-filter-control="input">Destination</th>
+                            <th data-field="edge_types_name" data-sortable="true" width="10%"
+                                data-filter-control="input">Edge Type</th>
+                            <th data-field="pmid_count" data-sortable="true" width="10%" data-filter-control="select">
+                                Article Count</th>
+                            <th data-field="pmidLists">&nbsp;</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="modal overlay right fade" id="myModalPMID" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>-->
+                    <h5 class="modal-title">Evidence & PMID Details</h5>
+                </div>
+                <div class="modal-body">
+                    <div id="pmidListsLoader"></div>
+                    <div id="pmidListsData"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- help section goes here -->
+<!-- <ng-template #helpDesc let-c="close" let-d="dismiss">
+    <div class="modal-header blue_bg_hdr  modal-lg">
+        <h4 class="modal-title">INFO </h4>
+        <button class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body white_bg without_bord_rad">
+        <div class="row">
+            <div class="col-md-12 bottam-buffer home_tiles">
+                <div class="two-column_popup demo-checkboxes-radio">
+                    <span class="custom-control-description text-dark" [innerHtml]="helpContents"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template> -->

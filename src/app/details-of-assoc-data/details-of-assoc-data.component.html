@@ -1,0 +1,16 @@
+ <div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="text-center" *ngIf="loadingChart">
+                <img src="../../assets/images/loader_big.gif" />
+            </div>
+            <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions" style="width: 100%; display: block" *ngIf="!loadingChart"></highcharts-chart>
+        </div>
+    </div>
+ </div>
+
+<!--<img src="./assets/images/loader_big.gif" *ngIf="graphLoader" />-->
+
+<div *ngIf="errorMsg!==''">
+    {{errorMsg}}
+</div> 

@@ -1,0 +1,59 @@
+<div class="login-wrapper">
+  <div class="hero-image-wrapper">
+    <div class="poweredBy-wrapper">
+      <span> Powered By <img src="assets/images/bioxcel-logo.svg" /> </span>
+    </div>
+  </div>
+  <div class="form-panel-wrapper">
+    <div class="form-box">
+      <div class="logo">
+        <img src="assets/images/logo.svg" alt="" />
+      </div>
+
+      <div class="alert alert-danger" *ngIf="error=='true'">
+        {{errorMessage}}
+      </div>
+      <div class="loading-custom" *ngIf="loading">
+        <img src="./../assets/images/loader_small.gif" />&nbsp;Loading...
+      </div>
+
+      <form (ngSubmit)="login()" autocomplete="nope" class="form-signin" [formGroup]="loginForm">
+        <div class="form-group">
+          <span class="indicator-icon">
+            <img src="assets/images/icons/email.svg" alt="" />
+          </span>
+          <input type="email" name="email" placeholder="User Id" formControlName="email" id="input-email"
+            class="form-control form-control-lg" aria-label=".form-control-lg example" autocomplete="off">
+          <span *ngIf="email && email.invalid && email.touched" class="text-danger"
+            style="position: absolute;top: 52px;left: 0px;">Email is
+            required</span>
+        </div>
+
+        <div class="form-group">
+          <span class="indicator-icon">
+            <img src="assets/images/icons/password.svg" alt="" />
+          </span>
+          <input type="password" name="password" placeholder="Password" formControlName="password" id="input-password"
+            class="form-control form-control-lg" aria-label=".form-control-lg example">
+          <!-- <span class="passwordToggle-icon">
+            <img src="assets/images/icons/viewPassword.svg" alt="" />
+          </span> -->
+          <span *ngIf="password && password.invalid && password.touched" class="text-danger"
+            style="position: absolute;top: 52px;left: 0px;">Password
+            is
+            required</span>
+        </div>
+
+
+        <div class="form-group">
+          <button class="custom-btn-login" [disabled]="loginForm.invalid">
+            Sign In</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="carousel-section">
+      <app-carousel></app-carousel>
+    </div>
+  </div>
+</div>

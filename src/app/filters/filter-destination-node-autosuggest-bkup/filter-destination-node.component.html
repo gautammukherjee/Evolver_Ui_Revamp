@@ -1,0 +1,76 @@
+<div class="sidebar-card">
+  <!-- <div class="heading"> -->
+    <!-- <h4>Input-2 (Gene or Disease)  -->
+      <!--<button *ngIf="destinationNodes.length > 0" class="btn btn-primary" style="background-color: #FFF;color:#000;" [disabled]="disableProceed"
+        (click)="seeMoreproceed()">&rarr;</button>-->
+    <!-- </h4> -->
+  <!-- </div> -->
+
+  <div class="dropdown">
+    <div class="dropdown-toggle" id="designation-node-filter" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+      <div class="body">
+        <div class="search-input">
+          <form #form="ngForm" class="md-inline-block form-inline  ml-auto mr-0 mr-md-3 my-2 my-md-0">
+            <input type="text" autocomplete="off" [(ngModel)]="searchInput" name="searchInput" (keyup)="getDestinationNode()" class="form-control"
+              placeholder='Search Destination (Gene/Disease)' aria-label="Search" area-describedby="basic-addon2" [(ngModel)]="destinationNodeFilter">
+            <img *ngIf="loading" width="20px" src="../../assets/images/loader_small.gif" />
+            <span *ngIf="selectedDestinationNodes.length > 0" class="reset-search"
+              (click)="resetDestinationNode();" title="RESET INPUT-2"><i class="bi bi-x-circle"></i></span>
+            <!--<input class="form-control" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="destinationNodeFilter" />-->
+            <!--<button style="float:left;margin-top: 10px;position: relative;" class="btn btn-primary" [disabled]="!form.form.valid" (click)="getSourceNode(searchInput.value)">Search</button>-->
+          </form>
+        </div>
+      </div>
+    </div>
+    <ul class="dropdown-menu" aria-labelledby="designation-node-filter">
+      <!-- *ngIf="showSourceBody" -->
+      <div class="body">
+        <div *ngIf="destinationNodes.length" >
+          <div class="search-options">
+            <div class="mb-1 form-check" *ngFor="let destinationNode of destinationNodes | DestinationNodeFilterPipe:destinationNodeFilter">
+              <input class="form-check-input border border-secondary" type="checkbox" name="destinationNodes"
+                [value]="destinationNode" [checked]="selectedDestinationNodes.indexOf(destinationNode.destination_node)>-1 "
+                (change)="selectDestinationNode(destinationNode,$event)">
+              <label class="form-check-label">
+                {{destinationNode.syn_node_name}} - <span class="badge bg-secondary">{{destinationNode.destination_node_name}}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </ul>
+  </div>
+</div>
+
+
+<!--<div class="card-panel-box-detail" *ngIf="destinationNodes.length <= 0">
+  <div class="" *ngIf="(destinationNodesCheck==false)">
+    <i (click)="reloadNode()" style="color:white; cursor: pointer;" title="Reload" class="fa fa-refresh">&nbsp;
+      Click here to load Nodes</i>
+  </div>
+  <div *ngIf="(destinationNodesCheck==true)">
+    <i style="color:white" title="Reload">&nbsp;
+      No news exists for any node</i>
+  </div>
+</div>-->
+
+
+<ng-template #nodeSelectsWarningModal let-c="close" let-d="dismiss">
+  <div class="modal-header    modal-lg" style="background: #ff0c66 !important;">
+    <h4 class="modal-title">Warning</h4>
+    &nbsp;
+    <button class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body white_bg without_bord_rad">
+    <h6 style="color:#ff0c66">You unchecked the "Select All" option. If you will Proceed with this then result-set
+      of
+      with all gene(s).
+      Otherwise you may choose indications and proceed.</h6>
+    <div class="pull-right">
+      <button class="btn btn-hero-info btn-demo" (click)="closePopup()">Okay</button>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,87 @@
+@import './../../assets/SCSS/mixins';
+
+.login-wrapper{
+    display: flex;
+    height:100vh;
+    .hero-image-wrapper{
+        background-image: url(./../../assets/images/login-hero.jpg);
+        background-size: cover;
+        background-position: bottom;
+        width:55%;
+        min-width: 55%;
+        position: relative;
+
+        .poweredBy-wrapper{
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background-image: linear-gradient(to left, rgba(255,0,0,0), #fff);
+            padding: 15px 0px 15px 15px;
+        
+            span{
+                display: flex;
+                align-items: center;
+                column-gap: 20px;
+                font-weight: 600;
+                font-style: italic;
+            }
+        }
+    }
+    .form-panel-wrapper{
+        width:45%;
+        min-width: 45%;
+
+        .form-box{
+            width:370px;
+            margin: var(--spacer-120) var(--auto) 0;
+            text-align: center;
+
+            .logo{
+                margin-bottom: var(--spacer-25);
+                img{
+                    width:var(--spacer-200)
+                }
+            }
+
+            form{
+                .form-group{
+                    position: relative;
+                    input[type='email'], input[type='password']{
+                        @include inputFieldLogin(52px);
+                    }
+
+                    input[type='email']{
+                        margin-bottom: var(--spacer-25)
+                    }
+
+                    .indicator-icon{
+                        position: absolute;
+                        left:10px;
+                        top:16px;
+
+                        img{
+                            width:15px;
+                        }
+                    }
+
+                    .passwordToggle-icon{
+                        position: absolute;
+                        right:10px;
+                        top:17px;
+                        cursor: pointer;
+
+                        img{
+                            width:15px;
+                        }
+                    }
+                }
+
+                .custom-btn-login{
+                    margin-top: var(--spacer-25);
+                    width:100%;
+                    @include buttonLogin;
+                }
+            }
+        }
+    }
+}

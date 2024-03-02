@@ -1,0 +1,123 @@
+<div class="sidebar-card">
+  <div class="dropdown">
+    <div class="dropdown-toggle" id="designation-node-filter" data-bs-toggle="dropdown" aria-expanded="false"
+      data-bs-auto-close="outside">
+      <div class="body">
+        <div class="search-input">
+          <form #form="ngForm" class="md-inline-block form-inline  ml-auto mr-0 mr-md-3 my-2 my-md-0">
+            <input type="text" autocomplete="off" [(ngModel)]="searchInput3" name="searchInput3"
+              (keyup)="processChangeDestination3()" class="form-control" placeholder='Search Destination (Gene/Disease)'
+              aria-label="Search" area-describedby="basic-addon2">
+            <span *ngIf="selectedDestinationNodes3.length > 0" class="reset-search"
+              style="margin-right:40px;">[Selected:
+              {{selectedDestinationNodes3.length}}]</span>
+            <img *ngIf="dbLoading3" width="20px" src="../../assets/images/loader_small.gif" />
+            <span *ngIf="selectedDestinationNodes3.length > 0" class="reset-search" (click)="resetDestinationNode3();"
+              title="RESET INPUT-2"><i class="bi bi-x-circle"></i></span>
+            <!--<input class="form-control" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="destinationNodeFilter" />-->
+            <!--<button style="float:left;margin-top: 10px;position: relative;" class="btn btn-primary" [disabled]="!form.form.valid" (click)="getSourceNode(searchInput3.value)">Search</button>-->
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div style="position: absolute;">
+      <img *ngIf="loading" width="20px" src="../../assets/images/loader_small.gif" />
+      <span *ngIf="distinctDestinationNodesData3.length>0">
+        <input type="checkbox" name="destinationNodeAll" [(ngModel)]="isAllSelected" [value]="destinationNodesDB3"
+          [checked]="" (change)="selectAll($event);">
+        <span class="custom-control-description text-white">&nbsp;Select Unique {{distinctDestinationNodesData3.length}}
+          Nodes</span>
+      </span>
+    </div>
+
+    <!-- <ul class="dropdown-menu" aria-labelledby="designation-node-filter">
+      <div class="body">
+        <div *ngIf="destinationNodes3.length" >
+          <div class="search-options">
+            <div class="mb-1 form-check" *ngFor="let destinationNode of destinationNodes3">
+              <input class="form-check-input border border-secondary" type="checkbox" name="destinationNodes3"
+                [value]="destinationNode" [checked]="selectedDestinationNodes3.indexOf(destinationNode.destination_node)>-1 "
+                (change)="selectDestinationNode(destinationNode,$event)">
+              <label class="form-check-label">
+                {{destinationNode.syn_node_name}} - <span class="badge bg-secondary">{{destinationNode.destination_node_name}}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ul> -->
+
+    <ul class="dropdown-menu" aria-labelledby="destination-node-filter">
+      <!-- *ngIf="showSourceBody" -->
+      <div class="body">
+        <div *ngIf="destinationNodesDB3.length">
+          <div class="search-options">
+            <div class="accordion destination-node-accordion2" id="accordionDestination2">
+              <div class="accordion-item" *ngFor="let destinationNode3 of destinationNodesDB3; let i = index;">
+                <h2 class="accordion-header" [id]="'heading'+i">
+                  <button class="accordion-button" [ngClass]="{ 'collapsed': i != 0 }" type="button"
+                    data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+i" aria-expanded="true"
+                    [attr.aria-controls]="'collapse'+i">
+                    <input class="form-check-input border border-secondary" type="checkbox" name="destinationNodes"
+                      [value]="destinationNode3"
+                      [checked]="selectedDestinationNodes3.indexOf(destinationNode3.destination_node)>-1 "
+                      (change)="selectDestinationNode(destinationNode3,$event)">
+                    <label class="form-check-label">
+                      <span>&nbsp;{{destinationNode3.destination_node_name}}</span>
+                    </label>
+                  </button>
+                </h2>
+                <div [id]="'collapse'+i" class="accordion-collapse collapse" [ngClass]="{ 'show': i == 0 }"
+                  [attr.aria-labelledby]="'heading'+i" data-bs-parent="#accordionDestination2">
+                  <div class="accordion-body">
+                    <div class="subcategory-badges">
+                      <div *ngFor="let subDestinationNode3 of destinationNode3.subcategory_syn_node_name">
+                        <a class="list-group-item small">
+                          <span class="badge bg-secondary">{{subDestinationNode3}}</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ul>
+
+  </div>
+</div>
+
+
+<!--<div class="card-panel-box-detail" *ngIf="destinationNodes2.length <= 0">
+  <div class="" *ngIf="(destinationNodesCheck==false)">
+    <i (click)="reloadNode()" style="color:white; cursor: pointer;" title="Reload" class="fa fa-refresh">&nbsp;
+      Click here to load Nodes</i>
+  </div>
+  <div *ngIf="(destinationNodesCheck==true)">
+    <i style="color:white" title="Reload">&nbsp;
+      No news exists for any node</i>
+  </div>
+</div>-->
+
+
+<ng-template #nodeSelectsWarningModal let-c="close" let-d="dismiss">
+  <div class="modal-header    modal-lg" style="background: #ff0c66 !important;">
+    <h4 class="modal-title">Warning</h4>
+    &nbsp;
+    <button class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body white_bg without_bord_rad">
+    <h6 style="color:#ff0c66">You unchecked the "Select All" option. If you will Proceed with this then result-set
+      of
+      with all gene(s).
+      Otherwise you may choose indications and proceed.</h6>
+    <div class="pull-right">
+      <button class="btn btn-hero-info btn-demo" (click)="closePopup()">Okay</button>
+    </div>
+  </div>
+</ng-template>

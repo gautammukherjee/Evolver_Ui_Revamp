@@ -1,0 +1,16 @@
+.mainNavbar{
+    .navbar-nav {
+        column-gap: 30px;
+    
+        .nav-item {
+            font-weight: 600;
+    
+            a {
+                cursor: pointer;
+                &.active {
+                    color: var(--secondaryColor);
+                }
+            }
+        }
+    }
+}

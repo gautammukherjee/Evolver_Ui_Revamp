@@ -1,0 +1,58 @@
+<div class="card-panel-box">
+    <div class="card-panel-box-heading">
+        Distribution By Relation Group
+    </div>
+    <!-- <div *ngIf="loadingChart" style="position:absolute; margin-left:350px; z-index:999;">
+    <img src="../../assets/images/loader_big.gif" />                
+</div> -->
+    <div class="overlay" *ngIf="loadingChart">
+        <img src="../../assets/images/loader_big.gif" style="margin:185px 653px;" />
+    </div>
+    <div *ngIf="noDataFound" class="bg-danger" style="color:#fff; text-align: center; font-weight: bold;">
+        Please Choose Pair Type For Second Degree
+    </div>
+    <!-- <div id="container" style="border: 1px solid #ddd; margin-bottom:10px;">
+    <div class="text-muted fs-2 text-center mb-4">Please select entities to generate Relations!</div>
+</div> -->
+
+    <div class="text-muted fs-2 text-center mb-4" *ngIf="loadingMessage" style="min-height: 150px; margin-top: 75px;">
+        Please select entities to generate Relations
+    </div>
+
+    <!-- <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions" style="width: 100%; display: block">
+    </highcharts-chart> -->
+    <div *ngIf="noSourceNodeSelected==0">
+        <div id="container"></div>
+    </div>
+    <!--<div *ngIf="errorMsg!==''">
+    {{errorMsg}}
+</div>-->
+</div>
+
+<ng-template #showPopupEvent let-c="close" let-d="dismiss">
+    <div class="modal-content" id="showPopupEvent">
+        <div class="modal-header blue_bg_hdr modal-lg">
+            <h4 class="modal-title">Edges(s) </h4>
+            <button class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="modal-body white_bg without_bord_rad">
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles">
+
+                    <div class="m-1">
+                        <div class="fade show">
+                            <div id="container_popup"></div>
+                            <div class="text-center" *ngIf="graphLoaderDrill">
+                                <img src="../../assets/images/loader_big.gif" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</ng-template>

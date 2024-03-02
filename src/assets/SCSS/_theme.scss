@@ -1,0 +1,39 @@
+[data-theme="light"] {
+    --background-dark-color: #ffffff;
+    --background-light-color: #ffffff;
+    --filter-bar-bg: #3066c4;
+    --text-color: #000;
+    --nav-inactive-tabs-bg : #c4d1d9;
+    --table-bg-color : #fff;
+    --table-row-hover-background : rgba(0, 0, 0, 0.035);
+    --table-row-border-color : #ddd;
+    --panel-heading-bg : #7880BA;
+    --logo-filter : none;
+    --text-white-all : #fff;
+    // --header-theme-switch-background-color: #cccccc;
+    // --header-theme-switch-before-background-color: #ffffff;
+    // --header-theme-switch-checked-background-color: #2196f3;
+  
+    // --main-content-background-color: #ffffff;
+    // --main-content-text-color: #231f20;
+  }
+  
+  [data-theme="dark"] {
+    --background-dark-color: #000;
+    --background-light-color: #192741;
+    --filter-bar-bg: #192741;
+    --text-color: #e3e6ed;
+    --nav-inactive-tabs-bg : #8d8e8f;
+    --table-bg-color : #141824;
+    --table-row-hover-background : #141824;
+    --table-row-border-color : #0d1018;
+    --panel-heading-bg : #192741;
+    --logo-filter : grayscale(1);
+    --text-white-all : #e3e6ed;
+    // --header-theme-switch-background-color: #cccccc;
+    // --header-theme-switch-before-background-color: #ffffff;
+    // --header-theme-switch-checked-background-color: #2196f3;
+  
+    // --main-content-background-color: #231f20;
+    // --main-content-text-color: #ffffff;
+  }

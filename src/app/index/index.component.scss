@@ -1,0 +1,203 @@
+.page-wrapper {
+    background-color: #F3F3F3;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    /*min-height: 100vh;
+    background-image: url(../../assets/images/dashboard_background.jpg);*/
+    background-image: url(../../assets/images/background_search.jpg);
+    padding:150px 0px 100px;
+    
+}
+
+// .bg_img{
+//     background-image: url(../../assets/images/carousel_img2.jpg);
+// }
+div.polaroid {
+    width: 200px;
+    min-width: 200px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 25px 25px 0px 0px;
+    text-align: center;
+    padding: 15px 0px 0px 0px;
+    height: 140px;
+    overflow: hidden;
+    position: relative;
+}
+
+.right-top-card {
+    color: #fff;
+    font-size: 20px;
+
+    p{
+        margin:0
+    }
+}
+
+.graphs-box{
+    display: flex;
+    column-gap: 30px;
+    align-items: center;
+    padding:30px 0px;
+
+    &:first-child{
+        padding-top: 0;
+    }
+
+    &:last-child{
+        padding-bottom: 0;
+    }
+
+    @media (max-width:575px){
+        flex-wrap: wrap;
+        padding: 30px 15px;
+
+        .right-top-card{
+            margin-top: 25px;
+        }
+    }
+}
+
+.index-carousel{
+    .carousel-item{
+        .carousel-caption{
+            right: 15%;
+            padding-top: 1.25rem;
+            padding-bottom: 1.25rem;
+            color: #fff;
+            text-align: center;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin-bottom: 0 !important;
+            bottom: auto;
+            width: 80%;
+        }
+        img{
+            height:680px;
+
+            @media (max-width:820px){
+                height:550px;
+            }
+        }
+    }
+}
+
+.stat-highlight {
+    color: #D8DBEB;
+    font-size: 30px;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+div.target_page {
+    text-align: center;
+    color: #00538E;
+    padding: 6px 20px;
+}
+
+div.card_bottom {
+    background-color: #348ab5;
+    height: 8px;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0px;
+    right: 0;
+    background-color: #008CBA;
+    overflow: hidden;
+    width: 0;
+    height: 140px;
+    padding: 15px 0px 0px 0px;
+    border-radius: 25px 25px 0px 0px;
+    transition: .5s ease;
+
+}
+/*
+#network_map_card:hover .overlay {
+    width: 200px;
+    padding: 15px 0px 0px 0px;
+    margin: 0px 0px 25px 0px;
+    height: 140px;
+    border-radius: 25px 25px 0px 0px;
+}
+
+#gene_analysis_card:hover .overlay {
+    width: 200px;
+    padding: 15px 0px 0px 0px;
+    margin: 0px 0px 25px 0px;
+    height: 140px;
+    border-radius: 25px 25px 0px 0px;
+}
+
+#search_card:hover .overlay {
+    width: 200px;
+    padding: 15px 0px 0px 0px;
+    margin: 0px 0px 26px 0px;
+    height: 140px;
+    border-radius: 25px 25px 0px 0px;
+}
+*/
+.polaroid:hover .overlay {
+    width: 200px;
+    padding: 15px 0px 0px 0px;
+    height: 140px;
+    border-radius: 25px 25px 0px 0px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.text {
+    white-space: nowrap;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    overflow: hidden;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+.stat-box {
+    width: 200px;
+    height: 150px;
+    background: #EBA6F6;
+    position: relative;
+    animation-name: example;
+    animation-duration: 3s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    border: 2px solid #283D90;
+    border-radius: 15px;
+}
+
+@keyframes example {
+    from {
+        top: 0px;
+    }
+
+    to {
+        top: 0px;
+        background-color: #f809cc;
+    }
+}
+
+.opacity {
+    opacity: 0.9;
+}
+
+.carousel-caption-margin {
+    margin-bottom: 240px;
+}
+
+.video-player {
+    padding: 50px 0px;
+    background-color: #fff;
+}
+
+/* -------------------------------------- */

@@ -1,0 +1,333 @@
+ng2-cytoscape {
+    height: 100vh;
+    float: left;
+    width: 100%;
+    position: relative;
+}
+
+// #cy {
+//     width: 200px;
+//     height: 1000px;
+//     display: block;
+//   }
+
+.map-zoom-btngrp {
+    position: absolute;
+    right: 0;
+    z-index: 8;
+    display: flex;
+    align-items: center;
+}
+
+.rank-dropdown{
+    position: absolute;
+    top:0;
+    right:10px;
+    button{
+        text-align: left;
+        background-color: var(--filter-bar-bg) !important;
+        color: var(--text-white-all) !important;
+        height: 26px;
+        line-height: 16px;
+    }
+    .dropdown-menu{
+        background-color: #f4f5f5;
+        li{
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+
+            input{
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+.modal.right .modal-dialog {
+    // position: fixed;
+    // margin: auto;
+    // width: 350px;
+    height: calc(100vh - 70px);
+    // -webkit-transform: translate3d(0%, 0, 0);
+    // -ms-transform: translate3d(0%, 0, 0);
+    // -o-transform: translate3d(0%, 0, 0);
+    // transform: translate3d(0%, 0, 0);
+    // bottom: 0;
+
+    width: 80%;
+    min-width: 80%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    bottom: auto;
+
+}
+
+.modal.right .modal-content {
+    height: 100%;
+    overflow-y: auto;
+    // background-color: #fafbfc;
+    background-color: #FCFCF2;
+    color: lightgray;
+}
+
+.modal.right .modal-body {
+    padding: 15px 15px 80px;
+}
+
+// .modal.right.fade .modal-dialog {
+//     right: 0px;
+//     -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+//     -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+//     -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+//     transition: opacity 0.3s linear, right 0.3s ease-out;
+// }
+
+.modal.right.fade.in .modal-dialog {
+    right: 0;
+}
+
+.modal-content {
+    border-radius: 0;
+    border: none;
+}
+
+.modal-header {
+    border-bottom-color: #EEEEEE;
+    background-color: #32404E;
+    color: #fff;
+    display: inline !important;
+}
+
+.close span {
+    color: #fff;
+}
+
+.dot {
+    height: 20px;
+    width: 20px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: auto;
+}
+
+.dot span {
+    margin: 2px 29px;
+    color: #32404E;
+    position: absolute;
+    width: 195px;
+}
+
+.sidebar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(125, 177, 236);
+    overflow-x: hidden;
+    transition: 0.5s;
+    /* padding-top: 60px; */
+    top: 225px;
+}
+
+.sidebarBreadcrumb {
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(125, 177, 236);
+    overflow-x: hidden;
+    transition: 0.5s;
+    /* padding-top: 60px; */
+    top: 300px;
+}
+
+.sidebar .closebtn,
+.sidebarBreadcrumb .closebtn {
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #32404E;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+.openbtn:hover {
+    background-color: #444;
+}
+
+.newSearchInput {
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 98%;
+    font-size: 14px;
+    padding: 7px 0px 6px 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    color: #000;
+    margin: 6px 2px;
+}
+
+.loading-custom-map {
+    position: relative;
+    width: 100px;
+    background: #b6eaef;
+    text-align: center;
+    border: 0px solid #b3af22;
+    font-size: 13px;
+    color: #000;
+    // top: 12px;
+    padding: 4px;
+    left: 50%;
+    margin-left: -50px;
+    z-index: 999;
+
+    span {
+        color: #000;
+    }
+}
+
+.overlay {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 65px;
+    left: 0px;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 9999;
+    padding-top: 10px;
+}
+
+.network-map-full-screen {
+    position: fixed !important;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: #fff;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.network-map-wrapper {
+    // &.full-screen{
+    //     position: fixed;
+    //     width:100%;
+    //     height:100%;
+    //     z-index: 9999;
+    //     background-color: #fff;
+    //     top: 0;
+    //     left:0;
+    //     right:0;
+    // }
+}
+
+.network-map-legands{
+    position: absolute;
+    right: 10px;
+    top: 50px;
+
+    .leg-row{
+        display: flex;
+        align-items: center;
+        column-gap: 5px;
+        .leg-box{
+            width:10px;
+            min-width: 10px;
+            height:10px;
+            min-height: 10px;
+            
+        }
+        .leg-box-target{
+            width:10px;
+            min-width: 10px;
+            height:10px;
+            min-height: 10px;
+            
+        }
+        .leg-name{
+            font-size: 11px;
+            color: #000;
+        }
+
+        &:nth-child(1){
+            .leg-box{
+                background-color: #BF63A2;
+            }
+            .leg-box-target{
+                background-color: #85C9E8;
+            }
+        }
+        &:nth-child(2){
+            .leg-box{
+                background-color: #8ceb34;
+            }
+            .leg-box-target{
+                background-color: #e4cf15;
+            }
+        }
+        &:nth-child(3){
+            .leg-box{
+                background-color: #00FFFF;
+            }
+            .leg-box-target{
+                background-color: #f7786b;
+            }
+        }
+    }
+}
+
+.exit-map-fullscreen-fixed-posBtn {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 9;
+}
+
+.fixed-full-screen-zoom {
+    position: fixed;
+    right: 50px;
+    top: 10px;
+    z-index: 9;
+}
+
+.level1-title {
+    background-color: #6C7572;
+    border-radius: 5px;
+    padding: 1px !important;
+    margin: 2px;
+    position: absolute;
+    font-size: 12px;
+}
+
+.level2-title {
+    background-color: #6C7572;
+    border-radius: 5px;
+    padding: 1px !important;
+    margin: 2px 188px;
+    font-size: 12px;
+    position: absolute;
+}
+
+.level3-title {
+    background-color: #6C7572;
+    border-radius: 5px;
+    padding: 1px !important;
+    margin: 2px 390px;
+    font-size: 12px;
+    position: absolute;
+}

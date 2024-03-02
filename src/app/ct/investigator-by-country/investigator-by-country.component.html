@@ -1,0 +1,47 @@
+<div class="card-panel-box">
+
+    <div class="card-panel-box-heading" (click)="reloadInvestigatorCountry()">
+        Trial Investigator Grouped by Country
+        <i class="bi-arrows-expand" [hidden]="!hideCardBody" (click)="reloadInvestigatorCountry()"
+            style="position: absolute;right: 20px;color: white;"></i>
+
+        <i class="bi-arrows-collapse" [hidden]="hideCardBody" (click)="reloadInvestigatorCountry()"
+            style="position: absolute;right: 20px;color: white;"></i>
+    </div>
+
+    <div class="card-panel-box-detail" [hidden]="hideCardBody">
+        <div class="customTable " id="eventListTable">
+
+            <div class="" *ngIf="loadingCTCountry">
+                <!-- <span class="bi-gear bi--spin"></span> -->
+                <img width="20px" src="../../assets/images/loader_medium.gif" />
+                &nbsp;Loading...
+            </div>
+            <!-- <div class="overlay" *ngIf="loadingCTCountry">
+                <img style="margin:185px 653px;" src="../../assets/images/loader_big.gif" />
+            </div> -->
+
+            <div class="card">
+                <!-- <div class="card-header">
+                Trial Investigator Grouped by Country
+            </div> -->
+                <div class="card-body">
+                    <!-- <highcharts-chart id="container" *ngIf="isHighcharts" [Highcharts]="Highcharts" [options]="chartOptions"
+                    style="width: 100%; height: 400px; display: block;"></highcharts-chart> -->
+                    <!-- <highcharts-chart id="container" *ngIf="isHighcharts" [Highcharts]="Highcharts"
+                        [constructorType]="chartConstructor" [options]="chartOptions"
+                        style="width: 100%; height: 400px; display: block;">
+                    </highcharts-chart> -->
+
+                    <!-- <highcharts-chart id="container" [Highcharts]="Highcharts" [constructorType]="chartConstructor"
+                        [options]="chartOptions" style="width: 100%; height: 100%;">
+                    </highcharts-chart> -->
+
+                    <div *ngIf="noSourceNodeSelected==0">
+                        <div id="container2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

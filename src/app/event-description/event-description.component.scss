@@ -1,0 +1,152 @@
+.navbar-light .navbar-nav .nav-link {
+	color: #1E2661 !important;
+}
+
+.two-side-wrapper {
+	display: flex;
+	background: #f8f9fa;
+}
+
+.two-side-wrapper .left-filter-panel {
+	width: 330px;
+	min-width: 330px;
+	max-width: 330px;
+	padding: 20px;
+}
+
+.two-side-wrapper .right-detail-panel {
+	width: 100%;
+	padding: 20px;
+}
+
+.bs-bars {
+	display: none;
+}
+
+// .event-desc-wrapper {
+// 	max-height: calc(100vh - 239px);
+// 	overflow: auto;
+// }
+
+.card-panel-box {
+	margin-bottom: 20px;
+	// box-shadow: 0px 1px 5px #ddd;
+	background: var(--background-color);
+}
+
+.card-panel-box .card-panel-box-heading {
+	font-size: 17px;
+	padding: 7px 15px;
+	background: #7880BA;
+	color: #fff;
+}
+
+.card-panel-box .card-panel-box-detail {
+	padding: 20px;
+}
+
+.card-panel-box .card-panel-box-detail .search-input {
+	margin-bottom: 10px;
+}
+
+.card-panel-box .card-panel-box-detail .search-input input:focus {
+	border: 1px solid #187ebc;
+	outline: none;
+	box-shadow: none;
+}
+
+.card-panel-box .card-panel-box-detail .checkbox-group .form-check {
+	margin-bottom: 3px;
+}
+
+.heat-maps {
+	padding: 20px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.heat-maps .card-panel-box {
+	width: 32%;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.overlay {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 65px;
+	left: 0px;
+	background-color: rgba(255, 255, 255, 0.7);
+	z-index: 9999;
+	padding-top: 10px;
+}
+
+.search-results {
+	height: 100%;
+}
+
+.loadMoreBtn {
+	margin: 0px 0;
+	padding: 5px;
+	width: 150px;
+	border-radius: 15px;
+	border: none;
+	background-color: #B765A3;
+	cursor: pointer;
+	color: #fff;
+}
+
+.saveFilterBtn {
+	padding: 5px;
+    width: 125px;
+    border-radius: 15px;
+    border: none;
+    background-color: #B765A3;
+    cursor: pointer;    
+    color: #000;
+}
+
+.level1-title {
+    background-color: #6C7572;
+    border-radius: 5px;
+    padding: 1px !important;
+    margin: 2px;
+    position: absolute;
+    font-size: 12px;
+}
+
+.level2-title {
+    background-color: #6C7572;
+    border-radius: 5px;
+    padding: 1px !important;
+    margin: 2px 188px;
+    font-size: 12px;
+    position: absolute;
+}
+
+.level3-title {
+    background-color: #6C7572;
+    border-radius: 5px;
+    padding: 1px !important;
+    margin: 2px 390px;
+    font-size: 12px;
+    position: absolute;
+}
+
+.save-query-top-btn{
+	position: absolute;
+    right: 15px;
+    top: 0;
+}
+.save-query{
+	margin: -52px -283px 10px 10px;
+	padding: 6px;
+	width: 126px;
+	border-radius: 14px; 
+	border: navajowhite;
+	background-color: #B765A3;
+	cursor: pointer;
+}

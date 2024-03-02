@@ -1,0 +1,67 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-md-12 col-lg-12 col-xl-12">
+
+      <div class="custom-loader" *ngIf="loadingSenarios">
+        <img src="assets/custom-loader.gif" />
+      </div>
+      <div class="custom-loader" *ngIf="loadingDel">
+        <img src="assets/custom-loader.gif" />
+      </div>
+
+      <div class="card text-black mt-2">
+        <div class="card-body p-md-5">
+          <h5>Query Lists</h5>
+
+          <div class="col-md-4 col-lg-4 col-xl-4" style="padding: 10px 0px 10px 0px;">
+            <input type="text" name="search" class="form-control" [(ngModel)]="searchText"
+              placeholder="Search with Query Name">
+          </div>
+
+          <div class="row justify-content-center">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Query Name</th>
+                  <th>Username</th>
+                  <th>Created</th>
+                  <th>Comments</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let scenario of scenarioListsTables | FilterFilterPipe:searchText">
+                  <td>
+                    <a id="index" (click)="selectscenario(scenario,$event)" routerLinkActive="active"
+                      class="btn btn-outline-primary">{{scenario.scenario_name}}
+                    </a>
+                  </td>
+                  <td>{{scenario.user_name}}</td>
+                  <td>{{scenario.created_at | date: 'MM-dd-yyyy'}}</td>
+                  <td>
+                    <!-- {{ (scenario.user_comments.length>15)? (scenario.user_comments |
+                    slice:0:15)+'..':(scenario.user_comments) }} -->
+                    <div class="containerComment" [class.show]="scenario.visible">
+                      {{scenario.comments}}
+                    </div>
+                    <button (click)="scenario.visible = !scenario.visible">{{ scenario.visible ? '&laquo;&laquo;':
+                      '&raquo;&raquo;'
+                      }}</button>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger btn-sm" [disabled]="currentUser.user_id!=scenario.user_id"
+                      (click)="delUserScenario(scenario.id)"><span class="fa fa-trash"></span> Delete</button>
+                    <!-- <input type="radio" name="scenario" [value]="scenario" (change)="selectscenario(scenario,$event)"> -->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

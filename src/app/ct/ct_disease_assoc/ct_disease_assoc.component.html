@@ -1,0 +1,125 @@
+<div class="card-panel-box">
+    <div class="card-panel-box-heading">
+        Clinical Trials Data Associated with Disease
+    </div>
+
+    <div class="customTable">
+        <div class="card-panel-box-detail">
+            <div class="customTable">
+                <div class="overlay" *ngIf="loadingCTDisease">
+                    <img style="margin:185px 653px;" src="../../assets/images/loader_big.gif" />
+                </div>
+
+
+                <!-- <div class="card-header">
+                    Clinical Trials Data Associated with Disease
+                </div> -->
+                <div class="card-body" *ngIf="noSourceNodeSelected==0">
+                    <div class="table-responsive-lg custom-fixed-header-table"
+                        style="max-height:400px; overflow-y: scroll;" [hidden]="notEmptyData">
+
+                        <table id="CT_data_new" data-toolbar="#toolbar" data-search="true" data-show-export="true"
+                            data-export-options='{"fileName": "evolverAICTData"}' data-show-columns="true"
+                            data-page-size="1000" data-filter-control="true"
+                            data-page-list="[10, 25, 50, 100, 500, all]" class="table-striped">
+                            <!-- <table id="CT_data_new" data-toolbar="#toolbar" data-search="true" data-show-export="true"
+                            data-show-columns="true" data-page-size="50" data-filter-control="true"
+                            data-page-list="[10, 25, 50, 100, All]"> -->
+                            <thead>
+                                <tr>
+                                    <th data-field="nct_id" data-sortable="true" data-filter-control="input"
+                                        data-visible="true" width="3%">
+                                        NCT ID</th>
+                                    <th data-field="org_study_id" data-sortable="true" data-visible="false"
+                                        data-filter-control="input" width="3%">
+                                        Org Study ID</th>
+                                    <th data-field="secondary_study_id" data-sortable="true" data-visible="false"
+                                        data-show-columns="false" data-filter-control="input" width="3%">
+                                        Secondary Study ID</th>
+                                    <th data-field="title" data-sortable="true" data-filter-control="input" width="12%">
+                                        Title</th>
+                                    <th data-field="disease_name" data-sortable="true" data-filter-control="input"
+                                        width="12%">
+                                        Disease Name</th>
+                                    <th data-field="overall_status" data-sortable="true" data-visible="false"
+                                        data-filter-control="input" width="3%">
+                                        Overall Status</th>
+                                    <th data-field="phase_name" data-sortable="true" data-visible="false"
+                                        data-filter-control="input" width="4%">
+                                        Phase</th>
+                                    <th data-field="has_expanded_access" data-visible="false" data-sortable="true"
+                                        data-filter-control="input" width="3%">
+                                        Has Expanded Access</th>
+                                    <th data-field="min_age" data-sortable="true" data-visible="false"
+                                        data-filter-control="input" width="3%">
+                                        Min. Age</th>
+                                    <th data-field="max_age" data-sortable="true" data-visible="false"
+                                        data-filter-control="input" width="3%">
+                                        Max. Age</th>
+                                    <th data-field="healthy_volunteers" data-sortable="true" data-visible="false"
+                                        data-filter-control="input" width="3%">
+                                        Healthy Volunteers</th>
+                                    <th data-field="verification_date" data-sortable="true" data-filter-control="input">
+                                        Verification Date</th>
+                                    <th data-field="study_first_submitted" data-sortable="true" data-visible="false"
+                                        data-filter-control="input">
+                                        Study First Submitted</th>
+                                    <th data-field="study_first_posted" data-sortable="true" data-visible="false"
+                                        data-filter-control="input">
+                                        Study First Posted</th>
+                                    <th data-field="last_update_submitted" data-sortable="true" data-visible="false"
+                                        data-filter-control="input">
+                                        Last Update Submitted</th>
+                                    <th data-field="last_update_submitted_qc" data-sortable="true" data-visible="false"
+                                        data-filter-control="input">
+                                        Last Update Submitted Qc</th>
+                                    <th data-field="study_type" data-sortable="true" data-visible="false"
+                                        data-filter-control="input">
+                                        Study Type</th>
+                                    <th data-field="gender" data-sortable="true" data-visible="false"
+                                        data-filter-control="input">
+                                        Gender</th>
+                                    <th data-field="study_first_submitted_qc" data-sortable="true" data-visible="false"
+                                        data-filter-control="input">
+                                        Study First Submitted Qc</th>
+                                    <th data-field="trial_design" data-sortable="true" data-visible="false"
+                                        data-filter-control="input">
+                                        Trial Design</th>
+                                    <th data-field="nct_id" data-sortable="true" data-visible="false"
+                                        data-filter-control="input">
+                                        CtID</th>
+                                    <th data-field="phase_id" data-sortable="true" data-visible="false"
+                                        data-filter-control="input">
+                                        PhaseID</th>
+
+                                    <!-- <th data-field="title" data-sortable="true" data-filter-control="input">
+                                    Trial Disease Rel → Disease ID</th>
+                                <th data-field="title" data-sortable="true" data-filter-control="input">
+                                    Trial Disease Rel → Nct ID</th>
+                                <th data-field="title" data-sortable="true" data-filter-control="input">
+                                    Trial Disease Rel → Node ID</th>
+                                <th data-field="title" data-sortable="true" data-filter-control="input">
+                                    Nodes → Node ID</th>
+                                <th data-field="title" data-sortable="true" data-filter-control="input">
+                                    Nodes → Name</th>
+                                <th data-field="title" data-sortable="true" data-filter-control="input">
+                                    Trial Intevention Rel → Nct ID</th>
+                                <th data-field="title" data-sortable="true" data-filter-control="input">
+                                    Trial Intevention Rel → Name</th>
+                                <th data-field="title" data-sortable="true" data-filter-control="input">
+                                    Trial Intevention Rel → Tit ID</th>
+                                <th data-field="title" data-sortable="true" data-filter-control="input">
+                                    Trial Intevention Rel → Node ID</th>
+                                <th data-field="title" data-sortable="true" data-filter-control="input">
+                                    Trial Intervention Type → Tit ID</th>
+                                <th data-field="title" data-sortable="true" data-filter-control="input">
+                                    Trial Intervention Type → Name</th> -->
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

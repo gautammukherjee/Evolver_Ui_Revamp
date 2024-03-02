@@ -1,0 +1,107 @@
+<app-header></app-header>
+
+<div class="pmid-search-wrapper">
+  <div class="page-title bg-primary bg-gradient text-light">
+    <h3>PMID Search</h3>
+  </div>
+
+  <form autocomplete="nope" class="form-signin" [formGroup]="pmidForm">
+    <div class="row">
+      <div class="col-md-4 mx-auto">
+        <div class="input-group input-group-lg mb-3">
+
+          <span style="position: absolute;right: 32px;top: 13px;z-index: 9;"><img *ngIf="loading" width="20px"
+              src="../../assets/images/loader_small.gif" /></span>
+          <select class="form-select form-select-lg mb-3 bg-light" aria-label=".form-select-lg example" name="pair_type"
+            formControlName="pair_type">
+            <option selected>Select Pair type</option>
+            <option *ngFor="let node_select of node_selects" [value]="node_select.nnrt_id">{{ node_select.pair_name }}
+            </option>
+          </select>
+
+          <!-- <div class="dropdown">
+          <div class="dropdown-toggle" id="filter-node-select" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="search-input" appClickDirective>
+              <input class="form-control" type="text" [value]="nodeSelectsFilterText2">
+              <img *ngIf="loading" width="20px" src="../../assets/images/loader_small.gif" />
+            </div>
+          </div>
+          <ul class="dropdown-menu" aria-labelledby="filter-node-select">
+            <div class="body">
+              <div class="search-options" style="width: 150%;">
+                <div class="">
+                  <input class="form-control" type="text" placeholder="Search Pair Type"
+                    [(ngModel)]="nodeSelectsFilterText1">
+                  <span class="fa fa-search"></span>
+                </div>
+
+                <li *ngFor="let node_select of node_selects | PairTypeFilterPipe:nodeSelectsFilterText1; let i = index"
+                  (click)="selectNode(node_select.nnrt_id, node_select.pair_name)">
+                  {{ node_select.pair_name }}
+                </li>
+              </div>
+            </div>
+          </ul>
+        </div> -->
+        </div>
+      </div>
+
+      <div class="col-md-8 mx-auto">
+        <div class="input-group input-group-lg mb-3">
+          <input type="text" class="form-control bg-light" placeholder="Enter PMID" name="pmid_value"
+            formControlName="pmid_value" aria-label="Recipient's username" aria-describedby="button-addon2">
+
+          <button (click)="PMIDSearchData()" type="submit" class="btn btn-outline-secondary"
+            style="background-color: #B765A3; color: #fff; border: 2px solid #B765A3;" [disabled]="pmidForm.invalid"><i
+              title="Search PMID" alt="Search PMID" class="bi bi-search"></i></button>
+
+          <!-- <button class="btn btn-outline-secondary"
+          style="background-color: #B765A3; color: #fff; border: 2px solid #B765A3;" type="button" id="button-addon2">
+          <i title="Search PMID" alt="Search PMID" class="bi bi-search"></i>
+        </button> -->
+
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="row">
+    <div class="col-md-12">
+
+      <div class="text-center" *ngIf="loadingPMIDSearch" style="position: absolute;z-index: 9;left: 38%;">
+        <img src="../../assets/images/loader_big.gif" />
+      </div>
+
+      <div *ngIf="notEmptyPost">
+        <table id="showEventDescription" data-toolbar="#toolbar" data-search="true" data-show-export="true"
+          data-export-options='{"fileName": "evolverAI"}' data-show-columns="true" data-page-size="100"
+          data-filter-control="true" data-page-list="[10, 25, 50, 100, 500, all]" class="table-striped">
+          <thead>
+            <tr>
+              <th data-field="news_id" data-sortable="true" width="10%">#</th>
+              <th data-field="pair_type" data-sortable="true" width="10%" data-filter-control="input">Association</th>
+              <th data-field="source_node_name" data-sortable="true" width="10%" data-filter-control="input">Source</th>
+              <th data-field="destination_node_name" data-sortable="true" width="10%" data-filter-control="input">
+                Destination</th>
+              <th data-field="edge_type_name" data-sortable="true" width="10%" data-filter-control="select"
+                data-tableexport-value="Relationship">
+                Relationship</th>
+          </thead>
+        </table>
+      </div>
+    </div>
+
+    <!-- <div *ngIf="!notEmptyPost">
+      <div class="alert alert-warning">
+        No More Records..
+      </div>
+    </div> -->
+
+    <!-- <div class="text-center" *ngIf="isloading"><img src="./assets/images/spinner_small_loader.gif"></div>
+    <div class="text-center">
+      <button *ngIf="!isloading && notEmptyPost" (click)="onDescScroll()"
+        class="loadMoreBtn">Load More</button>
+    </div> -->
+  </div>
+
+</div>

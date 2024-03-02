@@ -1,0 +1,31 @@
+<div class="card-panel-box">
+    <div class="card-panel-box-heading">
+        Count of PMID with Relevant Genes or Diseases
+    </div>
+    <!-- <div *ngIf="noDataFound" class="bg-danger" style="color:#fff; text-align: center; font-weight: bold;">
+        Please Choose Pair Type and Source Node for Second Degree
+    </div> -->
+    <div *ngIf="noDataFound" class="bg-danger" style="color:#fff; text-align: center; font-weight: bold;">
+        Please Choose Pair Type and Source for Second Degree
+    </div>
+
+    <div class="container2">
+        <div class="row" style="border: 1px solid #ddd; min-height:380px;">
+            <div class="col">
+                <div class="text-muted fs-2 text-center mb-4" *ngIf="!pmidCountGraph.length">Please select entities to
+                    generate Article Count Graph!</div>
+                <div class="overlay-second" *ngIf="graphLoader">
+                    <img src="../../assets/images/loader_big.gif" style="margin:155px 508px;" />
+                </div>
+                <div *ngIf="noSourceNodeSelected==0">
+                    <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"
+                        style="width: 100%; display: block" *ngIf="pmidCountGraph.length>0"></highcharts-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div *ngIf="errorMsg!==''">
+    {{errorMsg}}
+</div> -->
+</div>

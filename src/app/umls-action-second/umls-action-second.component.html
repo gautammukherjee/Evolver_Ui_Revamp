@@ -1,0 +1,42 @@
+<app-header></app-header>
+
+<div class="user-dashboard-wrapper">
+    <div class="page-title bg-secondary bg-gradient text-light">
+        <h3>UMLS</h3>
+    </div>  
+
+    <div class="loading-custom" *ngIf="loadingSenarios"><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</div>
+    <div class="loading-custom" *ngIf="loadingDel"><span class="fa fa-spinner fa-spin"></span>&nbsp;Loading...</div>
+
+    <div *ngIf="scenarioListsTables.length" class="col-md-3 col-lg-3 col-xl-3 col-sm-6 col-xs-12" style="padding: 10px 0px 10px 0px;">
+        <input type="text" name="search" class="form-control" [(ngModel)]="searchText2"
+            placeholder="Search with File Name" style="background-color: #f4f5f5;font-size: 13px">
+    </div>
+    <div *ngIf="scenarioListsTables.length" class="table-responsive query-table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Sr No</th>
+                    <th>File Name</th>
+                    <th>URL</th>
+                    <th>Created</th>
+                    <th>Comments</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr *ngFor="let scenario of scenarioListsTables | ArticleFilterPipe:searchText2; let i = index;">
+                    <td >{{i+1}}</td>
+                    <td>
+                        <span
+                            class="">{{scenario.name}}
+                    </span>
+                    </td>
+                    <td *ngIf="scenario.uploaded_file_url!=null"><a href="{{scenario.uploaded_file_url}}">Download Saved Result</a></td>
+                    <td *ngIf="scenario.uploaded_file_url==null">NA</td>
+                    <td >{{scenario.created_at | date: 'MM-dd-yyyy'}}</td>                   
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+</div>

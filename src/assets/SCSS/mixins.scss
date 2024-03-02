@@ -1,0 +1,43 @@
+@import './colors';
+
+@mixin inputFields($height, $fontSize){
+    height: $height;
+    border:1px solid var(--border-color);
+    border-radius: var(--spacer-30);
+    font-size: $fontSize;
+
+    &:focus{
+        box-shadow: none;
+        border-color: var(--secondaryColor);
+    }
+}
+
+@mixin inputFieldLogin($height){
+    height:$height;
+    border:1px solid #848484;
+    border-radius: 6px;
+    padding-left:var(--spacer-40);
+
+    &:focus{
+        box-shadow: none;
+        border-color: var(--secondaryColor);
+    }
+}
+
+@mixin buttonLogin(){
+    background-color: var(--primaryColor);
+    color: var(--white);
+    padding:var(--spacer-12) var(--spacer-50);
+    font-size: 15px;
+    border: none;
+    border-radius: 30px;
+}
+
+@mixin buttonsPrimary($fontSize, $paddingTopBottom, $paddingLeftRight){
+    font-size: $fontSize;
+    padding:$paddingTopBottom $paddingLeftRight;
+    background-color: var(--primaryColor);
+    border: none;
+    border-radius: 30px;
+    color:var(--white);
+}

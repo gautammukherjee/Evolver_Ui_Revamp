@@ -1,0 +1,249 @@
+<div class="row" style="margin-bottom: 20px;">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+        <!-- Comment is particles not required -->
+        <div id="particles-js" *ngIf="chkSelectEntities || masterListsData.length==0"></div>
+        <!-- Comment is particles not required -->
+
+        <div class="customTable">
+            <!--<h4>Network Map for <span style="text-transform: uppercase;"> {{mapTypes}} </span></h4>-->
+            <!-- <h4 style="text-align: center;background-color: #7880BA;padding: 10px; color:#fff;">Network Map </h4> -->
+            <div class="dropdown rank-dropdown"
+                title="Rank establishes the probability of a destination term or entity being the closest match to the entity type; it is an independent measure and does not dictate the order of the combinations."
+                alt="Rank establishes the probability of a destination term or entity being the closest match to the entity type; it is an independent measure and does not dictate the order of the combinations.">
+                <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="rank-dropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    Select Rank
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="rank-dropdown">
+                    <li class="dropdown-item"><input type="checkbox" name="rank" value="1" checked
+                            (click)="selectRank(1, $event)"> Rank 1</li>
+                    <li class="dropdown-item"><input type="checkbox" name="rank" value="2"
+                            (click)="selectRank(2, $event)"> Rank 2</li>
+                    <li class="dropdown-item"><input type="checkbox" name="rank" value="3"
+                            (click)="selectRank(3, $event)"> Rank 3</li>
+                    <li class="dropdown-item"><input type="checkbox" name="rank" value="4"
+                            (click)="selectRank(4, $event)"> Rank 4</li>
+                    <li class="dropdown-item"><input type="checkbox" name="rank" value="5"
+                            (click)="selectRank(5, $event)"> Rank 5</li>
+                    <li class="dropdown-item"><input type="checkbox" name="rank" value="6"
+                            (click)="selectRank(6, $event)"> Rank 6</li>
+                    <li class="dropdown-item"><input type="checkbox" name="rank" value="7"
+                            (click)="selectRank(7, $event)"> Rank 7</li>
+                    <li class="dropdown-item"><input type="checkbox" name="rank" value="8"
+                            (click)="selectRank(8, $event)"> Rank 8</li>
+                </ul>
+            </div>
+
+            <!-- <div class="form-check form-switch ps-0" style="width: 127px;background-color: #3066c4;border-radius: 5px;padding: 2px;position: absolute;top: 0px;right: 123px;color: #fff;margin-left: 6px;">
+                <label class="form-check-label" style="margin-left: 8px;" for="flexSwitchCheckDefault2">Dark Mode</label>
+                <input class="form-check-input float-end" type="checkbox" role="switch"
+                    id="flexSwitchCheckDefault2" [checked]="!isLightTheme"
+                    (click)="onThemeSwitchChange()">
+                
+            </div> -->
+
+            <div class="common-text-switcher fs-2 text-center mb-4" style="margin-top: 160px;"
+                *ngIf="chkSelectEntities">
+                Please
+                select right entities to generate
+                the Network Map</div>
+            <div class="common-text-switcher fs-2 text-center mb-4 alert alert-danger" style="margin-top: 160px;"
+                *ngIf="!chkSelectEntities && masterListsData.length==0">
+                No, Appropriate data for this Rank</div>
+
+            <div class="overlay text-center" style="margin-top: 160px;" *ngIf="loadingMap">
+                <img src="../../assets/images/loader_big.gif" />
+            </div>
+            <div *ngIf="noDataFoundMap" class="bg-danger" style="color:#fff; text-align: center; font-weight: bold;">
+                Please Choose Pair Type and Source for Second Degree
+            </div>
+
+            <!--<div class="table-responsive" *ngIf="nodesCheck">-->
+            <div class="table-responsive position-relative" *ngIf="noSourceNodeSelected==0">
+
+                <div>
+                    <span class="float-start text-white p-1 mr-2 level1-title"
+                        *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">First Degree
+                        Combinations
+                        <span class="badge bg-primary text-white">{{masterListsDataDetailsLengthLevelOne}}</span></span>
+                    <span class="float-start text-white p-1 mr-2 level2-title"
+                        *ngIf="secondLoadApiResult!=undefined && masterListsDataDetailsLengthLevelTwo > 0">Second Degree
+                        Combinations
+                        <span class="badge bg-primary text-white">{{masterListsDataDetailsLengthLevelTwo}}</span></span>
+                    <span class="float-start text-white p-1 mr-2 level3-title"
+                        *ngIf="thirdLoadApiResult!=undefined && masterListsDataDetailsLengthLevelThree > 0">Third Degree
+                        Combinations
+                        <span
+                            class="badge bg-primary text-white">{{masterListsDataDetailsLengthLevelThree}}</span></span>
+                </div>
+                <div [ngClass]="isNetworkMapFullScreen == true ? 'network-map-full-screen' : ''">
+
+                    <!--<div class="form-check" style="margin-left: 12px;">
+                    <input type="radio" class="form-check-input" name="edgeSelect" id="edgeUnchecked" value="1"
+                        (change)="clickedEdges($event)" checked>
+                    <label class="form-check-label" for="edgeUnchecked">Edge Type Selected</label>
+                </div>
+                <div class="form-check" style="margin-left: 12px;">
+                    <input type="radio" class="form-check-input" name="edgeSelect" id="edgeChecked" value="0" (change)="clickedEdges($event)">
+                    <label class="form-check-label" for="edgeChecked">Show All Targets</label>
+                </div>-->
+
+                    <div class="map-zoom-btngrp">
+
+                        <div class="d-flex" [ngClass]="isNetworkMapFullScreen == true ? 'd-none' : ''">
+                            <img id="png-eg">
+                            <button *ngIf="!nodesCheckLength" class="btn btn-primary btn-sm mr-1 p-1"
+                                style="margin:5px;line-height: 15px;" (click)="refreshMap($event)"
+                                title="REFRESH MAP"><i class="bi bi-arrow-clockwise"></i></button>
+                            <!-- <button *ngIf="!nodesCheckLength" class="btn btn-primary btn-sm mr-1 p-1" style="margin:5px;line-height: 15px;" (click)="onDownloadCanvas()">download</button> -->
+                            <button *ngIf="!nodesCheckLength" id="download_btn" class="btn btn-primary btn-sm mr-1 p-1"
+                                style="margin:5px;line-height: 15px;" title="Download as .png image">
+                                <i class="bi bi-download"></i>
+                            </button>
+                        </div>
+                        <div *ngIf="!nodesCheckLength"
+                            class="btn btn-sm d-flex p-1 mr-1 bg-primary text-white btn-map-zoom d-flex"
+                            [ngClass]="isNetworkMapFullScreen == true ? 'fixed-full-screen-zoom' : ''"
+                            style="margin:5px;line-height: 15px;">
+                            <input class="form-check-input mt-0" type="checkbox" id="zoomSwitch">&nbsp;
+                            <label class="form-check-label" for="zoomSwitch">Zoom</label>
+                        </div>
+                        <button *ngIf="!nodesCheckLength" class="btn btn-primary btn-sm p-1"
+                            style="margin:5px;line-height: 15px;"
+                            [ngClass]="isNetworkMapFullScreen == true ? 'exit-map-fullscreen-fixed-posBtn' : ''"
+                            (click)="onNetworkMapFullScrClick()"><i *ngIf="isNetworkMapFullScreen"
+                                class='bi bi-fullscreen-exit' title="EXIT FULL SCREEN"></i><i
+                                *ngIf="!isNetworkMapFullScreen" class="bi bi-arrows-fullscreen"
+                                title="FULL SCREEN"></i></button>
+                    </div>
+
+                    <div class="network-map-legands" *ngIf="!nodesCheckLength">
+                        <div class="leg-row"
+                            *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">
+                            <div class="leg-box"></div>
+                            <div class="leg-box-target"></div>
+                            <div class="leg-name">First Degree</div>
+                        </div>
+                        <div class="leg-row"
+                            *ngIf="secondLoadApiResult!=undefined && masterListsDataDetailsLengthLevelTwo > 0">
+                            <div class="leg-box"></div>
+                            <div class="leg-box-target"></div>
+                            <div class="leg-name">Second Degree</div>
+                        </div>
+                        <div class="leg-row"
+                            *ngIf="thirdLoadApiResult!=undefined && masterListsDataDetailsLengthLevelThree > 0">
+                            <div class="leg-box"></div>
+                            <div class="leg-box-target"></div>
+                            <div class="leg-name">Third Degree</div>
+                        </div>
+                    </div>
+
+                    <div style="height: 100%; width: 99%; float: left; overflow: auto; overflow-y: hidden">
+                        <!-- <ng2-cytoscape [elements]="graphData" [layout]="layout" (select)="nodeChange($event)"></ng2-cytoscape> -->
+                        <!-- [ngClass]="isNetworkMapFullScreen == true ? 'full-screen' : ''" -->
+                        <div class="network-map-wrapper">
+                            <ng2-cytoscape [elements]="graphData" [layout]="layout"
+                                (onGraphSelection)='graphSelected("nodeRightClick")'></ng2-cytoscape>
+                        </div>
+
+
+                    </div>
+
+                    <div class="modal overlay right fade" id="myModalNode" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    <h5 class="modal-title">Node Details</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- <div id="loadingUmlsLoader"></div> -->
+                                    <div id="nodeDetails"></div>
+                                    <!-- <div [innerHTML]="nodeDetails"></div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- modal Node -->
+
+                    <div class="modal overlay right fade modal-nodedetails" id="myModalEdge" tabindex="-1" role="dialog">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>-->
+                                    <h5 class="modal-title">Details</h5>
+                                </div>
+                                <div class="modal-body">
+
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div id="pubmedURLsDownloadLoader"></div>
+                                            <div id="pubmedURLs">&nbsp;</div>
+                                            <div id="pubmedURLsDownload"></div>
+                                            <!-- <div id="pubmedEdgeNames"></div> -->
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div id="loadingUmlsLoader"></div>
+                                            <div id="umlsDataLists">&nbsp;</div>
+                                            <div id="loadingUmlsLoader2"></div>
+                                            <div id="umlsDataLists2" style="margin-top: 10px;">&nbsp;</div>
+                                            <div id="umlsDataListsRelation" style="margin-top: 10px;">&nbsp;</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- <table id="articles_details" data-toolbar="#toolbar" data-search="true"
+                                        data-show-export="true" data-show-columns="true" data-page-size="50"
+                                        data-filter-control="true" data-page-list="[10, 25, 50, 100, All]">
+                                        <thead>
+                                            <tr>                                               
+                                                <th data-field="rootSource" data-sortable="true" width="10%"
+                                                    data-filter-control="input">
+                                                    rootSource
+                                                </th>
+                                                <th data-field="value" data-sortable="true" width="10%"
+                                                    data-filter-control="input">
+                                                    value
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table> -->
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="footer" style="width: 10px; margin-left: 10px;" *ngFor="let legendsNodeType of legendsNodeTypes">
+                    <div class="dot" [style.background]="legendsNodeType.color_code"><span>{{legendsNodeType.node_name}}</span></div>
+                </div>-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <ng-template #showNode let-c="close" let-d="dismiss">
+    <div class="modal-header blue_bg_hdr  modal-lg">
+        <div class="customTable" style="min-height: 0px;">
+            <h4>Selected Node Name
+                <button class="close" aria-label="Close" (click)="d('Cross click')">
+                    <span aria-hidden="true" style="color: #fff;">&times;</span>
+                </button>
+            </h4>
+        </div>
+        <div class="" style="border: 1px solid #ddd; margin: 16px; padding:15px;">
+            <h5 style="color: #32404e;">PMID Name</h5>
+            <div class="row">
+                <div class="col-md-12 bottam-buffer home_tiles">
+                    <div class="two-column_popup demo-checkboxes-radio">
+                        <span>this is the test file</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template> -->

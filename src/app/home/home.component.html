@@ -1,0 +1,114 @@
+<div class="stats-landing">
+  <app-header></app-header>
+
+  <section class="hero-banner">
+    <video autoplay loop>
+      <source src="https://evolverai-media.s3.amazonaws.com/video/Option1-Banner-Motion-Graphic.mp4" type="video/mp4" />
+    </video>
+    <h1>
+      Strategy For Accelerating<br />
+      <span>Development Cycle</span> Through AI
+    </h1>
+  </section>
+
+  <section class="app-links">
+    <div class="app-cards">
+      <div class="app-single-card" (click)="onApplicationEnter('knowledge')">
+        <div class="icon">
+          <img src="assets/images/icons/Knowledge-Graph.png" alt="" />
+        </div>
+        <h3>Knowledge Graph</h3>
+      </div>
+      <div class="app-single-card">
+        <div class="icon">
+          <img src="assets/images/icons/XplorXcel.png" alt="" />
+        </div>
+        <h3>XplorXcel</h3>
+      </div>
+    </div>
+  </section>
+
+  <section class="catogries">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="stats-box">
+            <div class="icon">
+              <img src="assets/images/icons/stat3.png" alt="" />
+            </div>
+            <h3>6.7 Million</h3>
+            <p>Abstracts on life sciences and biomedical topics</p>
+          </div>
+          <div class="stats-box">
+            <div class="icon">
+              <img src="assets/images/icons/stat2.png" alt="" />
+            </div>
+            <h3>28,680,943</h3>
+            <p>Total number of Connections</p>
+          </div>
+          <div class="stats-box">
+            <div class="icon">
+              <img src="assets/images/icons/stat3.png" alt="" />
+            </div>
+            <h3>111,000</h3>
+            <p>Diseases</p>
+          </div>
+        </div>
+        <div class="col-md-6"></div>
+        <div class="col-md-3">
+          <div class="stats-box">
+            <div class="icon">
+              <img src="assets/images/icons/stat1.png" alt="" />
+            </div>
+            <h3>25,000</h3>
+            <p>Genes</p>
+          </div>
+          <div class="stats-box">
+            <div class="icon">
+              <img src="assets/images/icons/stat4.png" alt="" />
+            </div>
+            <h3>26,000</h3>
+            <p>Edge Type</p>
+          </div>
+          <div class="stats-box">
+            <div class="icon">
+              <img src="assets/images/icons/stat5.png" alt="" />
+            </div>
+            <h3>42,486</h3>
+            <p>Drugs</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="user-manual">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <img src="assets/images/video-thumbnail.jpg" alt="" class="img-fluid" />
+        </div>
+        <div class="col-md-6">
+          <div class="manual-content">
+            <h4>User Manual</h4>
+            <p>
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of type
+              and scrambled it to make a type specimen book. It has survived not
+              only five centuries, but also the leap into electronic typesetting,
+              remaining essentially unchanged. It was popularised in the 1960s
+              with the release of Letraset sheets containing Lorem Ipsum passages,
+              and more recently with desktop publishing software like Aldus
+              PageMaker including versions of Lorem Ipsum.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-light" *ngIf="!hideFooter">
+    <app-footer></app-footer>
+  </footer>
+</div>

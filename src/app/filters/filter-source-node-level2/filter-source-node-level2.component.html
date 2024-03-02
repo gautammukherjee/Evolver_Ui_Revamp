@@ -1,0 +1,116 @@
+<div class="sidebar-card">
+  <!-- <div class="heading">  -->
+    <!-- <h4>Input-1 (Gene or Disease)  -->
+      <!--<button class="btn btn-primary" *ngIf="sourceNodes2.length > 0" [disabled]="disableProceed"
+          (click)="seeMoreproceed()">&rarr;</button>-->
+    <!-- </h4> -->
+  <!-- </div> -->
+  
+  <div class="dropdown">
+    <div class="dropdown-toggle" id="source-node-filter2" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+      <div class="body">
+        <div class="search-input">
+          <input class="form-control" type="text" placeholder="Search Source level2" aria-label="Search" [(ngModel)]="sourceNodeFilter"/>
+          <span *ngIf="selectedSourceNodes2.length > 0" class="reset-search" style="margin-right:50px;">[Selected:
+            {{selectedSourceNodes2.length}}]</span>
+          <img *ngIf="loading" src="../../assets/images/loader_small.gif" width="20px"/>
+            <span *ngIf="selectedSourceNodes2.length > 0" class="reset-search"
+              (click)="resetSourceNode();" title="RESET INPUT-1"><i class="bi bi-x-circle"></i></span>
+          </div>
+      </div>
+    </div>
+
+    <ul class="dropdown-menu" aria-labelledby="source-node-filter2"> <!--//Show autosuggest source dropdown Action//-->
+      <!-- *ngIf="showSourceBody" -->
+      <div class="body">
+        <div *ngIf="sourceNodes2.length">
+          <div class="search-options">
+
+            <button class="btn btn-outline-primary bg-white btn-sm text-primary" style="position: fixed;opacity:1;z-index: 9;right: 36px; padding: 4px 8px;" [disabled]="disableProceed" (click)="seeMoreproceed()"><i class="bi bi-arrow-right-circle-fill" title="Proceed"></i></button>
+
+            <!-- <div class="accordion source-node-accordion2" id="accordionSource">
+              <input type="checkbox" name="edgeTypes" [(ngModel)]="isAllSelected" [value]="sourceNodes2" [checked]=""
+              (change)="selectAll();">
+            <span class="custom-control-description text-dark">&nbsp;Select All</span>
+
+              <div class="accordion-item" *ngFor="let sourceNode of sourceNodes2; let i = index;">
+                <h2 class="accordion-header" [id]="'heading'+i">
+                  <button class="accordion-button" [ngClass]="{ 'collapsed': i != 0 }" type="button"
+                    data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse'+i" aria-expanded="true"
+                    [attr.aria-controls]="'collapse'+i">
+                    <input class="form-check-input border border-secondary" type="checkbox" name="sourceNodes"
+                      [value]="sourceNode" [checked]="selectedSourceNodes2.indexOf(sourceNode.source_node)>-1 "
+                      (change)="selectSourceNode(sourceNode,$event)">
+                    <label class="form-check-label">
+                      <span>&nbsp;{{sourceNode.source_node_name}}</span>
+                    </label>
+                  </button>
+                </h2>
+                <div [id]="'collapse'+i" class="accordion-collapse collapse" [ngClass]="{ 'show': i == 0 }"
+                  [attr.aria-labelledby]="'heading'+i" data-bs-parent="#accordionSource">
+                  <div class="accordion-body">
+                    <div class="subcategory-badges">
+                      <div *ngFor="let subSourceNode of sourceNode.subcategory_syn_node_name">
+                        <a class="list-group-item small">
+                          <span
+                            class="badge bg-secondary">{{subSourceNode}}</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+
+            <input type="checkbox" name="edgeTypes" [(ngModel)]="isAllSelected" [value]="sourceNodes2" [checked]=""
+              (change)="selectAll();">
+            <span class="custom-control-description text-dark">&nbsp;Select All</span>
+
+            <div class="mb-1 form-check" *ngFor="let sourceNode of sourceNodes2 | SourceNodeFilterPipe:sourceNodeFilter">
+              <input class="form-check-input border border-secondary" type="checkbox" name="sourceNodes2"
+                 [value]="sourceNode"
+                [checked]="selectedSourceNodes2.indexOf(sourceNode.source_node)>-1 "
+                (change)="selectSourceNode(sourceNode,$event)">
+              <label class="form-check-label pe-4">{{sourceNode.source_node_name}}</label>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </ul>
+    
+  </div>
+</div>
+
+
+<!--<div class="card-panel-box-detail" *ngIf="sourceNodes2.length <= 0">
+  <div class="" *ngIf="(sourceNodesCheck==false)">
+    <i (click)="reloadNode()" style="color:white; cursor: pointer;" title="Reload" class="fa fa-refresh">&nbsp;
+      Click here to load Nodes</i>
+  </div>
+  <div *ngIf="(sourceNodesCheck==true)">
+    <i style="color:white" title="Reload">&nbsp;
+      No news exists for any node</i>
+  </div>
+</div>-->
+
+
+<ng-template #warning let-c="close" let-d="dismiss">
+  <div class="modal-header modal-lg" style="background: #ff0c66 !important;">
+    <h4 class="modal-title text-white">Warning</h4>
+    &nbsp;
+    <button class="close text-light" aria-label="Close" (click)="closePopup()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body white_bg without_bord_rad">
+    <h6 style="color:#ff0c66">You unchecked the "Select All" option. If you will Proceed with this then result-set
+      of
+      with all gene(s).
+      Otherwise you may choose indications and proceed.</h6>
+    <div class="pull-right">
+      <button class="btn btn-hero-info btn-demo" (click)="closePopup()">Okay</button>
+    </div>
+  </div>
+</ng-template>
