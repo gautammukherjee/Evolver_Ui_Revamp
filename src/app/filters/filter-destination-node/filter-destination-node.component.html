@@ -10,7 +10,7 @@
               (keyup)="processChangeDestination()">
             <span *ngIf="selectedDestinationNodes.length > 0" class="reset-search" style="margin-right:40px;">[Selected:
               {{selectedDestinationNodes.length}}]</span>
-            <img *ngIf="dbLoading" width="20px" src="../../assets/images/loader_small.gif" />
+            <img class="filter-spinner" *ngIf="dbLoading" width="20px" src="../../assets/images/loader_small.gif" />
             <span *ngIf="selectedDestinationNodes.length > 0" class="reset-search" (click)="resetDestinationNode();"
               title="RESET INPUT-2"><i class="bi bi-x-circle"></i></span>
             <!--<input class="form-control" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="destinationNodeFilter" />-->
@@ -21,7 +21,7 @@
     </div>
 
     <div style="position: absolute;">
-      <img *ngIf="loading" width="20px" src="../../assets/images/loader_small.gif" />
+      <img class="filter-spinner" *ngIf="loading" width="20px" src="../../assets/images/loader_small.gif" />
       <!-- <span style="font-size: 13px;color: white;">
         [Count: {{destinationNodesLength}}]
       </span> -->
