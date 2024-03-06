@@ -140,7 +140,7 @@ export class EventDescriptionComponent implements OnInit {
 
   fileName: string = '';
   downloadData: any = [];
-
+  public readonly pubmedBaseUrl = "https://www.ncbi.nlm.nih.gov/pubmed/";
 
   scenarioForm = new FormGroup({
     filter_name: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(15)]),
@@ -483,7 +483,7 @@ export class EventDescriptionComponent implements OnInit {
     this.articleHere = [];
     const edgeNeIdArr = edgeNeId.split(",");
     //console.log(typeof edgeNeIdArr + edgeNeIdArr +edgeNeIdArr[0]);
-    var pubmedBaseUrl = "https://www.ncbi.nlm.nih.gov/pubmed/";
+    
 
     // this.nodeSelectsService.getEdgeTypeSentencePMIDLists({ 'ne_ids': edgeNeIdArr, 'edge_type_id': (level == 1 ? this.filterParams['edge_type_id'] : this.filterParams['edge_type_id2']) }).subscribe((p: any) => {
     this.nodeSelectsService.getEdgeTypeSentencePMIDLists({ 'ne_ids': edgeNeIdArr, 'edge_type_id': (level == 1 ? this.filterParams['edge_type_id'] : (level == 2 ? this.filterParams['edge_type_id2'] : this.filterParams['edge_type_id3'])) }).subscribe((p: any) => {
@@ -498,7 +498,7 @@ export class EventDescriptionComponent implements OnInit {
         temps["source"] = sourceNode;
         temps["destination"] = destinationNode;
         temps["pubmed_id"] = event.pmid;
-        temps["pmid"] = "<a target='_blank' style='color: #BF63A2 !important;' href='" + pubmedBaseUrl + event.pmid + "'>" + event.pmid + "</a>";
+        temps["pmid"] = "<a target='_blank' style='color: #BF63A2 !important;' href='" + this.pubmedBaseUrl + event.pmid + "'>" + event.pmid + "</a>";
         temps["publication_date"] = event.publication_date;
         temps["title"] = event.title;
         temps["edge_type"] = event.edge_type_name
@@ -604,7 +604,7 @@ export class EventDescriptionComponent implements OnInit {
                     html_str += "<td width='30%'><span style='color:" + e1_color + "'>" + sentences.evidence_data[i].gene_symbol_e1 + "</span>(" + sentences.evidence_data[i].e1_type_name + ")</td>";
                     html_str += "<td  width='19%'>" + sentences.evidence_data[i].edge_name + "</td>";
                     html_str += "<td  width='30%'><span style='color:" + e1_color + "'>" + sentences.evidence_data[i].gene_symbol_e2 + "</span>(" + sentences.evidence_data[i].e2_type_name + ")</td>";
-                    html_str += "<td  width='19%'>PMID: <a target='_blank' style='color: #BF63A2 !important;' href='" + pubmedBaseUrl + sentences.evidence_data[i].pubmed_id + "'>" + sentences.evidence_data[i].pubmed_id + "</a></td>"
+                    html_str += "<td  width='19%'>PMID: <a target='_blank' style='color: #BF63A2 !important;' href='" + this.pubmedBaseUrl + sentences.evidence_data[i].pubmed_id + "'>" + sentences.evidence_data[i].pubmed_id + "</a></td>"
                     html_str += "<td width='2%'>&nbsp;</td>";
                     html_str += "</tr>";
 
@@ -728,7 +728,7 @@ export class EventDescriptionComponent implements OnInit {
   onDescScroll() {
     console.log('onScroll Here');
     if (!this.isloading && !this.loadingDesc) {
-      if (this.notscrolly && this.notEmptyPost && this.filterParams['tabType'] == "details") {
+      if (this.notscrolly && this.notEmptyPost && (this.filterParams['tabType'] == "details" || this.filterParams['tabType'] == "default")) {
         console.log('onScroll Here inside');
         // this.spinner.show();
         this.notscrolly = false;

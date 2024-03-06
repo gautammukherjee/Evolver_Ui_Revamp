@@ -64,6 +64,13 @@ export class DashboardComponent implements OnInit {
     this.showSidebar = !this.showSidebar;
   }
 
+  openPMIDSearch() {
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree([`/pmid-search`])
+    );
+    window.open(url, '_blank');
+  }
+
   dateRangeChanged(e: any) {
     this.doFilterApply.next(e);
   }
