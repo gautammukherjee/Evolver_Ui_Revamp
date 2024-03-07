@@ -1,10 +1,10 @@
 <!-- <div class="search-options event-desc-wrapper" infinite-scroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50"
     (scrolled)="onDescScroll()" [scrollWindow]="false"> -->
-<div class="save-query-top-btn" *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">
+<!-- <div class="save-query-top-btn" *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">
     <button class="btn btn-primary btn-sm" (click)="captureScenario(userScenario)">
         <i class="bi bi-sd-card" title="Save"></i>&nbsp;Save Query
     </button>
-</div>
+</div> -->
 <div class="search-options">
     <div class="card-panel-box">
         <div class="customTable" style="border: 0px solid #ddd; min-height:400px;">
@@ -77,11 +77,11 @@
                                     <th data-field="pmidCount" data-sortable="true" width="10%"
                                         data-filter-control="select" data-tableexport-value="PMID Count">
                                         PMID Count</th>
-                                    <th data-field="rank_score" data-sortable="true" width="10%"
+                                    <!-- <th data-field="rank_score" data-sortable="true" width="10%"
                                         data-filter-control="select" data-tableexport-value="Rank">
-                                        Rank</th>
+                                        Rank</th> -->
                                     <th data-field="edgeNeCount" width="10%">
-                                    <th data-field="ctLists" width="10%">
+                                    <!-- <th data-field="ctLists" width="10%"> -->
                                     </th>
 
                                     <!-- <th data-field="edgeNe" data-sortable="true" width="10%">
@@ -119,11 +119,11 @@
                 <span class="fa fa-save"></span> Save Query
               </a> -->
 
-            <div class="text-center"
+            <!-- <div class="text-center"
                 *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0 && noSourceNodeSelected==0">
                 <button class="btn btn-primary btn-sm save-query" (click)="captureScenario(userScenario)"><i
                         class="bi bi-sd-card" title="Save"></i>&nbsp;Save Query</button>
-            </div>
+            </div> -->
             <!-- <div style="position: absolute;float: left;right: 341px;"
                 *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">
                 <button class="saveFilterBtn" (click)="captureScenarioWithResult(userScenarioWithResult)">Save Result</button>
@@ -264,8 +264,8 @@
                 <button class="btn btn-primary" (click)="captureScenario(userScenario)">Save Query</button>
             </div> -->
 
-            <a class="btn btn-primary" (click)="captureSentences(userSentences)">
-                <i class="bi bi-sd-card" title="Download & Save"></i></a>
+            <!-- <a class="btn btn-primary" (click)="captureSentences(userSentences)">
+                <i class="bi bi-sd-card" title="Download & Save"></i></a> -->
             <!-- <a class="btn btn-primary " (click)="articlesWithEvidenceData()">Download</a> -->
             <a class="btn btn-primary " (click)="scrollTop()">
                 <i class="bi bi-arrow-up-circle" title="Go to Top"></i></a>

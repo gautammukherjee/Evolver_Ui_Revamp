@@ -28,7 +28,7 @@
       <span *ngIf="distinctDestinationNodesData.length>0">
         <input type="checkbox" name="destinationNodeAll" [(ngModel)]="isAllSelected" [value]="destinationNodesDB"
           [checked]="" (change)="selectAll($event);">
-        <span class="custom-control-description text-white">&nbsp;Select Unique {{distinctDestinationNodesData.length}}
+        <span class="custom-control-description">&nbsp;Select Unique {{distinctDestinationNodesData.length}}
           Nodes</span>
       </span>
     </div>

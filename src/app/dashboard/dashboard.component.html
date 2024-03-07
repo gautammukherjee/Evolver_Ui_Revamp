@@ -1,184 +1,184 @@
 <div class="stats-landing">
-    <app-header></app-header>
+  <app-header></app-header>
 
-    <div class="degree-filers-wrapper">
-        <div class="degree-single">
-          <div class="degree-indicator">1st Degree</div>
-          <div class="degree-input-wrapper">
-            <!-- <input type="text" class="form-control" placeholder="Disease to Gene" /> -->
-            <div class="filter-single">
-              <app-filter-node-select (onSelectNode)='nodeChanged($event)'
-                [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-node-select>
-            </div>
-          </div>
-          <div class="degree-input-wrapper">
-            <app-filter-source-node (onSelectSourceNode)='sourceNodeChanged("sourceNodeFilter" , $event)'
-              [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-source-node>
-          </div>
-          <div class="degree-input-wrapper">
-            <app-filter-edge-type (onSelectEdgeType)='edgeTypeChanged("edgeTypeFilter")'
-              [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-edge-type>
-          </div>
-          <div class="degree-input-wrapper">
-            <app-filter-destination-node (onSelectDestinationNode)='destinationNodeChanged("destinationNodeFilter")'
-              [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-destination-node>
-          </div>
-          <div class="add-degree-container">
-      
-            <button class="btn btn-light btn-sm btn-custom-sm" (click)="onAddLevel()" *ngIf="hideAddLevelONCT==0"
-              [disabled]="isAddLevelChk"><img src="assets/images/icons/plus.svg" alt="" /></button>
-          </div>
-          <div class="expand-container">
-            <!-- <button class="btn btn-light btn-sm ms-2 btn-custom-sm" *ngIf="(hideAddLevelONCT==0 && currentLevel > 1)"
-              (click)="onToggleLevel()">{{showLevels == false ? 'Show' : 'Hide'}} Level</button> -->
-            <span *ngIf="(hideAddLevelONCT==0 && currentLevel > 1)" (click)="onToggleLevel()"> {{showLevels == false ? 'Show'
-              : 'Hide'}} Level</span>
-          </div>
-        </div>
-      
-      
-        <div class="next-levels-group">
-      
-          <div [ngStyle]="{'display' : showLevels == false ? 'none' : 'block'}">
-            <div *ngIf="currentLevel > 1" class="horizonal-filter-bar" style="width: 98%;margin-top:15px;">
-              <div class="degree-single">
-                <div class="degree-indicator">2nd Degree</div>
-                <div class="degree-input-wrapper">
-                  <app-filter-node-select-level2 (onSelectNode2)='nodeChanged2("nodeLevel2Filter")'
-                    [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-node-select-level2>
-                </div>
-                <div class="degree-input-wrapper">
-                  <app-filter-source-node-level2 (onSelectSourceNode2)='sourceNodeChanged2("sourceNode2Filter" , $event)'
-                    [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-source-node-level2>
-                </div>
-                <div class="degree-input-wrapper">
-                  <app-filter-edge-type-level2 (onSelectEdgeType2)='edgeTypeChanged2("edgeType2Filter")'
-                    [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-edge-type-level2>
-                </div>
-                <div class="degree-input-wrapper">
-                  <app-filter-destination-node-level2
-                    (onSelectDestinationNode2)='destinationNodeChanged2("destinationNode2Filter")'
-                    [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-destination-node-level2>
-                </div>
-                <div class="add-degree-container">
-                  <span *ngIf="currentLevel == 2" style="cursor: pointer;" (click)="deleteSecondDegree('deleteLevel2')"
-                    title="Delete Second Degree">
-                    <img src="assets/images/icons/minus.svg" alt="" />
-                  </span>
-                </div>
-                <div class="expand-container"></div>
-              </div>
-            </div>
-          </div>
-      
-          <div [ngStyle]="{'display' : showLevels == false ? 'none' : 'block'}">
-            <div *ngIf="currentLevel > 2" class="horizonal-filter-bar" style="width: 98%;margin-top: 17px;">
-              <div class="degree-single">
-                <div class="degree-indicator">3rd Degree</div>
-                <div class="degree-input-wrapper">
-                  <app-filter-node-select-level3 (onSelectNode3)='nodeChanged3("nodeLevel3Filter")'
-                    [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-node-select-level3>
-                </div>
-                <div class="degree-input-wrapper">
-                  <app-filter-source-node-level3 (onSelectSourceNode3)='sourceNodeChanged3("sourceNode3Filter" , $event)'
-                    [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-source-node-level3>
-                </div>
-                <div class="degree-input-wrapper">
-                  <app-filter-edge-type-level3 (onSelectEdgeType3)='edgeTypeChanged2("edgeType3Filter")'
-                    [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-edge-type-level3>
-                </div>
-                <div class="degree-input-wrapper">
-                  <app-filter-destination-node-level3
-                    [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-destination-node-level3>
-                </div>
-                <div class="add-degree-container" (click)="currentLevel = currentLevel-1">
-                  <span *ngIf="currentLevel == 3" title="Delete Third Degree" style="cursor: pointer;"
-                    (click)="deleteThirdDegree('deleteLevel3')">
-                    <img src="assets/images/icons/minus.svg" alt="" />
-                  </span>
-      
-                </div>
-                <div class="expand-container"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      
-        <div class="footer-bar text-end">
-          <button class="custom-btn me-2" style="background-color: #B765A3;color: #fff;"
-            (click)="resetAllFilters()">Reset</button>&nbsp;
-          <button class="custom-btn me-2" style="background-color: #B765A3;color: #fff; border:1px solid #B765A3;"
-            (click)="onSubmit()"><i class="bi bi-search" title="Search" alt="Search"></i> Submit</button>
-      
+  <div class="degree-filers-wrapper">
+    <div class="degree-single">
+      <div class="degree-indicator">1st Degree</div>
+      <div class="degree-input-wrapper">
+        <!-- <input type="text" class="form-control" placeholder="Disease to Gene" /> -->
+        <div class="filter-single">
+          <app-filter-node-select (onSelectNode)='nodeChanged($event)'
+            [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-node-select>
         </div>
       </div>
-    
-    <section class="main-layout">
-        <div class="left-sidebar">
-            <app-left-filter-layout></app-left-filter-layout>
+      <div class="degree-input-wrapper">
+        <app-filter-source-node (onSelectSourceNode)='sourceNodeChanged("sourceNodeFilter" , $event)'
+          [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-source-node>
+      </div>
+      <div class="degree-input-wrapper">
+        <app-filter-edge-type (onSelectEdgeType)='edgeTypeChanged("edgeTypeFilter")'
+          [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-edge-type>
+      </div>
+      <div class="degree-input-wrapper">
+        <app-filter-destination-node (onSelectDestinationNode)='destinationNodeChanged("destinationNodeFilter")'
+          [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-destination-node>
+      </div>
+      <div class="add-degree-container">
+
+        <button class="btn btn-light btn-sm btn-custom-sm" (click)="onAddLevel()" *ngIf="hideAddLevelONCT==0"
+          [disabled]="isAddLevelChk"><img src="assets/images/icons/plus.svg" alt="" /></button>
+      </div>
+      <div class="expand-container">
+        <!-- <button class="btn btn-light btn-sm ms-2 btn-custom-sm" *ngIf="(hideAddLevelONCT==0 && currentLevel > 1)"
+              (click)="onToggleLevel()">{{showLevels == false ? 'Show' : 'Hide'}} Level</button> -->
+        <span *ngIf="(hideAddLevelONCT==0 && currentLevel > 1)" (click)="onToggleLevel()"> {{showLevels == false ?
+          'Show'
+          : 'Hide'}} Level</span>
+      </div>
+    </div>
+
+
+    <div class="next-levels-group">
+
+      <div [ngStyle]="{'display' : showLevels == false ? 'none' : 'block'}">
+        <div *ngIf="currentLevel > 1" class="horizonal-filter-bar" style="width: 98%;margin-top:15px;">
+          <div class="degree-single">
+            <div class="degree-indicator">2nd Degree</div>
+            <div class="degree-input-wrapper">
+              <app-filter-node-select-level2 (onSelectNode2)='nodeChanged2("nodeLevel2Filter")'
+                [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-node-select-level2>
+            </div>
+            <div class="degree-input-wrapper">
+              <app-filter-source-node-level2 (onSelectSourceNode2)='sourceNodeChanged2("sourceNode2Filter" , $event)'
+                [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-source-node-level2>
+            </div>
+            <div class="degree-input-wrapper">
+              <app-filter-edge-type-level2 (onSelectEdgeType2)='edgeTypeChanged2("edgeType2Filter")'
+                [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-edge-type-level2>
+            </div>
+            <div class="degree-input-wrapper">
+              <app-filter-destination-node-level2
+                (onSelectDestinationNode2)='destinationNodeChanged2("destinationNode2Filter")'
+                [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-destination-node-level2>
+            </div>
+            <div class="add-degree-container">
+              <span *ngIf="currentLevel == 2" style="cursor: pointer;" (click)="deleteSecondDegree('deleteLevel2')"
+                title="Delete Second Degree">
+                <img src="assets/images/icons/minus.svg" alt="" />
+              </span>
+            </div>
+            <div class="expand-container"></div>
+          </div>
         </div>
-    
-    
-        <div class="selection-layout">
-            <div class="custom-tabs-wrapper">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details"
-                            type="button" role="tab" aria-controls="details" aria-selected="true" (click)="onSubmitTab($event, 'details')">Details</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="map-tab" data-bs-toggle="tab" data-bs-target="#map" type="button"
-                            role="tab" aria-controls="map" aria-selected="false" (click)="onSubmitTab($event, 'map')">Map</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="visualChart-tab" data-bs-toggle="tab" data-bs-target="#visualChart"
-                            type="button" role="tab" aria-controls="visualChart" aria-selected="false" (click)="onSubmitTab($event, 'articlecount')">Visual
-                            Charts</button>
-                    </li>
-                    <li class="nav-item ms-auto pmid-button" role="presentation">
-                        <button class="nav-link" id="ct-tab" data-bs-toggle="tab" data-bs-target="#clinicalTrials"
-                            type="button" role="tab" aria-controls="clinicalTrials" aria-selected="false" (click)="onSubmitTab($event, 'ct')">CT</button>
-                    </li>
-    
-                    <!-- <li class="nav-item ms-auto pmid-button">
+      </div>
+
+      <div [ngStyle]="{'display' : showLevels == false ? 'none' : 'block'}">
+        <div *ngIf="currentLevel > 2" class="horizonal-filter-bar" style="width: 98%;margin-top: 17px;">
+          <div class="degree-single">
+            <div class="degree-indicator">3rd Degree</div>
+            <div class="degree-input-wrapper">
+              <app-filter-node-select-level3 (onSelectNode3)='nodeChanged3("nodeLevel3Filter")'
+                [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-node-select-level3>
+            </div>
+            <div class="degree-input-wrapper">
+              <app-filter-source-node-level3 (onSelectSourceNode3)='sourceNodeChanged3("sourceNode3Filter" , $event)'
+                [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-source-node-level3>
+            </div>
+            <div class="degree-input-wrapper">
+              <app-filter-edge-type-level3 (onSelectEdgeType3)='edgeTypeChanged2("edgeType3Filter")'
+                [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-edge-type-level3>
+            </div>
+            <div class="degree-input-wrapper">
+              <app-filter-destination-node-level3
+                [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-destination-node-level3>
+            </div>
+            <div class="add-degree-container" (click)="currentLevel = currentLevel-1">
+              <span *ngIf="currentLevel == 3" title="Delete Third Degree" style="cursor: pointer;"
+                (click)="deleteThirdDegree('deleteLevel3')">
+                <img src="assets/images/icons/minus.svg" alt="" />
+              </span>
+
+            </div>
+            <div class="expand-container"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bar text-end">
+      <button class="custom-btn me-2" style="background-color: #B765A3;color: #fff;"
+        (click)="resetAllFilters()">Reset</button>&nbsp;
+      <button class="custom-btn me-2" style="background-color: #B765A3;color: #fff; border:1px solid #B765A3;"
+        (click)="onSubmit()"><i class="bi bi-search" title="Search" alt="Search"></i> Submit</button>
+
+    </div>
+  </div>
+
+  <section class="main-layout">
+    <div class="left-sidebar">
+      <app-left-filter-layout></app-left-filter-layout>
+    </div>
+
+
+    <div class="selection-layout">
+      <div class="custom-tabs-wrapper">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details"
+              type="button" role="tab" aria-controls="details" aria-selected="true"
+              (click)="onSubmitTab($event, 'details')">Details</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="map-tab" data-bs-toggle="tab" data-bs-target="#map" type="button" role="tab"
+              aria-controls="map" aria-selected="false" (click)="onSubmitTab($event, 'map')">Map</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="visualChart-tab" data-bs-toggle="tab" data-bs-target="#visualChart"
+              type="button" role="tab" aria-controls="visualChart" aria-selected="false"
+              (click)="onSubmitTab($event, 'articlecount')">Visual
+              Charts</button>
+          </li>
+
+
+          <!-- <li class="nav-item ms-auto pmid-button" role="presentation">
+            <button class="nav-link" id="ct-tab" data-bs-toggle="tab" data-bs-target="#clinicalTrials" type="button"
+              role="tab" aria-controls="clinicalTrials" aria-selected="false"
+              (click)="onSubmitTab($event, 'ct')">CT</button>
+          </li> -->
+          <!-- <li class="nav-item ms-auto pmid-button">
                         <button class="nav-link" type="button">Clinical Trial</button>
                     </li> -->
-                    <li class="nav-item pmid-button">
-                        <button class="nav-link" type="button">PMID Count</button>
-                    </li>
-                </ul>
-    
-    
-    
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
-                        <app-event-description [ProceedDoFilterApply]="doFilterApplyTab2"></app-event-description>
-                    </div>
-                    <div class="tab-pane p-2 fade" id="map" role="tabpanel" aria-labelledby="map-tab">                   
-                        <app-network-map [ProceedDoFilterApply]="doFilterApply"></app-network-map>                                 
-                    </div>                
-                    <div class="tab-pane p-2 fade" id="visualChart" role="tabpanel" aria-labelledby="visualChart-tab">                    
-                        <app-distribution-by-rel-grp
-                            [ProceedDoFilterApply]="doFilterApplyTab4"></app-distribution-by-rel-grp>
-                        <app-pmid-count-with-gene-and-disease
-                            [ProceedDoFilterApply]="doFilterApplyTab4"></app-pmid-count-with-gene-and-disease>
-                    </div>
-                    <div class="tab-pane p-2 fade" id="clinicalTrials" role="tabpanel" aria-labelledby="ct-tab">
-                        <app-ct_disease_assoc [ProceedDoFilterApply]="doFilterApplyTab5"></app-ct_disease_assoc>
-                        <app-ct_investigator_rels
-                            [ProceedDoFilterApply]="doFilterApplyTab5"></app-ct_investigator_rels>                    
-                        <app-investigator-by-country
-                            [ProceedDoFilterApply]="doFilterApplyTab5"></app-investigator-by-country>
-                    </div>
-                </div>
-    
-            </div>
-        </div>
-    
-    
-    </section>
+          <li class="nav-item ms-auto pmid-button">
+            <button class="nav-link" type="button" (click)="openPMIDSearch()">PMID Search</button>
+          </li>
+        </ul>
 
-    <footer class="bg-light" *ngIf="!hideFooter">
-      <app-footer></app-footer>
+
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+            <app-event-description [ProceedDoFilterApply]="doFilterApplyTab2"></app-event-description>
+          </div>
+          <div class="tab-pane p-2 fade" id="map" role="tabpanel" aria-labelledby="map-tab">
+            <app-network-map [ProceedDoFilterApply]="doFilterApply"></app-network-map>
+          </div>
+          <div class="tab-pane p-2 fade" id="visualChart" role="tabpanel" aria-labelledby="visualChart-tab">
+            <app-distribution-by-rel-grp [ProceedDoFilterApply]="doFilterApplyTab4"></app-distribution-by-rel-grp>
+            <app-pmid-count-with-gene-and-disease
+              [ProceedDoFilterApply]="doFilterApplyTab4"></app-pmid-count-with-gene-and-disease>
+          </div>
+          <div class="tab-pane p-2 fade" id="clinicalTrials" role="tabpanel" aria-labelledby="ct-tab">
+            <app-ct_disease_assoc [ProceedDoFilterApply]="doFilterApplyTab5"></app-ct_disease_assoc>
+            <app-ct_investigator_rels [ProceedDoFilterApply]="doFilterApplyTab5"></app-ct_investigator_rels>
+            <app-investigator-by-country [ProceedDoFilterApply]="doFilterApplyTab5"></app-investigator-by-country>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- <footer class="bg-light" *ngIf="!hideFooter"> -->
+  <footer class="bg-light">
+    <app-footer></app-footer>
   </footer>
 </div>

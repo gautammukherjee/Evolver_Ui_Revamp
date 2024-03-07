@@ -1,40 +1,64 @@
 <nav class="mainNavbar navbar navbar-expand-lg navbar-light bg-white">
-    <div class="container-fluid">
-      <a class="navbar-brand">
-        <img src="assets/images/logo.svg" alt="Evolver ai" width="160px">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
-        aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarScroll">
-        <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">Knowledge Graph</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link">XplorXcel Graph</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-              {{result.email}}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-              <li><a class="dropdown-item">Profile</a></li>
+  <div class="container-fluid">
+    <a class="navbar-brand">
+      <img src="assets/images/logo.svg" alt="Evolver ai" width="160px">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+      aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav ms-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <a class="nav-link" [routerLinkActive]="'active'" aria-current="page" [routerLink]="['/home']">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLinkActive]="'active'" [routerLink]="['/dashboard']">Knowledge Graph</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" target="_blank"
+            href="http://150.136.91.243:8887/login/?username=hsharma&password=biosearch@123">XplorXcel Graph</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            {{result.email}}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+            <!-- <li><a class="dropdown-item">Profile</a></li>
               <li><a class="dropdown-item" style="cursor: pointer;">My
                   Dashboard</a></li>
               <li><a class="dropdown-item" style="cursor: pointer;">PMID Search</a></li>
               <li><a class="dropdown-item" style="cursor: pointer;">Articles &
                   Sentences Files</a></li>
-              <!-- <li><a class="dropdown-item">Reset Password</a></li> -->
-              <li><a class="dropdown-item" (click)="onLogout()">Logout</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+              <li><a class="dropdown-item">Reset Password</a></li>
+              <li><a class="dropdown-item" (click)="onLogout()">Logout</a></li> -->
+
+
+            <li><a class="dropdown-item" style="cursor: pointer;" (click)="openNewTabMyDashboard()">My
+                Dashboard</a></li>
+            <!-- <li><a class="dropdown-item" style="cursor: pointer;" (click)="openPMIDSearch()">PMID Search</a></li> -->
+            <li><a class="dropdown-item" style="cursor: pointer;" (click)="openNewTabMyDownloadFiles()">Articles &
+                Sentences Files</a></li>
+            <!-- <li><a class="dropdown-item" [routerLink]="['/manage-password']">Reset Password</a></li>
+            <li>
+              <a class="dropdown-item">
+                <div class="form-check form-switch ps-0">
+                  <label class="form-check-label" for="flexSwitchCheckDefault">Dark Mode</label>
+                  <input class="form-check-input float-end" type="checkbox" role="switch" id="flexSwitchCheckDefault"
+                    [checked]="!isLightTheme" (change)="onThemeSwitchChange()">
+
+                </div>
+              </a>
+            </li> -->
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" [routerLink]="['/logout']">Logout</a></li>
+
+          </ul>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
