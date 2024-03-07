@@ -1,19 +1,15 @@
 <!-- <div class="text-white fs-5 text-center mb-2">Direct Level Association <img *ngIf="loading" src="../../assets/images/loader_small.gif" /></div> -->
-
-<div class="sidebar-card">
-  <div class="body">
     <div class="dropdown">
       <div class="dropdown-toggle" id="filter-node-select" data-bs-toggle="dropdown" aria-expanded="false">
         <!-- <div class="search-input" appClickDirective> -->
         <div class="search-input">
           <input class="form-control" type="text" [value]="nodeSelectsFilterText2">         
-          <img *ngIf="loading" width="20px" src="../../assets/images/loader_small.gif" />
+          <img class="filter-spinner" *ngIf="loading" width="20px" src="../../assets/images/loader_small.gif" />
         </div>
       </div>
 
       <ul class="dropdown-menu" aria-labelledby="filter-node-select">
-        <div class="body">
-          <div class="search-options" style="width: 150%;">            
+          <div class="search-options">            
             <div class="">
               <input class="form-control" type="text" placeholder="Search Pair Type" [(ngModel)]="nodeSelectsFilterText1">
               <span class="fa fa-search"></span>
@@ -23,15 +19,12 @@
               {{ node_select.pair_name }}
             </li>
           </div>
-        </div>
       </ul>
       <!-- <span *ngIf="node_selects.length > 2" style="cursor: pointer" class="text-white float-right"
         (click)="SeeMore($event,seeMoreGeneModal);">
         See More Pair Type</span> -->
       <!-- <img *ngIf="loading" width="20px" src="../../assets/images/loader_small.gif" /> -->
     </div>
-  </div>
-</div>
 
 
 <!--<div class="card-panel-box bg-theme top-tile">

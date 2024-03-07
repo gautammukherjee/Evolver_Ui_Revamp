@@ -101,9 +101,6 @@ h2 {
 
         .degree-input-wrapper{
             width:100%;
-            input[type='text']{
-                @include inputFields(var(--spacer-30), var(--spacer-12));
-            }
         }
 
         .add-degree-container{

@@ -6,7 +6,7 @@
         <div class="search-input">
           <input class="form-control" type="text" value="{{selectedEdgeTypesNames.join(', ')}}"
             placeholder="Search Edge Type First Degree" aria-label="Search" [(ngModel)]="edgeTypeFilter" />
-          <img *ngIf="loading" src="../../assets/images/loader_small.gif" width="20px" />
+          <img class="filter-spinner" *ngIf="loading" src="../../assets/images/loader_small.gif" width="20px" />
         </div>
       </div>
     </div>

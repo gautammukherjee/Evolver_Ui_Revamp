@@ -6,6 +6,36 @@
     opacity: 1;
 }
 
+.dropdown{
+    .dropdown-toggle{
+        &::after{
+            position: absolute;
+            right: 10px;
+            top: 15px;
+        }
+
+        .filter-spinner{
+            position: absolute;
+            right: 3px;
+            top: 6px;
+        }
+    }
+    .dropdown-menu{
+        transform: none !important;
+        top: 31px !important;
+        padding: var(--spacer-5) var(--spacer-10);
+        width: 100%;
+        max-height: 250px;
+        overflow: auto;
+
+        .search-options{
+            li{
+                cursor: pointer;
+            }
+        }
+    }
+}
+
 .modal-header {
     padding: 7px 20px;
     border: none;
