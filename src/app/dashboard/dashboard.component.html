@@ -24,9 +24,8 @@
           [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-destination-node>
       </div>
       <div class="add-degree-container">
-
-        <button class="btn btn-light btn-sm btn-custom-sm" (click)="onAddLevel()" *ngIf="hideAddLevelONCT==0"
-          [disabled]="isAddLevelChk"><img src="assets/images/icons/plus.svg" alt="" /></button>
+        <img src="assets/images/icons/plus.svg" alt="" (click)="onAddLevel()" *ngIf="hideAddLevelONCT==0" 
+        [ngStyle]="{'pointer-events': isAddLevelChk ? 'none' : '' }"/>
       </div>
       <div class="expand-container">
         <!-- <button class="btn btn-light btn-sm ms-2 btn-custom-sm" *ngIf="(hideAddLevelONCT==0 && currentLevel > 1)"
