@@ -83,5 +83,27 @@
                 }
             }
         }
+
+        .social-icons{
+            text-align: center;
+            margin-top: var(--spacer-120);
+
+            li{
+                list-style: none;
+                display: inline-block;
+                cursor: pointer;
+
+                img{
+                    width:30px;
+                    margin-right: 15px;
+                }
+
+                &:last-child{
+                    img{
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
     }
 }
