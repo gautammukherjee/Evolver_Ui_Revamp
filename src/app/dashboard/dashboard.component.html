@@ -140,15 +140,15 @@
           </li>
 
 
-          <li class="nav-item ms-auto pmid-button" role="presentation">
+          <!-- <li class="nav-item ms-auto pmid-button" role="presentation">
             <button class="nav-link" id="ct-tab" data-bs-toggle="tab" data-bs-target="#clinicalTrials" type="button"
               role="tab" aria-controls="clinicalTrials" aria-selected="false"
               (click)="onSubmitTab($event, 'ct')">CT</button>
-          </li>
+          </li> -->
           <!-- <li class="nav-item ms-auto pmid-button">
                         <button class="nav-link" type="button">Clinical Trial</button>
                     </li> -->
-          <li class="nav-item pmid-button">
+          <li class="nav-item ms-auto pmid-button">
             <button class="nav-link" type="button" (click)="openPMIDSearch()">PMID Search</button>
           </li>
         </ul>
@@ -162,10 +162,9 @@
             <app-network-map [ProceedDoFilterApply]="doFilterApply"></app-network-map>
           </div>
           <div class="tab-pane p-2 fade" id="visualChart" role="tabpanel" aria-labelledby="visualChart-tab">
-            <!-- <app-distribution-by-rel-grp
-                            [ProceedDoFilterApply]="doFilterApplyTab4"></app-distribution-by-rel-grp>
-                        <app-pmid-count-with-gene-and-disease
-                            [ProceedDoFilterApply]="doFilterApplyTab4"></app-pmid-count-with-gene-and-disease> -->
+            <app-distribution-by-rel-grp [ProceedDoFilterApply]="doFilterApplyTab4"></app-distribution-by-rel-grp>
+            <app-pmid-count-with-gene-and-disease
+              [ProceedDoFilterApply]="doFilterApplyTab4"></app-pmid-count-with-gene-and-disease>
           </div>
           <div class="tab-pane p-2 fade" id="clinicalTrials" role="tabpanel" aria-labelledby="ct-tab">
             <app-ct_disease_assoc [ProceedDoFilterApply]="doFilterApplyTab5"></app-ct_disease_assoc>

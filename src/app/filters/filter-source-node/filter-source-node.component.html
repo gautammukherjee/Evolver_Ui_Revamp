@@ -7,7 +7,7 @@
 
   <div class="dropdown">
 
-    <div class="dropdown-toggle" id="source-node-filter" data-bs-toggle="dropdown" aria-expanded="false"
+    <div class="" id="source-node-filter" data-bs-toggle="dropdown" aria-expanded="false"
       data-bs-auto-close="outside">
         <div class="search-input">
           <form #form="ngForm" class="md-inline-block form-inline  ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -35,7 +35,7 @@
         <div *ngIf="sourceNodes.length">
           <div class="search-options">
 
-            <button class="btn btn-outline-primary bg-white btn-sm text-primary" style="position: fixed;opacity:1;z-index: 9;right: 36px; padding: 4px 8px;" [disabled]="disableProceed" (click)="seeMoreproceed()"><i class="bi bi-arrow-right-circle-fill" title="Proceed"></i></button>
+            <button class="btn btn-outline-primary bg-white btn-sm text-primary" style="position: absolute;opacity: 1;z-index: 9;right: 19px;padding: 5px 13px;" [disabled]="disableProceed" (click)="seeMoreproceed()"><i class="bi bi-arrow-right-circle-fill" title="Proceed"></i></button>
             
             <!-- <div class="mb-1 form-check" *ngFor="let sourceNode of sourceNodes">
               <input class="form-check-input border border-secondary" type="checkbox" name="sourceNodes"

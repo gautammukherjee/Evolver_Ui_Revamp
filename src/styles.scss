@@ -3,6 +3,7 @@
 @import url(./assets/SCSS/fonts.scss);
 @import url(./assets/SCSS/variables.scss);
 @import './assets/SCSS/mixins.scss';
+@import "~bootstrap-icons/font/bootstrap-icons.css";
 
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
@@ -82,4 +83,12 @@ h1,h2,h3,h4,h5,h6,p,a,span,ul,li,div,header,nav, button{
         font-weight: 500;
         height:auto;
     }
+}
+
+.reset-search {
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    cursor: pointer;
+    color: #6a6a6a;
 }
