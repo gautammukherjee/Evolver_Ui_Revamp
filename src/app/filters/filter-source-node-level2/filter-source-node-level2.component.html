@@ -7,59 +7,30 @@
   <!-- </div> -->
 
   <div class="dropdown">
-    <div
-      class="dropdown-toggle"
-      id="source-node-filter2"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-      data-bs-auto-close="outside"
-    >
+    <div class="dropdown-toggle" id="source-node-filter2" data-bs-toggle="dropdown" aria-expanded="false"
+      data-bs-auto-close="outside">
       <div class="search-input">
-        <input
-          class="form-control"
-          type="text"
-          placeholder="Search Source level2"
-          aria-label="Search"
-          [(ngModel)]="sourceNodeFilter"
-        />
-        <span
-          *ngIf="selectedSourceNodes2.length > 0"
-          class="reset-search"
-          style="margin-right: 50px"
-          >[Selected: {{ selectedSourceNodes2.length }}]</span
-        >
-        <img
-          *ngIf="loading" class="filter-spinner"
-          src="../../assets/images/loader_small.gif"
-          width="20px"
-        />
-        <span
-          *ngIf="selectedSourceNodes2.length > 0"
-          class="reset-search"
-          (click)="resetSourceNode()"
-          title="RESET INPUT-1"
-          ><i class="bi bi-x-circle"></i
-        ></span>
+        <input class="form-control" type="text" placeholder="Search Source level2" aria-label="Search"
+          [(ngModel)]="sourceNodeFilter" />
+        <span *ngIf="selectedSourceNodes2.length > 0" class="reset-search" style="margin-right: 50px">[Selected: {{
+          selectedSourceNodes2.length }}]</span>
+        <img *ngIf="loading" class="filter-spinner" src="../../assets/images/loader_small.gif" width="20px" />
+        <span *ngIf="selectedSourceNodes2.length > 0" class="reset-search" (click)="resetSourceNode()"
+          title="RESET INPUT-1"><i class="bi bi-x-circle"></i></span>
       </div>
     </div>
 
     <ul class="dropdown-menu" aria-labelledby="source-node-filter2">
       <!--//Show autosuggest source dropdown Action//-->
       <!-- *ngIf="showSourceBody" -->
+      <div class="body">
         <div *ngIf="sourceNodes2.length">
-          <div class="search-options">
-            <button
-              class="btn btn-outline-primary bg-white btn-sm text-primary"
-              style="
-                position: fixed;
+          <div class="search-options" style="padding: 10px 0px;">
+            <button class="btn btn-outline-primary bg-white btn-sm text-primary" style="
+                position: absolute;
                 opacity: 1;
                 z-index: 9;
-                right: 36px;
-                padding: 4px 8px;
-              "
-              [disabled]="disableProceed"
-              (click)="seeMoreproceed()"
-            >
+                right: 2px;" [disabled]="disableProceed" (click)="seeMoreproceed()">
               <i class="bi bi-arrow-right-circle-fill" title="Proceed"></i>
             </button>
 
@@ -97,41 +68,25 @@
               </div>
             </div> -->
 
-            <input
-              type="checkbox"
-              name="edgeTypes"
-              [(ngModel)]="isAllSelected"
-              [value]="sourceNodes2"
-              [checked]=""
-              (change)="selectAll()"
-            />
-            <span class="custom-control-description text-dark"
-              >&nbsp;Select All</span
-            >
+            <input type="checkbox" name="edgeTypes" [(ngModel)]="isAllSelected" [value]="sourceNodes2" [checked]=""
+              (change)="selectAll()" />
+            <span class="custom-control-description text-dark">&nbsp;Select All</span>
 
-            <div
-              class="mb-1 form-check"
-              *ngFor="
+            <div class="mb-1 form-check" *ngFor="
                 let sourceNode of sourceNodes2
                   | SourceNodeFilterPipe : sourceNodeFilter
-              "
-            >
-              <input
-                class="form-check-input border border-secondary"
-                type="checkbox"
-                name="sourceNodes2"
-                [value]="sourceNode"
-                [checked]="
+              ">
+              <input class="form-check-input border border-secondary" type="checkbox" name="sourceNodes2"
+                [value]="sourceNode" [checked]="
                   selectedSourceNodes2.indexOf(sourceNode.source_node) > -1
-                "
-                (change)="selectSourceNode(sourceNode, $event)"
-              />
+                " (change)="selectSourceNode(sourceNode, $event)" />
               <label class="form-check-label pe-4">{{
                 sourceNode.source_node_name
-              }}</label>
+                }}</label>
             </div>
           </div>
         </div>
+      </div>
     </ul>
   </div>
 </div>

@@ -6,7 +6,7 @@
           <input class="form-control" type="text" placeholder="Search Source level3" aria-label="Search" [(ngModel)]="sourceNodeFilter"/>
           <span *ngIf="selectedSourceNodes3.length > 0" class="reset-search" style="margin-right:50px;">[Selected:
             {{selectedSourceNodes3.length}}]</span>
-          <img *ngIf="loading" src="../../assets/images/loader_small.gif" width="20px"/>
+          <img *ngIf="loading" class="filter-spinner" src="../../assets/images/loader_small.gif" width="20px"/>
             <span *ngIf="selectedSourceNodes3.length > 0" class="reset-search"
               (click)="resetSourceNode();" title="RESET INPUT-1"><i class="bi bi-x-circle"></i></span>
           </div>
@@ -17,9 +17,9 @@
       <!-- *ngIf="showSourceBody" -->
       <div class="body">
         <div *ngIf="sourceNodes3.length">
-          <div class="search-options">
+          <div class="search-options" style="padding: 10px 0px;">
 
-            <button class="btn btn-outline-primary bg-white btn-sm text-primary" style="position: fixed;opacity:1;z-index: 9;right: 36px; padding: 4px 8px;" [disabled]="disableProceed" (click)="seeMoreproceed()"><i class="bi bi-arrow-right-circle-fill" title="Proceed"></i></button>
+            <button class="btn btn-outline-primary bg-white btn-sm text-primary" style="position: absolute;opacity:1;z-index: 9;right: 2px;" [disabled]="disableProceed" (click)="seeMoreproceed()"><i class="bi bi-arrow-right-circle-fill" title="Proceed"></i></button>
 
             <input type="checkbox" name="edgeTypes" [(ngModel)]="isAllSelected" [value]="sourceNodes3" [checked]=""
               (change)="selectAll();">
