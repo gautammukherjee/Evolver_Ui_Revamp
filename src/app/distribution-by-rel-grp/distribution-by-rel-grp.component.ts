@@ -331,7 +331,7 @@ export class DistributionByRelGrpComponent implements OnInit {
       chart: {
         type: 'column',
         plotBorderWidth: 1,
-        marginLeft: 250
+        marginLeft: 100
       },
       title: {
         text: 'Distribution by Relation Group'
