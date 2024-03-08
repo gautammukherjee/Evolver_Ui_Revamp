@@ -86,8 +86,9 @@ h2 {
 
 
 .degree-filers-wrapper{
-    background-color: var(--themeBg);
+    background-color: var(--secondaryColor);
     padding : var(--spacer-15);
+    color: #fff;
 
     .degree-single{
         display: flex;
