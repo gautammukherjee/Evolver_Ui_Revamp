@@ -1,16 +1,13 @@
 <div class="sidebar-card">
   <div class="dropdown">
     <div class="dropdown-toggle" id="edge-type-filter2" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-      <div class="body">
-        <div class="search-input">
+     <div class="search-input">
           <input class="form-control" type="text" value="{{selectedEdgeTypesNames2.join(', ')}}" placeholder="Search Edge Type Second Degree" aria-label="Search" [(ngModel)]="edgeTypeFilter" />
-          <img *ngIf="loading" src="../../assets/images/loader_small.gif" width="20px"/>
+          <img class="filter-spinner" *ngIf="loading" src="../../assets/images/loader_small.gif" width="20px"/>
         </div>
-      </div>
     </div>
 
     <ul class="dropdown-menu" aria-labelledby="edge-type-filter2">
-      <div class="body">
         <div *ngIf="edgeTypes2.length">
           <div class="search-options">
             <input type="checkbox" name="edgeTypes2" [(ngModel)]="isAllSelected" [value]="edgeTypes2" [checked]=""
@@ -26,8 +23,7 @@
               </label>
             </div>            
           </div>
-        </div>
-      </div>      
+        </div>  
     </ul>
   </div>
 </div>
