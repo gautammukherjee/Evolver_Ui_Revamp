@@ -96,12 +96,12 @@
     </div>
 
     <div class="footer-bar ">
-      <button class="custom-btn me-auto" *ngIf="(hideAddLevelONCT==0 && currentLevel > 1)" (click)="onToggleLevel()"> {{showLevels == false ?
+      <button class="custom-btn" *ngIf="(hideAddLevelONCT==0 && currentLevel > 1)" (click)="onToggleLevel()"> {{showLevels == false ?
         'Show'
         : 'Hide'}} Level</button>
-      <button class="custom-btn me-2"
+      <button class="custom-btn ms-auto me-2"
         (click)="resetAllFilters()">Reset</button>&nbsp;
-      <button class="custom-btn me-2"
+      <button class="custom-btn"
         (click)="onSubmit()"><i class="bi bi-search" title="Search" alt="Search"></i> Submit</button>
 
     </div>
