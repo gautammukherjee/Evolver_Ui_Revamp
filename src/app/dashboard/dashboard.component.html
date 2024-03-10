@@ -27,20 +27,13 @@
         <img src="assets/images/icons/plus.svg" alt="" (click)="onAddLevel()" *ngIf="hideAddLevelONCT==0" 
         [ngStyle]="{'pointer-events': isAddLevelChk ? 'none' : '' }"/>
       </div>
-      <div class="expand-container">
-        <!-- <button class="btn btn-light btn-sm ms-2 btn-custom-sm" *ngIf="(hideAddLevelONCT==0 && currentLevel > 1)"
-              (click)="onToggleLevel()">{{showLevels == false ? 'Show' : 'Hide'}} Level</button> -->
-        <span *ngIf="(hideAddLevelONCT==0 && currentLevel > 1)" (click)="onToggleLevel()"> {{showLevels == false ?
-          'Show'
-          : 'Hide'}} Level</span>
-      </div>
     </div>
 
 
     <div class="next-levels-group">
 
       <div [ngStyle]="{'display' : showLevels == false ? 'none' : 'block'}">
-        <div *ngIf="currentLevel > 1" class="horizonal-filter-bar" style="width: 100%;margin-top:20px;">
+        <div *ngIf="currentLevel > 1" class="horizonal-filter-bar">
           <div class="degree-single">
             <div class="degree-indicator">2nd Degree</div>
             <div class="degree-input-wrapper">
@@ -66,7 +59,6 @@
                 <img src="assets/images/icons/minus.svg" alt="" />
               </span>
             </div>
-            <div class="expand-container"></div>
           </div>
         </div>
       </div>
@@ -98,13 +90,15 @@
               </span>
 
             </div>
-            <div class="expand-container"></div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="footer-bar text-end">
+    <div class="footer-bar ">
+      <button class="custom-btn me-auto" *ngIf="(hideAddLevelONCT==0 && currentLevel > 1)" (click)="onToggleLevel()"> {{showLevels == false ?
+        'Show'
+        : 'Hide'}} Level</button>
       <button class="custom-btn me-2"
         (click)="resetAllFilters()">Reset</button>&nbsp;
       <button class="custom-btn me-2"
@@ -114,7 +108,10 @@
   </div>
 
   <section class="main-layout">
-    <div class="left-sidebar">
+    <div class="left-sidebar" [ngClass]="{'open' : sideMenuOpened}">
+      <div class="toggler" (click)="sideMenuOpened = !sideMenuOpened">
+        <img src="assets/images/icons/menuToggler.svg" alt="">
+      </div>
       <app-left-filter-layout></app-left-filter-layout>
     </div>
 

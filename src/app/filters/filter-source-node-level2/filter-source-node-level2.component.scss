@@ -27,8 +27,10 @@
         overflow: auto;
 
         .search-options{
-            li{
-                cursor: pointer;
+            .form-check{
+                padding: 5px 17px;
+                border-bottom: 1px solid #f4f5f5;
+                margin-bottom: 0;
             }
         }
     }
