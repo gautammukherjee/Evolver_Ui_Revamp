@@ -1,32 +1,33 @@
 <div class="sidebar-card">
   <div class="dropdown">
-    <div class="dropdown-toggle" id="edge-type-filter2" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-      <div class="body">
+    <div class="dropdown-toggle" id="edge-type-filter3" data-bs-toggle="dropdown" aria-expanded="false"
+      data-bs-auto-close="outside">      
         <div class="search-input">
-          <input class="form-control" type="text" value="{{selectedEdgeTypesNames3.join(', ')}}" placeholder="Search Edge Type Third Degree" aria-label="Search" [(ngModel)]="edgeTypeFilter" />
-          <img *ngIf="loading" src="../../assets/images/loader_small.gif" width="20px"/>
-        </div>
+          <input class="form-control" type="text" value="{{selectedEdgeTypesNames3.join(', ')}}"
+            placeholder="Search Edge Type Third Degree" aria-label="Search" [(ngModel)]="edgeTypeFilter" />
+          <img class="filter-spinner" *ngIf="loading" src="../../assets/images/loader_small.gif" width="20px" />        
       </div>
     </div>
 
-    <ul class="dropdown-menu" aria-labelledby="edge-type-filter2">
-      <div class="body">
-        <div *ngIf="edgeTypes3.length">
-          <div class="search-options">
-            <input type="checkbox" name="edgeTypes2" [(ngModel)]="isAllSelected" [value]="edgeTypes3" [checked]=""
+    <ul class="dropdown-menu" aria-labelledby="edge-type-filter3">
+      <div *ngIf="edgeTypes3.length">
+        <div class="search-options">
+          <input type="checkbox" name="edgeTypes2" [(ngModel)]="isAllSelected" [value]="edgeTypes3" [checked]=""
             (change)="selectAll($event);">
-            <span class="custom-control-description text-dark">&nbsp;Select All</span>
-            <button class="btn btn-outline-primary" style="float: right;" [disabled]="disableProceed" (click)="seeMoreproceed()"><i class="bi bi-arrow-right-circle-fill" title="Proceed"></i></button>
-            <div class="mb-1 form-check" *ngFor="let edgeType of edgeTypes3 | EdgeTypeFilterPipe:edgeTypeFilter">
-              <input class="form-check-input border border-secondary" type="checkbox" name="edgeTypes2"  [value]="edgeType"
-                [checked]="selectedEdgeTypesByGroup3.indexOf(edgeType.edge_group_id)>-1 " (change)="selectEdgeType(edgeType,$event)">
-              <label class="form-check-label">
-                {{edgeType.edge_group_name}}
-              </label>
-            </div>
+          <span class="custom-control-description text-dark">&nbsp;Select All</span>
+          <button class="btn btn-outline-primary" style="float: right;" [disabled]="disableProceed"
+            (click)="seeMoreproceed()"><i class="bi bi-arrow-right-circle-fill" title="Proceed"></i></button>
+          <div class="mb-1 form-check" *ngFor="let edgeType of edgeTypes3 | EdgeTypeFilterPipe:edgeTypeFilter">
+            <input class="form-check-input border border-secondary" type="checkbox" name="edgeTypes2" [value]="edgeType"
+              [checked]="selectedEdgeTypesByGroup3.indexOf(edgeType.edge_group_id)>-1 "
+              (change)="selectEdgeType(edgeType,$event)">
+            <label class="form-check-label">
+              {{edgeType.edge_group_name}}
+            </label>
           </div>
         </div>
-      </div>      
+
+      </div>
     </ul>
   </div>
 </div>
@@ -49,5 +50,3 @@
     </div>
   </div>
 </ng-template> -->
-
-

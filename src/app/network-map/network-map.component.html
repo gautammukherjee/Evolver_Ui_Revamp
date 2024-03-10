@@ -53,8 +53,8 @@
                 *ngIf="!chkSelectEntities && masterListsData.length==0">
                 No, Appropriate data for this Rank</div>
 
-            <div class="overlay text-center" style="margin-top: 160px;" *ngIf="loadingMap">
-                <img src="../../assets/images/loader_big.gif" />
+            <div class="overlay text-center" *ngIf="loadingMap">
+                <img style="margin:155px 508px;" src="../../assets/images/loader_big.gif" />
             </div>
             <div *ngIf="noDataFoundMap" class="bg-danger" style="color:#fff; text-align: center; font-weight: bold;">
                 Please Choose Pair Type and Source for Second Degree
@@ -67,16 +67,16 @@
                     <span class="float-start text-white p-1 mr-2 level1-title"
                         *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">First Degree
                         Combinations
-                        <span class="badge bg-primary text-white">{{masterListsDataDetailsLengthLevelOne}}</span></span>
+                        <span class="badge bg-primary text-white" style="background-color: #214693 !important;">{{masterListsDataDetailsLengthLevelOne}}</span></span>
                     <span class="float-start text-white p-1 mr-2 level2-title"
                         *ngIf="secondLoadApiResult!=undefined && masterListsDataDetailsLengthLevelTwo > 0">Second Degree
                         Combinations
-                        <span class="badge bg-primary text-white">{{masterListsDataDetailsLengthLevelTwo}}</span></span>
+                        <span class="badge bg-primary text-white" style="background-color: #214693 !important;">{{masterListsDataDetailsLengthLevelTwo}}</span></span>
                     <span class="float-start text-white p-1 mr-2 level3-title"
                         *ngIf="thirdLoadApiResult!=undefined && masterListsDataDetailsLengthLevelThree > 0">Third Degree
                         Combinations
                         <span
-                            class="badge bg-primary text-white">{{masterListsDataDetailsLengthLevelThree}}</span></span>
+                            class="badge bg-primary text-white" style="background-color: #214693 !important;">{{masterListsDataDetailsLengthLevelThree}}</span></span>
                 </div>
                 <div [ngClass]="isNetworkMapFullScreen == true ? 'network-map-full-screen' : ''">
 
@@ -106,7 +106,7 @@
                         <div *ngIf="!nodesCheckLength"
                             class="btn btn-sm d-flex p-1 mr-1 bg-primary text-white btn-map-zoom d-flex"
                             [ngClass]="isNetworkMapFullScreen == true ? 'fixed-full-screen-zoom' : ''"
-                            style="margin:5px;line-height: 15px;">
+                            style="margin:5px;line-height: 15px; background-color: #bf65a4 !important;">
                             <input class="form-check-input mt-0" type="checkbox" id="zoomSwitch">&nbsp;
                             <label class="form-check-label" for="zoomSwitch">Zoom</label>
                         </div>

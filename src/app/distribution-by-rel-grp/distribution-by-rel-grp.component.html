@@ -1,13 +1,11 @@
-<div class="card-panel-box">
+<div class="card-panel-box" style="min-height: 380px;">
     <div class="card-panel-box-heading">
         Distribution By Relation Group
     </div>
     <!-- <div *ngIf="loadingChart" style="position:absolute; margin-left:350px; z-index:999;">
     <img src="../../assets/images/loader_big.gif" />                
 </div> -->
-    <div class="overlay" *ngIf="loadingChart">
-        <img src="../../assets/images/loader_big.gif" style="margin:185px 653px;" />
-    </div>
+    
     <div *ngIf="noDataFound" class="bg-danger" style="color:#fff; text-align: center; font-weight: bold;">
         Please Choose Pair Type For Second Degree
     </div>
@@ -15,8 +13,12 @@
     <div class="text-muted fs-2 text-center mb-4">Please select entities to generate Relations!</div>
 </div> -->
 
-    <div class="text-muted fs-2 text-center mb-4" *ngIf="loadingMessage" style="min-height: 150px; margin-top: 75px;">
+    <div class="text-muted fs-2 text-center mb-4" *ngIf="loadingMessage">
         Please select entities to generate Relations
+    </div>
+
+    <div class="overlay" *ngIf="loadingChart" style="position: relative !important; left:250px;">
+        <img src="../../assets/images/loader_big.gif" />
     </div>
 
     <!-- <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions" style="width: 100%; display: block">
