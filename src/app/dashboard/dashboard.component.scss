@@ -94,6 +94,11 @@ h2 {
         align-items: center;
         margin-bottom: var(--spacer-5);
         column-gap: 10px;
+
+        &:first-child{
+            margin-bottom: var(--spacer-20);
+        }
+
         .degree-indicator{
             width:120px;
             min-width: 120px;
@@ -109,6 +114,8 @@ h2 {
                 padding: 9px;
                 background: #fff;
                 border-radius: 3px;
+                height: 30px;
+                width: 29px;
             }
         }
 
