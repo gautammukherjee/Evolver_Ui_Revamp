@@ -10,7 +10,7 @@ declare var particlesJS: any;
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
+  sideMenuOpened : boolean = true;
   doFilterApply: Subject<any> = new Subject();  // ## P= Parent
   doFilterApplyTab2: Subject<any> = new Subject();  // ## P= Parent
   doFilterApplyTab3: Subject<any> = new Subject();  // ## P= Parent

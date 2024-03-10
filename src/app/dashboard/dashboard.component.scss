@@ -7,20 +7,22 @@ h2 {
     margin-bottom: 20px;
 }
 
-.rank-dropdown{
-    button{
+.rank-dropdown {
+    button {
         text-align: left;
         background-color: var(--filter-bar-bg) !important;
         color: var(--text-white-all) !important;
     }
-    .dropdown-menu{
+
+    .dropdown-menu {
         background-color: #f4f5f5;
-        li{
+
+        li {
             font-size: 13px;
             display: flex;
             align-items: center;
 
-            input{
+            input {
                 margin-right: 5px;
             }
         }
@@ -32,51 +34,73 @@ h2 {
 
 
 
-.main-layout{
+.main-layout {
     display: flex;
-    column-gap: var(--spacer-25);
-    padding:var(--spacer-30) var(--spacer-15);
+    padding: var(--spacer-15) var(--spacer-15);
 
-    .left-sidebar{
-        width:230px;
-        min-width: 230px;
+    .left-sidebar {
         height: 500px;
-        box-shadow: 0px var(--spacer-10) var(--spacer-20) var(--spacer-20)  rgba(236, 240,245, 60%);
+        box-shadow: 0px var(--spacer-10) var(--spacer-20) var(--spacer-20) rgba(236, 240, 245, 60%);
         border-radius: var(--spacer-10);
+        position: relative;
+        transition: all 0.5s;
+        width: 230px;
+        min-width: 230px;
+        margin-left: -245px;
+
+        &.open{
+            margin-left: 0;
+        }
+
+        .toggler {
+            position: absolute;
+            right: -20px;
+            background: #fff;
+            top: 40px;
+            padding: 5px;
+            border-radius: 24px;
+            cursor: pointer;
+
+            img {
+                width: 20px;
+            }
+        }
     }
 
-    .selection-layout{
-        box-shadow: 0px var(--spacer-10) var(--spacer-20) var(--spacer-20)  rgba(236, 240,245, 60%);
+    .selection-layout {
+        box-shadow: 0px var(--spacer-10) var(--spacer-20) var(--spacer-20) rgba(236, 240, 245, 60%);
         border-radius: var(--spacer-10);
-        width:100%;
-        padding:var(--spacer-15)
+        width: 100%;
+        padding: var(--spacer-15);
+        margin-left: var(--spacer-25);
     }
 }
 
-.custom-tabs-wrapper{
-    .nav-tabs{
-        border:none;
+.custom-tabs-wrapper {
+    .nav-tabs {
+        border: none;
         column-gap: var(--spacer-10);
         margin-bottom: var(--spacer-20);
-        li{
-            button{
+
+        li {
+            button {
                 border: none;
                 background-color: var(--tabsInactive);
                 color: var(--white);
                 border-radius: var(--spacer-20);
                 min-width: var(--spacer-100);
 
-                &.active{
+                &.active {
                     background-color: var(--secondaryColor);
                 }
             }
 
-            &.pmid-button{
-                button{
+            &.pmid-button {
+                button {
                     background-color: var(--primaryDarkColor);
                 }
             }
-        }  
+        }
     }
 
 }
@@ -85,34 +109,35 @@ h2 {
 @import './../../assets/SCSS/mixins.scss';
 
 
-.degree-filers-wrapper{
+.degree-filers-wrapper {
     background-color: var(--secondaryColor);
-    padding : var(--spacer-15);
+    padding: var(--spacer-15);
     color: #fff;
 
-    
-    .degree-single{
+
+    .degree-single {
         display: flex;
         align-items: center;
         margin-bottom: var(--spacer-5);
         column-gap: 10px;
 
-        &:first-child{
+        &:first-child {
             margin-bottom: var(--spacer-20);
         }
 
-        .degree-indicator{
-            width:120px;
+        .degree-indicator {
+            width: 120px;
             min-width: 120px;
         }
 
-        .degree-input-wrapper{
-            width:100%;
+        .degree-input-wrapper {
+            width: 100%;
         }
 
-        .add-degree-container{
+        .add-degree-container {
             cursor: pointer;
-            img{
+
+            img {
                 padding: 9px;
                 background: #fff;
                 border-radius: 3px;
@@ -121,7 +146,7 @@ h2 {
             }
         }
 
-        .expand-container{
+        .expand-container {
             cursor: pointer;
             white-space: nowrap;
             min-width: var(--spacer-140);
@@ -129,13 +154,15 @@ h2 {
         }
     }
 
-    .footer-bar{
-        .custom-btn{
+    .footer-bar {
+        display: flex;
+        align-items: center;
+        .custom-btn {
             @include buttonsPrimary(12px, var(--spacer-5), var(--spacer-25));
         }
     }
 }
 
-footer{
-    padding:var(--spacer-10) 0;
+footer {
+    padding: var(--spacer-10) 0;
 }
