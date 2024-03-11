@@ -5,7 +5,7 @@
     <!-- <div *ngIf="loadingChart" style="position:absolute; margin-left:350px; z-index:999;">
     <img src="../../assets/images/loader_big.gif" />                
 </div> -->
-    
+
     <div *ngIf="noDataFound" class="bg-danger" style="color:#fff; text-align: center; font-weight: bold;">
         Please Choose Pair Type For Second Degree
     </div>
@@ -17,7 +17,8 @@
         Please select entities to generate Relations
     </div>
 
-    <div class="overlay" *ngIf="loadingChart" style="    position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);z-index: 9;">
+    <div class="overlay" *ngIf="loadingChart"
+        style="position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);z-index: 9;">
         <img src="../../assets/images/loader_big.gif" />
     </div>
 
