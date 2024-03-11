@@ -24,8 +24,8 @@
           [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-destination-node>
       </div>
       <div class="add-degree-container">
-        <img src="assets/images/icons/plus.svg" alt="" (click)="onAddLevel()" *ngIf="hideAddLevelONCT==0" 
-        [ngStyle]="{'pointer-events': isAddLevelChk ? 'none' : '' }"/>
+        <img src="assets/images/icons/plus.svg" alt="" (click)="onAddLevel()" *ngIf="hideAddLevelONCT==0"
+          [ngStyle]="{'pointer-events': isAddLevelChk ? 'none' : '' }" />
       </div>
     </div>
 
@@ -53,11 +53,13 @@
                 (onSelectDestinationNode2)='destinationNodeChanged2("destinationNode2Filter")'
                 [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-destination-node-level2>
             </div>
-            <div class="add-degree-container">
-              <span *ngIf="currentLevel == 2" style="cursor: pointer;" (click)="deleteSecondDegree('deleteLevel2')"
-                title="Delete Second Degree">
+            <div class="add-degree-container" *ngIf="currentLevel == 2">
+              <span style="cursor: pointer;" (click)="deleteSecondDegree('deleteLevel2')" title="Delete Second Degree">
                 <img src="assets/images/icons/minus.svg" alt="" />
               </span>
+            </div>
+            <div class="add-degree-container" *ngIf="currentLevel == 3" style="margin-right: 24px;">
+              <span>&nbsp;</span>
             </div>
           </div>
         </div>
@@ -96,13 +98,13 @@
     </div>
 
     <div class="footer-bar ">
-      <button class="custom-btn" *ngIf="(hideAddLevelONCT==0 && currentLevel > 1)" (click)="onToggleLevel()"> {{showLevels == false ?
+      <button class="custom-btn" *ngIf="(hideAddLevelONCT==0 && currentLevel > 1)" (click)="onToggleLevel()">
+        {{showLevels == false ?
         'Show'
         : 'Hide'}} Level</button>
-      <button class="custom-btn ms-auto me-2"
-        (click)="resetAllFilters()">Reset</button>&nbsp;
-      <button class="custom-btn"
-        (click)="onSubmit()"><i class="bi bi-search" title="Search" alt="Search"></i> Submit</button>
+      <button class="custom-btn ms-auto me-2" (click)="resetAllFilters()">Reset</button>&nbsp;
+      <button class="custom-btn" (click)="onSubmit()"><i class="bi bi-search" title="Search" alt="Search"></i>
+        Submit</button>
 
     </div>
   </div>

@@ -201,7 +201,7 @@ export class DashboardComponent implements OnInit {
     this.isAddLevelChk = true;
     this.isSubmitChk = false;
     this.currentLevel = this.currentLevel + 1;
-    // console.log("level add: ", this.currentLevel);
+    console.log("level add: ", this.currentLevel);
   }
 
   onSubmit() {

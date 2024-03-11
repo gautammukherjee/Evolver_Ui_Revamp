@@ -4,7 +4,6 @@ import { RelationDistributionService } from '../services/relation-distribution.s
 import { GlobalVariableService } from 'src/app/services/common/global-variable.service';
 import * as Highcharts from 'highcharts';
 import { Subject, forkJoin } from 'rxjs';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-pmid-count-with-gene-and-disease',
@@ -34,9 +33,7 @@ export class PmidCountWithGeneAndDiseaseComponent implements OnInit {
   masterListsDataDetailsLevelOne: any = [];
   masterListsDataDetailsLevelTwo: any = [];
   masterListsDataDetailsLevelThree: any = [];
-  noSourceNodeSelected: number = 0;
-  groupDataByQuarter: any = [];
-  uniqueYear: any = [];
+  noSourceNodeSelected:number=0;
 
   //dateCat: any;
   @Input() ProceedDoFilterApply?: Subject<any>;
@@ -46,7 +43,6 @@ export class PmidCountWithGeneAndDiseaseComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private _RDS: RelationDistributionService,
     private globalVariableService: GlobalVariableService,
-    private datePipe: DatePipe,
   ) { }
 
   ngOnInit(): void {
@@ -73,7 +69,7 @@ export class PmidCountWithGeneAndDiseaseComponent implements OnInit {
 
       this.graphLoader = true;
       this.noDataFound = false;
-      this.noSourceNodeSelected = 0;
+      this.noSourceNodeSelected=0;
 
       if (_filterParams.nnrt_id != undefined) {
 
@@ -131,15 +127,9 @@ export class PmidCountWithGeneAndDiseaseComponent implements OnInit {
 
               this.pmidCountGraph = [];
               this.masterListsDataCountGraph.forEach((event: any) => {
-                // const qrtrDate = (event.publication_date | date: 'dd/MM/yyyy');
-                let quarterDateValue = this.datePipe.transform(event.publication_date, 'MM');
-                let yearDateValue = this.datePipe.transform(event.publication_date, 'yyyy');
-
                 this.pmidCountGraph.push({
                   unique_pmids: event.unique_pmids,
                   publication_date: event.publication_date,
-                  quarter_date: quarterDateValue,
-                  year_date: yearDateValue,
                   date: new Date(event.publication_date),
                   level: event.label
                 });
@@ -155,85 +145,6 @@ export class PmidCountWithGeneAndDiseaseComponent implements OnInit {
               }, [])
               console.log("PMID Count Graph Final: ", this.pmidCountGraphFinal);
 
-              this.uniqueYear = [...new Set(this.pmidCountGraphFinal.map((item: any) => item.year_date))];
-              console.log("unique", this.uniqueYear);
-
-              //Grouping according to quarter wise
-              // this gives an object with dates as keys
-              const groups = this.pmidCountGraphFinal.reduce((groups: any, data: any) => {
-                const date = data.quarter_date;
-
-                if (!groups[date]) {
-                  groups[date] = [];
-                }
-
-                // this.uniqueYear.forEach((element: any) => {
-                //   console.log("element2: ", data.year_date + "-" + data.quarter_date);
-
-                // if (element + "-" + data.quarter_date == data.year_date + "-" + data.quarter_date) {
-                groups[date].push({"pmidCount": data.unique_pmids, "year": data.year_date});
-                // } else {
-                //   groups[date].push(0);
-                // }
-                // });
-
-                return groups;
-              }, {});
-              console.log("here1: ", groups);              
-              console.log("here1: ", groups["01"]);
-
-              console.log("keys:"+Object.keys(groups));
-              console.log("values:"+Object.values(groups));
-
-              // const ids1 = new Set(groups.map((e:any) => e.year));
-              const ids2 = new Set(Object.values(groups).map((e:any) => e.year));
-              const ids3 = new Set(Object.keys(groups).map((e:any) => e.year));
-              const ids4 = new Set(groups['01'].map((e:any) => e.year));
-
-              // console.log("key1: ", ids1);
-              console.log("key2: ", ids2);
-              console.log("key3: ", ids3);
-              console.log("key4: ", ids4);
-
-
-              this.uniqueYear.forEach((e:any) => {
-                if (!ids4.has(e)) {
-                  groups["01"].push({'pmidCount':0, 'year': e});
-                }
-              });
-              
-              console.log("here11: ", groups);
-
-
-              // this.uniqueYear.forEach((element: any) => {
-              //   if(element+"-01"==)
-              //   groups[date].push(data.unique_pmids + "-" + data.year_date + "-" + data.quarter_date);
-              // })
-
-              // Edit: to add it in the array format instead
-              this.groupDataByQuarter = Object.keys(groups).map((date) => {
-
-                switch (date) {
-                  case '01':
-                    this.datCatQuarter = "Q1";
-                    break;
-                  case '04':
-                    this.datCatQuarter = "Q2";
-                    break;
-                  case '07':
-                    this.datCatQuarter = "Q3";
-                    break;
-                  default:
-                    this.datCatQuarter = "Q4";
-                    break;
-                }
-
-                return {
-                  name: this.datCatQuarter,
-                  data: groups[date]
-                };
-              });
-              console.log("here2: ", this.groupDataByQuarter);
               this.drawAreaChart();
             });
       }
@@ -241,18 +152,16 @@ export class PmidCountWithGeneAndDiseaseComponent implements OnInit {
     else if (_filterParams.source_node != undefined) {
       console.log("Please choose source node level 2");
       this.noDataFound = true;
-      this.noSourceNodeSelected = 0;
-    } else {
-      this.noSourceNodeSelected = 1;
-      this.pmidCountGraph = [];
+      this.noSourceNodeSelected=0;
+    }else{
+      this.noSourceNodeSelected=1;
+      this.pmidCountGraph=[];
     }
   }
 
   drawAreaChart() {
     this.pmid_Count = [];
     this.graphDateCategory = [];
-
-
 
     this.pmidCountGraphFinal.forEach((element: any) => {
       var dateCat = element.publication_date;
@@ -279,121 +188,64 @@ export class PmidCountWithGeneAndDiseaseComponent implements OnInit {
       var dateQuarter = this.datCatQuarter + " - " + quarterSplitDate[0];
       this.pmid_Count.push({
         'y': parseFloat(element.unique_pmids),
-        'date': dateQuarter,
         //'date': dateQuarter, toolTipText: '<table style="border: 1; border-color: #D0021B;" cellspacing="2" cellpadding="2"><tr><td style="font-size:12px;">Date Quarter: </td><td style="font-size:11px;">' + dateCat + '</td></tr><tr><td style="font-size:12px; color: #B9D4F4;"><strong>Event Count:</strong> </td><td style="font-size:11px; color: #B9D4F4;"><strong>' + element.count + '</strong></td></tr></table>',
       });
-
       this.graphDateCategory.push(dateQuarter);
     });
 
-    console.log("pmid_Count: ", this.pmid_Count);
-    console.log("graphDateCategory: ", this.graphDateCategory);
-
     this.chartOptions = {
       chart: {
-        type: 'bar',
+        type: 'areaspline'
       },
       title: {
         text: 'Count of PMID with Relevant Genes or Diseases'
       },
-      // subtitle: {
-      //   style: {
-      //     position: 'absolute',
-      //     right: '0px',
-      //     bottom: '10px'
-      //   }
-      // },
-      // legend: {
-      //   layout: 'vertical',
-      //   align: 'left',
-      //   //verticalAlign: 'top',
-      //   x: 150,
-      //   y: 100,
-      //   floating: true,
-      //   borderWidth: 1,
-      //   backgroundColor: '#FFFFFF'
-      // },
-      // yAxis: {
-      //   scrollbar: {
-      //     enabled: true
-      //   },
-      //   title: {
-      //     text: 'Publication Date'
-      //   },
-      //   // categories: this.graphDateCategory
-      //   categories: this.uniqueYear
-      // },
-      yAxis: {
-        min: 0,
-        title: {
-          text: 'Distinct values of PMID',
-          align: 'high'
-        },
-        labels: {
-          overflow: 'justify'
-        },
-        gridLineWidth: 0,
-        scrollbar: {
-          enabled: true
-        },
-      },
-      // xAxis: {
-      //   scrollbar: {
-      //     enabled: true
-      //   },
-      //   title: {
-      //     text: 'Distinct values of PMID'
-      //   }
-      // },
-      xAxis: {
-        categories: this.uniqueYear,
-        title: {
-          text: null
-        },
-        gridLineWidth: 1,
-        lineWidth: 0
-      },
-      // tooltip: {
-      //   shared: true,
-      //   valueSuffix: ''
-      // },
-      tooltip: {
-        valueSuffix: ''
-      },
-      plotOptions: {
-        bar: {
-          borderRadius: '50%',
-          dataLabels: {
-            enabled: true
-          },
-          groupPadding: 0.1
+      subtitle: {
+        style: {
+          position: 'absolute',
+          right: '0px',
+          bottom: '10px'
         }
       },
       legend: {
         layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'top',
-        x: -40,
-        y: 80,
+        align: 'left',
+        //verticalAlign: 'top',
+        x: 150,
+        y: 100,
         floating: true,
         borderWidth: 1,
-        // backgroundColor:
-        //   Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
-        shadow: true
+        backgroundColor: '#FFFFFF'
+      },
+      xAxis: {
+        title: {
+          text: 'Publication Date'
+        },
+        categories: this.graphDateCategory
+      },
+      yAxis: {
+        title: {
+          text: 'Distinct values of PMID'
+        }
+      },
+      tooltip: {
+        shared: true,
+        valueSuffix: ''
       },
       credits: {
         enabled: false
       },
-      series: this.groupDataByQuarter
-      // [
-      //   // {
-      //   //   name: 'Distinct values of PMID',
-      //   //   data: this.pmid_Count
-      //   // },
-      //   // this.groupDataByQuarter
-
-
-      // ]
+      plotOptions: {
+        areaspline: {
+          fillOpacity: 0.5
+        }
+      },
+      series: [
+        {
+          name: 'Distinct values of PMID',
+          data: this.pmid_Count
+        },
+      ]
     };
     this.graphLoader = false;
   };
