@@ -6,20 +6,22 @@
     <div class="dropdown">
       <div class="dropdown-toggle" id="filter-node-select" data-bs-toggle="dropdown" aria-expanded="false">
         <div class="search-input">
-          <input class="form-control" type="text" [value]="nodeSelectsFilterText2">         
+          <input class="form-control" type="text" [value]="nodeSelectsFilterText2">
           <img class="filter-spinner" *ngIf="loading" width="20px" src="../../assets/images/loader_small.gif" />
-        </div>        
+        </div>
       </div>
 
       <ul class="dropdown-menu" aria-labelledby="filter-node-select">
         <div class="body">
-          <div class="search-options" style="width: 150%;">   
+          <div class="search-options">
             <div class="">
-              <input class="form-control" type="text" placeholder="Search Pair Type3" [(ngModel)]="nodeSelectsFilterText1">
+              <input class="form-control" type="text" placeholder="Search Pair Type3"
+                [(ngModel)]="nodeSelectsFilterText1">
               <span class="fa fa-search"></span>
             </div>
 
-            <li *ngFor="let node_select3 of node_selects3 | PairTypeFilterPipe:nodeSelectsFilterText1; let i = index" (click)="selectNode3(node_select3.nnrt_id, node_select3.pair_name)">
+            <li *ngFor="let node_select3 of node_selects3 | PairTypeFilterPipe:nodeSelectsFilterText1; let i = index"
+              (click)="selectNode3(node_select3.nnrt_id, node_select3.pair_name)">
               {{ node_select3.pair_name }}
             </li>
           </div>
