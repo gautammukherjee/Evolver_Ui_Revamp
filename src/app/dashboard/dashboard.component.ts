@@ -10,7 +10,7 @@ declare var particlesJS: any;
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  sideMenuOpened : boolean = true;
+  sideMenuOpened: boolean = true;
   doFilterApply: Subject<any> = new Subject();  // ## P= Parent
   doFilterApplyTab2: Subject<any> = new Subject();  // ## P= Parent
   doFilterApplyTab3: Subject<any> = new Subject();  // ## P= Parent
@@ -241,6 +241,8 @@ export class DashboardComponent implements OnInit {
       // console.log("filterparams map Type: ", this.filterParams['nnrt_id']);
       // this.headerPairType = this.selectedPairTypeArray.includes(this.filterParams['nnrt_id'])
       // console.log("Map:: ", this.headerPairType);
+
+      particlesJS.load('particles-js', '../assets/particles.json', null);
 
       console.log("cameFromCT in MAP:: ", this.cameFromCT);
       // if (this.headerPairType == true && this.cameFromCT == true) {
