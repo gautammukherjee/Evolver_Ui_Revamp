@@ -14,10 +14,12 @@
       <div class="body">
         <div *ngIf="edgeTypes.length">
           <div class="search-options" style="padding-top:5px">
-            <button class="btn btn-outline-primary" style="float: right;" [disabled]="disableProceed" (click)="seeMoreproceed()"><i class="bi bi-arrow-right-square" title="Proceed"></i></button>
+            <button class="btn btn-outline-primary" style="float: right;" [disabled]="disableProceed"
+              (click)="seeMoreproceed()"><i class="bi bi-arrow-right-square" title="Proceed"></i></button>
             <div class="mb-1 form-check">
-              <input class="form-check-input border border-secondary" type="checkbox" name="edgeTypes" class="form-check-input" [(ngModel)]="isAllSelected" [value]="edgeTypes" [checked]=""
-              (change)="selectAll();">
+              <input class="form-check-input border border-secondary" type="checkbox" name="edgeTypes"
+                class="form-check-input" [(ngModel)]="isAllSelected" [value]="edgeTypes" [checked]=""
+                (change)="selectAll();">
               <label class="form-check-label" style="font-size: 13px;">
                 Select All
               </label>
