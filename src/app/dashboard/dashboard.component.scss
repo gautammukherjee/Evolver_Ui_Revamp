@@ -54,11 +54,11 @@ h2 {
 
         .toggler {
             position: absolute;
-            right: -20px;
-            background: #fff;
+            right: -25px;
+            background: var(--primaryColor);
             top: 40px;
-            padding: 5px;
-            border-radius: 24px;
+            padding: 5px 5px 5px 0px;
+            border-radius: 0px 24px 24px 0px;
             cursor: pointer;
 
             img {

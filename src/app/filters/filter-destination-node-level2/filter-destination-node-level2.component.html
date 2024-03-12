@@ -2,7 +2,6 @@
   <div class="dropdown">
     <div class="dropdown-toggle" id="designation-node-filter" data-bs-toggle="dropdown" aria-expanded="false"
       data-bs-auto-close="outside">
-      <div class="body">
         <div class="search-input">
           <form #form="ngForm" class="md-inline-block form-inline  ml-auto mr-0 mr-md-3 my-2 my-md-0">
             <input type="text" autocomplete="off" [(ngModel)]="searchInput2" name="searchInput2"
@@ -11,14 +10,13 @@
             <span *ngIf="selectedDestinationNodes2.length > 0" class="reset-search"
               style="margin-right:40px;">[Selected:
               {{selectedDestinationNodes2.length}}]</span>
-            <img *ngIf="dbLoading2" width="20px" src="../../assets/images/loader_small.gif" />
+            <img *ngIf="dbLoading2" class="filter-spinner" width="20px" src="../../assets/images/loader_small.gif" />
             <span *ngIf="selectedDestinationNodes2.length > 0" class="reset-search" (click)="resetDestinationNode();"
               title="RESET INPUT-2"><i class="bi bi-x-circle"></i></span>
             <!--<input class="form-control" type="text" placeholder="Search" aria-label="Search" [(ngModel)]="destinationNodeFilter" />-->
             <!--<button style="float:left;margin-top: 10px;position: relative;" class="btn btn-primary" [disabled]="!form.form.valid" (click)="getSourceNode(searchInput2.value)">Search</button>-->
           </form>
         </div>
-      </div>
     </div>
 
     <div style="position: absolute;">
