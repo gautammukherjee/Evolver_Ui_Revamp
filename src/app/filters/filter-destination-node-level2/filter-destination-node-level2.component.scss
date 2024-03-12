@@ -25,8 +25,10 @@
         width: 100%;
         max-height: 250px;
         overflow: auto;
+        resize: both;
 
         .search-options{
+            padding: var(--spacer-5) 0;
             li{
                 cursor: pointer;
             }

@@ -10,10 +10,14 @@
     <ul class="dropdown-menu" aria-labelledby="edge-type-filter2">
         <div *ngIf="edgeTypes2.length">
           <div class="search-options">
-            <input type="checkbox" name="edgeTypes2" [(ngModel)]="isAllSelected" [value]="edgeTypes2" [checked]=""
-            (change)="selectAll($event);">
-            <span class="custom-control-description text-dark">&nbsp;Select All</span>
             <button class="btn btn-outline-primary" style="float: right;" [disabled]="disableProceed" (click)="seeMoreproceed()"><i class="bi bi-arrow-right-circle-fill" title="Proceed"></i></button>
+            <div class="mb-1 form-check">
+              <input class="form-check-input border border-secondary" type="checkbox" name="edgeTypes2" [(ngModel)]="isAllSelected" [value]="edgeTypes2" [checked]=""
+              (change)="selectAll($event);">
+              <label class="form-check-label">
+                Select All
+              </label>
+            </div>
             
             <div class="mb-1 form-check" *ngFor="let edgeType of edgeTypes2 | EdgeTypeFilterPipe:edgeTypeFilter">
               <input class="form-check-input border border-secondary" type="checkbox" name="edgeTypes2"  [value]="edgeType"

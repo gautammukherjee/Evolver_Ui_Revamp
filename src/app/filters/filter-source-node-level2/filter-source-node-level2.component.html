@@ -25,7 +25,7 @@
       <!-- *ngIf="showSourceBody" -->
       <div class="body">
         <div *ngIf="sourceNodes2.length">
-          <div class="search-options" style="padding: 10px 0px;">
+          <div class="search-options" style="padding-top: 5px">
             <button class="btn btn-outline-primary bg-white btn-sm text-primary" style="
                 position: absolute;
                 opacity: 1;
@@ -67,10 +67,12 @@
                 </div>
               </div>
             </div> -->
-
-            <input type="checkbox" name="edgeTypes" [(ngModel)]="isAllSelected" [value]="sourceNodes2" [checked]=""
-              (change)="selectAll()" />
-            <span class="custom-control-description text-dark">&nbsp;Select All</span>
+            <div class="mb-1 form-check">
+               <input class="form-check-input border border-secondary" type="checkbox" name="edgeTypes" [(ngModel)]="isAllSelected" [value]="sourceNodes2" [checked]=""
+               (change)="selectAll()" />
+              
+              <label class="form-check-label pe-4">Select All</label>
+            </div>
 
             <div class="mb-1 form-check" *ngFor="
                 let sourceNode of sourceNodes2
