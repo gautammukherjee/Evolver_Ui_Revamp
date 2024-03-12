@@ -55,7 +55,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
 import { DistributionByRelGrpComponent } from './distribution-by-rel-grp/distribution-by-rel-grp.component';
 import { DetailsOfAssocDataComponent } from './details-of-assoc-data/details-of-assoc-data.component';
 import { PmidCountWithGeneAndDiseaseComponent } from './pmid-count-with-gene-and-disease/pmid-count-with-gene-and-disease.component';
-//import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
+import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
 import { DistributionByRelationTypeComponent } from './distribution-by-relation-type/distribution-by-relation-type.component';
 // import { DataTablesModule } from 'angular-datatables';
 import { OnlineStatusModule } from 'ngx-online-status';
@@ -78,6 +78,7 @@ import { FilterNodeSelectCTComponent } from './filters/filter-node-select-ct/fil
 import { CarouselComponent } from './login/Components/carousel/carousel.component';
 import { HomeComponent } from './home/home.component';
 import { LeftFilterLayoutComponent } from './left-filter-layout/left-filter-layout.component';
+import * as highstock from 'highcharts/modules/stock.js';
 
 @NgModule({
   declarations: [
@@ -179,9 +180,10 @@ import { LeftFilterLayoutComponent } from './left-filter-layout/left-filter-layo
   providers: [
     DatePipe,
     {
-      provide: [HTTP_INTERCEPTORS],
+      provide: [HTTP_INTERCEPTORS, HIGHCHARTS_MODULES],
       useClass: AuthInterceptor,
-      multi: true
+      multi: true,
+      useFactory: () => [highstock]
     }
   ],
   bootstrap: [AppComponent]

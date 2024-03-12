@@ -3,7 +3,7 @@
 
   <div class="degree-filers-wrapper">
     <div class="degree-single">
-      <div class="degree-indicator">1st Degree</div>
+      <div class="degree-indicator">1<sup>st</sup> Degree</div>
       <div class="degree-input-wrapper">
         <!-- <input type="text" class="form-control" placeholder="Disease to Gene" /> -->
         <div class="filter-single">
@@ -35,7 +35,7 @@
       <div [ngStyle]="{'display' : showLevels == false ? 'none' : 'block'}">
         <div *ngIf="currentLevel > 1" class="horizonal-filter-bar">
           <div class="degree-single">
-            <div class="degree-indicator">2nd Degree</div>
+            <div class="degree-indicator">2<sup>nd</sup> Degree</div>
             <div class="degree-input-wrapper">
               <app-filter-node-select-level2 (onSelectNode2)='nodeChanged2("nodeLevel2Filter")'
                 [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-node-select-level2>
@@ -68,7 +68,7 @@
       <div [ngStyle]="{'display' : showLevels == false ? 'none' : 'block'}">
         <div *ngIf="currentLevel > 2" class="horizonal-filter-bar" style="width: 100%;margin-top: 20px;">
           <div class="degree-single">
-            <div class="degree-indicator">3rd Degree</div>
+            <div class="degree-indicator">3<sup>rd</sup> Degree</div>
             <div class="degree-input-wrapper">
               <app-filter-node-select-level3 (onSelectNode3)='nodeChanged3("nodeLevel3Filter")'
                 [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-node-select-level3>
@@ -160,7 +160,7 @@
             <app-network-map [ProceedDoFilterApply]="doFilterApply"></app-network-map>
           </div>
           <div class="tab-pane p-2 fade" id="visualChart" role="tabpanel" aria-labelledby="visualChart-tab">
-            <app-distribution-by-rel-grp [ProceedDoFilterApply]="doFilterApplyTab4"></app-distribution-by-rel-grp>
+            <!-- <app-distribution-by-rel-grp [ProceedDoFilterApply]="doFilterApplyTab4"></app-distribution-by-rel-grp> -->
             <app-pmid-count-with-gene-and-disease
               [ProceedDoFilterApply]="doFilterApplyTab4"></app-pmid-count-with-gene-and-disease>
           </div>
