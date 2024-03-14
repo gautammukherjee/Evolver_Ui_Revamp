@@ -89,6 +89,8 @@ export class DistributionByRelGrpComponent implements OnInit {
   public depth: number = 1;
   private modalRef: any;
   noSourceNodeSelected: number = 0;
+  public graph: string = 'polar';
+  // project = {duration: 0};
 
   @ViewChild('showPopupEvent', { static: false }) show_popup_event: ElementRef | any;
 
@@ -105,8 +107,7 @@ export class DistributionByRelGrpComponent implements OnInit {
 
   ngOnInit(): void {
     this.filterParams = this.globalVariableService.getFilterParams();
-
-
+    // console.log("type graph11:: ", this.graph);
     this.nodeSelectsService.getEdgeTypeFirst()
       .subscribe(
         data => {
@@ -119,8 +120,11 @@ export class DistributionByRelGrpComponent implements OnInit {
       // console.log("data2: ", data);
       if (data === undefined) { // data=undefined true when apply filter from side panel
         this.filterParams = this.globalVariableService.getFilterParams();
-        this.getDistributionByRelGroup(this.filterParams, 'polar');
+
+        console.log("type graph22:: ", this.graph);
+        this.getDistributionByRelGroup(this.filterParams, this.graph);
         console.log("new Filters by rel group charts: ", this.filterParams);
+
       }
     });
     // this.getDistributionByRelGroup(this.filterParams);
@@ -342,7 +346,7 @@ export class DistributionByRelGrpComponent implements OnInit {
     } else {
       var chkVal = true
     }
-    // console.log("chkVal", chkVal);
+    console.log("chkVal", chkVal);
 
     Highcharts.chart('container', <any>{
       chart: {
@@ -370,7 +374,9 @@ export class DistributionByRelGrpComponent implements OnInit {
           style: {
             fontSize: '11px',
             fontFamily: 'Verdana, sans-serif'
-          }
+          },
+          // distance: ((chkVal == true) ? '110%' : '60%'),
+          // y: ((chkVal == true) ? 5 : 2)
         }
       },
       yAxis: {
@@ -398,8 +404,7 @@ export class DistributionByRelGrpComponent implements OnInit {
         // },
       },
       tooltip: {
-        format: '<b>{key}</b><br/>{series.name}: {y}<br/>' +
-          'Total: {point.stackTotal}'
+        format: '<b>{key}</b><br/>{series.name}: {y}<br/>' //+ 'Total: {point.stackTotal}'          
       },
       plotOptions: {
         // column: {
@@ -411,12 +416,12 @@ export class DistributionByRelGrpComponent implements OnInit {
             enabled: true,
             format: '{point.y}'
           },
-          stacking: "normal",
+          // stacking: "normal",
           cursor: 'pointer',
           point: {
             events: {
               click: (event: any) => {
-                console.log(event);
+                // console.log(event);
                 this.modalRef = this.modalService.open(this.show_popup_event, { size: 'xl', keyboard: false, backdrop: 'static' });
                 this.onRegionSelection(event, type);
               }
@@ -661,13 +666,13 @@ export class DistributionByRelGrpComponent implements OnInit {
         type: 'logarithmic',
         title: {
           text: 'Article Count',
-        },        
+        },
       },
-      legend: {        
+      legend: {
         verticalAlign: 'bottom',
         align: 'center',
         x: 0,
-        y: 0        
+        y: 0
       },
       tooltip: {
         format: '<b>{key}</b><br/>{series.name}: {y}<br/>' +

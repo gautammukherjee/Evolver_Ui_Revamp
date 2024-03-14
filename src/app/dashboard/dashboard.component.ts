@@ -57,7 +57,7 @@ export class DashboardComponent implements OnInit {
     this.globalVariableService.setSelectedNNRTID(false);
 
     console.log("main page filters: ", this.filterParams);
-    // particlesJS.load('particles-js', '../assets/particles.json', null);
+    particlesJS.load('particles-js', '../assets/particles.json', null);
   }
 
   ontoggleSidebar() {
@@ -242,7 +242,7 @@ export class DashboardComponent implements OnInit {
       // this.headerPairType = this.selectedPairTypeArray.includes(this.filterParams['nnrt_id'])
       // console.log("Map:: ", this.headerPairType);
 
-      particlesJS.load('particles-js', '../assets/particles.json', null);
+      
 
       console.log("cameFromCT in MAP:: ", this.cameFromCT);
       // if (this.headerPairType == true && this.cameFromCT == true) {
@@ -261,10 +261,12 @@ export class DashboardComponent implements OnInit {
       } else {
         // this.doFilterApply.next(undefined);
       }
+      // particlesJS.load('particles-js', '../assets/particles.json', null);
       this.doFilterApply.next(undefined);
     }
     else if (tab == 'details') {
       this.globalVariableService.setTabsSelected('details');
+      particlesJS.load('particles-js', '../assets/particles.json', null);
       // this.filterParams = this.globalVariableService.getFilterParams();
       // console.log("filterparams details Type: ", this.filterParams['nnrt_id']);
       // this.headerPairType = this.selectedPairTypeArray.includes(this.filterParams['nnrt_id'])
