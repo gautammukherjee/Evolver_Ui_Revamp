@@ -112,7 +112,9 @@
   <section class="main-layout">
     <div class="left-sidebar" [ngClass]="{'open' : sideMenuOpened}">
       <div class="toggler" (click)="sideMenuOpened = !sideMenuOpened">
-        <img src="assets/images/icons/menuToggler.svg" alt="">
+        
+        <img *ngIf="sideMenuOpened" src="assets/images/icons/angle-left.svg" alt="">
+        <img *ngIf="!sideMenuOpened" src="assets/images/icons/angle-right.svg" alt="">
       </div>
       <app-left-filter-layout></app-left-filter-layout>
     </div>

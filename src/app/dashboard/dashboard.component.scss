@@ -77,6 +77,7 @@ h2 {
 }
 
 .custom-tabs-wrapper {
+    position: relative;
     .nav-tabs {
         border: none;
         column-gap: var(--spacer-10);
