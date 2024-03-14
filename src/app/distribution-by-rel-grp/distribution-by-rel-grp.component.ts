@@ -630,6 +630,7 @@ export class DistributionByRelGrpComponent implements OnInit {
     } else {
       var chkVal2 = true
     }
+    console.log("chkVal2: ", chkVal2);
 
     Highcharts.chart('container_popup', <any>{
       chart: {
@@ -646,6 +647,7 @@ export class DistributionByRelGrpComponent implements OnInit {
           enabled: true
         }
       },
+
       xAxis: {
         categories: this.categories2,
         labels: {
@@ -659,28 +661,54 @@ export class DistributionByRelGrpComponent implements OnInit {
         type: 'logarithmic',
         title: {
           text: 'Article Count',
-        },
-
-        min: 0,
-        endOnTick: false,
-        showLastLabel: true,
-        labels: {
-          format: '{value}%'
-        },
-        reversedStacks: false
-
+        },        
       },
-
-      legend: {
+      legend: {        
         verticalAlign: 'bottom',
         align: 'center',
         x: 0,
-        y: 0
+        y: 0        
       },
       tooltip: {
         format: '<b>{key}</b><br/>{series.name}: {y}<br/>' +
           'Total: {point.stackTotal}'
       },
+
+      // xAxis: {
+      //   categories: this.categories2,
+      //   labels: {
+      //     style: {
+      //       fontSize: '11px',
+      //       fontFamily: 'Verdana, sans-serif'
+      //     }
+      //   }
+      // },
+      // yAxis: {
+      //   type: 'logarithmic',
+      //   title: {
+      //     text: 'Article Count',
+      //   },
+
+      //   min: 0,
+      //   endOnTick: false,
+      //   showLastLabel: true,
+      //   labels: {
+      //     format: '{value}%'
+      //   },
+      //   reversedStacks: false
+
+      // },
+
+      // legend: {
+      //   verticalAlign: 'bottom',
+      //   align: 'center',
+      //   x: 0,
+      //   y: 0
+      // },
+      // tooltip: {
+      //   format: '<b>{key}</b><br/>{series.name}: {y}<br/>' +
+      //     'Total: {point.stackTotal}'
+      // },
       plotOptions: {
         // column: {
         //   stacking: "normal"
@@ -691,7 +719,7 @@ export class DistributionByRelGrpComponent implements OnInit {
             enabled: true,
             format: '{point.y}'
           },
-          // stacking: "normal",
+          stacking: "normal",
         }
       },
 
