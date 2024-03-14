@@ -14,11 +14,17 @@
             <div class="col">
                 <div class="text-muted fs-2 text-center mb-4" *ngIf="!pmidCountGraph.length">Please select entities to
                     generate Article Count Graph!</div>
-                <div class="overlay-second"
+
+                <div class="overlay-second" *ngIf="graphLoader"
+                    style="position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);z-index: 9;">
+                    <img style="margin-left: 359px;margin-top: 100px;" src="../../assets/images/loader_big.gif" />
+                </div>
+
+                <!-- <div class="overlay-second"
                     style="position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);z-index: 9;"
                     *ngIf="graphLoader">
                     <img src="../../assets/images/loader_big.gif" />
-                </div>
+                </div> -->
                 <div *ngIf="noSourceNodeSelected==0">
 
                     <!-- <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"

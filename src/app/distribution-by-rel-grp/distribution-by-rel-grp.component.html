@@ -19,12 +19,33 @@
 
     <div class="overlay" *ngIf="loadingChart"
         style="position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);z-index: 9;">
-        <img src="../../assets/images/loader_big.gif" />
+        <img style="margin-left: 359px;margin-top: 100px;" src="../../assets/images/loader_big.gif" />
     </div>
 
     <!-- <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions" style="width: 100%; display: block">
     </highcharts-chart> -->
-    <div *ngIf="noSourceNodeSelected==0">
+    <!-- <div *ngIf="noSourceNodeSelected==0"> -->
+
+    <div>
+        <!-- <div class="">
+            <select class="" (change)="selectGraph($event)">
+                <option class="dropdown-item" value="polar"> Polar Chart</option>
+                <option class="dropdown-item" value="bar"> Bar Chart</option>
+            </select>
+        </div> -->
+
+        <div *ngIf="!loadingMessage"
+            style="margin:4px;padding: 5px;width: 145px;border-radius: 6px;background: var(--primaryColor);color: #fff;">
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="graph" value="polar" (click)="selectGraph($event)"
+                    checked>
+                <label class="form-check-label" for="inlineRadio1">Polar</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="graph" value="bar" (click)="selectGraph($event)">
+                <label class="form-check-label" for="inlineRadio2">Bar</label>
+            </div>
+        </div>
         <div id="container"></div>
     </div>
     <!--<div *ngIf="errorMsg!==''">

@@ -9,6 +9,13 @@ import highcharts3D from 'highcharts/highcharts-3d';
 highcharts3D(Highcharts);
 import Exporting from 'highcharts/modules/exporting';
 Exporting(Highcharts);
+
+import More from 'highcharts/highcharts-more';
+More(Highcharts);
+
+import Accessibility from 'highcharts/modules/accessibility';
+Accessibility(Highcharts);
+
 import { Subject, BehaviorSubject, forkJoin } from 'rxjs';
 import { NodeSelectsService } from '../services/common/node-selects.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -81,7 +88,7 @@ export class DistributionByRelGrpComponent implements OnInit {
   public beta: number = 1;
   public depth: number = 1;
   private modalRef: any;
-  noSourceNodeSelected: number=0;
+  noSourceNodeSelected: number = 0;
 
   @ViewChild('showPopupEvent', { static: false }) show_popup_event: ElementRef | any;
 
@@ -112,14 +119,14 @@ export class DistributionByRelGrpComponent implements OnInit {
       // console.log("data2: ", data);
       if (data === undefined) { // data=undefined true when apply filter from side panel
         this.filterParams = this.globalVariableService.getFilterParams();
-        this.getDistributionByRelGroup(this.filterParams);
+        this.getDistributionByRelGroup(this.filterParams, 'polar');
         console.log("new Filters by rel group charts: ", this.filterParams);
       }
     });
     // this.getDistributionByRelGroup(this.filterParams);
   }
 
-  getDistributionByRelGroup(_filterParams: any) {
+  getDistributionByRelGroup(_filterParams: any, type: any) {
 
     // if ((_filterParams.source_node != undefined && _filterParams.nnrt_id2 == undefined) || (_filterParams.nnrt_id2 != undefined && _filterParams.source_node2!=undefined)) {
     if ((_filterParams.source_node != undefined
@@ -130,7 +137,7 @@ export class DistributionByRelGrpComponent implements OnInit {
       console.log("new Filters by Rel group charts IN: ", this.filterParams);
       this.loadingChart = true;
       this.noDataFound = false;
-      this.noSourceNodeSelected=0;
+      this.noSourceNodeSelected = 0;
 
       if (_filterParams.nnrt_id != undefined) {
 
@@ -306,7 +313,10 @@ export class DistributionByRelGrpComponent implements OnInit {
 
               this.loadingChart = false;
               this.loadingMessage = false;
-              this.drawColumnChart();
+
+              console.log("here TYPes: ", type);
+              this.drawColumnChart(type);
+
             },
             (error: any) => {
               console.error(error)
@@ -318,21 +328,34 @@ export class DistributionByRelGrpComponent implements OnInit {
     } else if (_filterParams.source_node != undefined) {
       console.log("Please choose source node level 2");
       this.noDataFound = true;
-      this.noSourceNodeSelected=0
+      this.noSourceNodeSelected = 0
     }
-    else{
-      this.loadingMessage=true;
-      this.noSourceNodeSelected=1;      
+    else {
+      this.loadingMessage = true;
+      this.noSourceNodeSelected = 1;
     }
   }
 
-  drawColumnChart() {
+  drawColumnChart(type: any) {
+    if (type == 'bar') {
+      var chkVal = false
+    } else {
+      var chkVal = true
+    }
+    // console.log("chkVal", chkVal);
+
     Highcharts.chart('container', <any>{
       chart: {
+        polar: chkVal,
         type: 'column',
-        plotBorderWidth: 1,
-        marginLeft: 100
+        // marginBottom: 120
       },
+      // chart: {
+      //   type: 'column',
+      //   plotBorderWidth: 1,
+      //   marginLeft: 100
+      // },
+
       title: {
         text: 'Distribution by Relation Group'
       },
@@ -355,18 +378,21 @@ export class DistributionByRelGrpComponent implements OnInit {
         title: {
           text: 'Article Count',
         },
+        // min: 0,
+        // endOnTick: false,
+        // showLastLabel: true,
+        // labels: {
+        //   format: '{value}%'
+        // },
+        // reversedStacks: false
       },
       legend: {
-        align: 'left',
-        x: 240,
-        verticalAlign: 'top',
-        y: 0,
-        floating: true,
-        // backgroundColor:
-        // Highcharts.defaultOptions.legend.backgroundColor || 'white',
-        borderColor: '#CCC',
-        borderWidth: 1,
-        shadow: false,
+        // align: 'left',
+        // x: 240,
+        verticalAlign: 'bottom',
+        align: 'center',
+        x: 0,
+        y: 0
         // labelFormatter: function() {
         //   return categories[0]
         // },
@@ -375,50 +401,37 @@ export class DistributionByRelGrpComponent implements OnInit {
         format: '<b>{key}</b><br/>{series.name}: {y}<br/>' +
           'Total: {point.stackTotal}'
       },
-      // tooltip: {
-      //   headerFormat: '<b>{point.x}</b><br/>',
-      //   pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
-      // },
       plotOptions: {
-        column: {
-          stacking: "normal"
-        },
+        // column: {
+        //   stacking: "normal"
+        // },
         series: {
           borderWidth: 0,
           dataLabels: {
             enabled: true,
             format: '{point.y}'
           },
+          // stacking: "normal",
           cursor: 'pointer',
           point: {
             events: {
               click: (event: any) => {
                 console.log(event);
                 this.modalRef = this.modalService.open(this.show_popup_event, { size: 'xl', keyboard: false, backdrop: 'static' });
-                this.onRegionSelection(event);
+                this.onRegionSelection(event, type);
               }
             }
           },
         }
       },
-      // tooltip: {
-      //   pointFormat: '<span style="color:{point.color}">Count</span>: <b>{point.y}</b>'
-      // },
-      // series: [{
-      //   colorByPoint: true,
-      //   data: this.graphData
-      // }],
-
       series:
         this.finalLevelData
-
-
     });
 
     this.graphLoader = false;
   }
 
-  onRegionSelection(event: any) {
+  onRegionSelection(event: any, type: any) {
     console.log("points: ", event.point);
     this.selectedEdgeTypesByGroups = [];
     this.graphLoaderDrill = true;
@@ -599,7 +612,7 @@ export class DistributionByRelGrpComponent implements OnInit {
           console.log("Final Drill data: ", this.finalLevelDrillData);
 
           this.loadingChart = false;
-          this.drawColumnChartDrillDown();
+          this.drawColumnChartDrillDown(type);
         },
         err => {
           console.log(err.message);
@@ -611,12 +624,19 @@ export class DistributionByRelGrpComponent implements OnInit {
 
   }
 
-  drawColumnChartDrillDown() {
+  drawColumnChartDrillDown(type: any) {
+    if (type == 'bar') {
+      var chkVal2 = false
+    } else {
+      var chkVal2 = true
+    }
+
     Highcharts.chart('container_popup', <any>{
       chart: {
+        polar: chkVal2,
         type: 'column',
-        plotBorderWidth: 1,
-        marginLeft: 200
+        // plotBorderWidth: 1,
+        // marginLeft: 200
       },
       title: {
         text: 'Distribution by Relation Group'
@@ -640,45 +660,53 @@ export class DistributionByRelGrpComponent implements OnInit {
         title: {
           text: 'Article Count',
         },
+
+        min: 0,
+        endOnTick: false,
+        showLastLabel: true,
+        labels: {
+          format: '{value}%'
+        },
+        reversedStacks: false
+
       },
+
       legend: {
-        align: 'left',
-        x: 160,
-        verticalAlign: 'top',
-        y: 0,
-        floating: true,
-        // backgroundColor:
-        // Highcharts.defaultOptions.legend.backgroundColor || 'white',
-        borderColor: '#CCC',
-        borderWidth: 1,
-        shadow: false,
-        // labelFormatter: function() {
-        //   return categories[0]
-        // },
+        verticalAlign: 'bottom',
+        align: 'center',
+        x: 0,
+        y: 0
       },
       tooltip: {
         format: '<b>{key}</b><br/>{series.name}: {y}<br/>' +
           'Total: {point.stackTotal}'
       },
       plotOptions: {
-        column: {
-          stacking: "normal"
-        },
+        // column: {
+        //   stacking: "normal"
+        // },
         series: {
           borderWidth: 0,
           dataLabels: {
             enabled: true,
             format: '{point.y}'
-          }
+          },
+          // stacking: "normal",
         }
       },
-      // tooltip: {
-      //   pointFormat: '<span style="color:{point.color}">Count</span>: <b>{point.y}</b>'
-      // },
-      // series: [{
-      //   colorByPoint: true,
-      //   data: this.drillDownData
-      // }],      
+
+      // plotOptions: {
+      //   // column: {          
+      //   // },
+      //   series: {
+      //     stacking: "normal",
+      //     borderWidth: 0,
+      //     dataLabels: {
+      //       enabled: true,
+      //       format: '{point.y}'
+      //     }
+      //   }
+      // },         
 
       series: this.finalLevelDrillData
       // [{
@@ -695,6 +723,28 @@ export class DistributionByRelGrpComponent implements OnInit {
       //   color: '#80ced6'
       // }]
     });
+  }
+
+
+  selectGraph(event: any) {
+    // console.log("event: ", event);
+    console.log("event2: ", event.target.value);
+
+    // if (event.target.value == 1) {
+    this.filterParams = this.globalVariableService.getFilterParams();
+    console.log("Rank Map:: ", this.filterParams);
+    if (this.filterParams.nnrt_id != undefined)
+      this.getDistributionByRelGroup(this.filterParams, event.target.value);
+    // } 
+    // else {
+    //   this.filterParams = this.globalVariableService.getFilterParams();
+    //   console.log("Rank Map:: ", this.filterParams);
+    //   if (this.filterParams.nnrt_id != undefined)
+    //     this.getDistributionByRelGroup(this.filterParams, 'polar');
+    // }
+
+
+
   }
 
 }

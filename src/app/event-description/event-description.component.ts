@@ -483,7 +483,7 @@ export class EventDescriptionComponent implements OnInit {
     this.articleHere = [];
     const edgeNeIdArr = edgeNeId.split(",");
     //console.log(typeof edgeNeIdArr + edgeNeIdArr +edgeNeIdArr[0]);
-    
+
 
     // this.nodeSelectsService.getEdgeTypeSentencePMIDLists({ 'ne_ids': edgeNeIdArr, 'edge_type_id': (level == 1 ? this.filterParams['edge_type_id'] : this.filterParams['edge_type_id2']) }).subscribe((p: any) => {
     this.nodeSelectsService.getEdgeTypeSentencePMIDLists({ 'ne_ids': edgeNeIdArr, 'edge_type_id': (level == 1 ? this.filterParams['edge_type_id'] : (level == 2 ? this.filterParams['edge_type_id2'] : this.filterParams['edge_type_id3'])) }).subscribe((p: any) => {
@@ -660,8 +660,8 @@ export class EventDescriptionComponent implements OnInit {
       var i = 1;
       this.ctListsHere.forEach((event: any, index: any) => {
         var temps: any = {};
-        temps["id"] = (index + 1);        
-        temps["nctid"] = event.nct_id;        
+        temps["id"] = (index + 1);
+        temps["nctid"] = event.nct_id;
         temps["title"] = event.title;
         temps["disease_name"] = event.disease_name;
         temps["phase_name"] = event.phase_name;
@@ -1341,6 +1341,42 @@ export class EventDescriptionComponent implements OnInit {
         this.sentenceForm.controls['filter1_name'].disable();
       }
     }
+  }
+
+  selectPMIDCount(elem: any, event: any) {
+    console.log("elem1: ", elem);
+    console.log("elem2: ", event.target.checked);
+
+    let newArray:any = [];
+    let selectedRankNodes:any=[];
+
+    if (event.target.checked) {
+      selectedRankNodes.push(elem);
+      console.log("pushThe count data: ", selectedRankNodes);
+
+      console.log("chk1: ", this.masterListsDataDetailsCombined);
+      console.log("chk1 length: ", this.masterListsDataDetailsCombined.length);
+
+      newArray = this.masterListsDataDetailsCombined.filter((obj:any) => selectedRankNodes.some((d: any) =>
+        d == obj.pmidCount
+      ));
+      console.log("chk2: ", newArray);
+      console.log("chk2Length: ", newArray.length);
+
+      
+    } else {
+      console.log("chk2: ", this.masterListsDataDetailsCombined);
+      // this.selectedRankNodes.splice(this.selectedRankNodes.indexOf(elem), 1);
+    }
+    // console.log("selectedRankNodes: ", this.selectedRankNodes);
+
+    // this.globalVariableService.setSelectedRanks(this.selectedRankNodes);
+    // this.selectedRankNodes = Array.from(this.globalVariableService.getSelectedRanks());
+
+    // this.filterParams = this.globalVariableService.getFilterParams();
+    // console.log("Rank Map:: ", this.filterParams);
+    // if (this.filterParams.nnrt_id != undefined)
+    //   this.getMasterListsMap(this.filterParams, null);
   }
 
 }

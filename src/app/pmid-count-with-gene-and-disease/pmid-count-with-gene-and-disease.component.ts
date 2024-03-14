@@ -7,7 +7,7 @@ import { Subject, forkJoin } from 'rxjs';
 import { DatePipe } from '@angular/common';
 import Stock from 'highcharts/modules/stock';
 
-// Stock(Highcharts)
+Stock(Highcharts)
 
 @Component({
   selector: 'app-pmid-count-with-gene-and-disease',
@@ -353,6 +353,7 @@ export class PmidCountWithGeneAndDiseaseComponent implements OnInit {
     Highcharts.chart('containerColumnChart', <any>{
       chart: {
         type: 'bar',
+        marginBottom: 120
       },
       title: {
         text: 'Count of PMID with Relevant Genes or Diseases'
@@ -379,7 +380,7 @@ export class PmidCountWithGeneAndDiseaseComponent implements OnInit {
       //   categories: this.uniqueYear
       // },
       yAxis: {
-        // min: 0,
+        min: 0,
         // max: 20,
         title: {
           text: 'Distinct values of PMID',
@@ -409,11 +410,14 @@ export class PmidCountWithGeneAndDiseaseComponent implements OnInit {
         title: {
           text: null
         },
-        // min: 0,
-        // max: 8,
-        categories: this.uniqueYear,       
+        min: 0,
+        max: 2,
+        categories: this.uniqueYear,
         gridLineWidth: 1,
-        lineWidth: 0
+        lineWidth: 0,
+        scrollbar: {
+          enabled: true
+        },
       },
       // tooltip: {
       //   shared: true,
@@ -432,18 +436,19 @@ export class PmidCountWithGeneAndDiseaseComponent implements OnInit {
         }
       },
       legend: {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'top',
-        x: -40,
-        y: 80,
+        // layout: 'vertical',
+        // align: 'right',
+        verticalAlign: 'bottom',
+        // x: -40,
+        // y: 80,
         floating: true,
         borderWidth: 1,
         // backgroundColor:
         //   Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
-        shadow: true
-      },
+        // shadow: true,
+        // verticalAlign: 'bottom',
 
+      },
       series: [
         {
           name: 'Q1',
