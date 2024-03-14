@@ -411,7 +411,7 @@ export class DistributionByRelGrpComponent implements OnInit {
             enabled: true,
             format: '{point.y}'
           },
-          // stacking: "normal",
+          stacking: "normal",
           cursor: 'pointer',
           point: {
             events: {
@@ -732,7 +732,7 @@ export class DistributionByRelGrpComponent implements OnInit {
 
     // if (event.target.value == 1) {
     this.filterParams = this.globalVariableService.getFilterParams();
-    console.log("Rank Map:: ", this.filterParams);
+    // console.log("Rank Map:: ", this.filterParams);
     if (this.filterParams.nnrt_id != undefined)
       this.getDistributionByRelGroup(this.filterParams, event.target.value);
     // } 
