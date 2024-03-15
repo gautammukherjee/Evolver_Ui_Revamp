@@ -167,7 +167,9 @@ export class PmidCountWithGeneAndDiseaseComponent implements OnInit {
               console.log("PMID Count Graph Final: ", this.pmidCountGraphFinal);
 
               this.uniqueYear = [...new Set(this.pmidCountGraphFinal.map((item: any) => item.year_date))];
-              console.log("unique", this.uniqueYear);
+              console.log("unique1: ", this.uniqueYear);
+              this.uniqueYear = this.uniqueYear.sort((a: number, b: number) => b - a);
+              console.log("unique2: ", this.uniqueYear);
 
               //Grouping according to quarter wise
               // this gives an object with dates as keys
@@ -191,17 +193,17 @@ export class PmidCountWithGeneAndDiseaseComponent implements OnInit {
               // console.log("key071: ", groups['07']);
               // console.log("key101: ", groups['10']);
 
+              //First Quarter
               this.pmidCountQtr1 = [];
               if (groups['01'] != undefined) {
                 let ids01 = new Set(groups['01'].map((e: any) => e.year));
-
-                //First Quarter
+                
                 this.uniqueYear.forEach((e: any) => {
                   if (!ids01.has(e)) {
                     groups["01"].push({ 'pmidCount': '', 'year': e });
                   }
                 });
-                this.firstQuarterData = Object.values(groups["01"]).sort((a: any, b: any) => a.year - b.year);
+                this.firstQuarterData = Object.values(groups["01"]).sort((a: any, b: any) => b.year - a.year);
                 console.log("sort after groups1: ", this.firstQuarterData);
 
                 this.firstQuarterData.forEach((element: any) => {
@@ -210,17 +212,17 @@ export class PmidCountWithGeneAndDiseaseComponent implements OnInit {
                 console.log("sort after groups11: ", this.pmidCountQtr1);
               }
 
+              //Second Quarter
               this.pmidCountQtr2 = [];
               if (groups['04'] != undefined) {
                 let ids04 = new Set(groups['04'].map((e: any) => e.year));
-
-                //Second Quarter                
+                                
                 this.uniqueYear.forEach((e: any) => {
                   if (!ids04.has(e)) {
                     groups["04"].push({ 'pmidCount': '', 'year': e });
                   }
                 });
-                this.secondQuarterData = Object.values(groups["04"]).sort((a: any, b: any) => a.year - b.year);
+                this.secondQuarterData = Object.values(groups["04"]).sort((a: any, b: any) => b.year - a.year);
                 console.log("sort after groups2: ", this.secondQuarterData);
 
                 this.secondQuarterData.forEach((element: any) => {
@@ -229,17 +231,17 @@ export class PmidCountWithGeneAndDiseaseComponent implements OnInit {
                 console.log("sort after groups22: ", this.pmidCountQtr2);
               }
 
+              //Third Quarter        
               this.pmidCountQtr3 = [];
               if (groups['07'] != undefined) {
                 let ids07 = new Set(groups['07'].map((e: any) => e.year));
-
-                //Third Quarter                
+                        
                 this.uniqueYear.forEach((e: any) => {
                   if (!ids07.has(e)) {
                     groups["07"].push({ 'pmidCount': '', 'year': e });
                   }
                 });
-                this.thirdQuarterData = Object.values(groups["07"]).sort((a: any, b: any) => a.year - b.year);
+                this.thirdQuarterData = Object.values(groups["07"]).sort((a: any, b: any) => b.year - a.year);
                 console.log("sort after groups3: ", this.thirdQuarterData);
 
                 this.thirdQuarterData.forEach((element: any) => {
@@ -248,26 +250,25 @@ export class PmidCountWithGeneAndDiseaseComponent implements OnInit {
                 console.log("sort after groups33: ", this.pmidCountQtr3);
               }
 
+              //Fourth Quarter 
               this.pmidCountQtr4 = [];
               if (groups['10'] != undefined) {
                 let ids10 = new Set(groups['10'].map((e: any) => e.year));
-
-                //Fourth Quarter                
+                              
                 this.uniqueYear.forEach((e: any) => {
                   if (!ids10.has(e)) {
                     groups["10"].push({ 'pmidCount': '', 'year': e });
                   }
                 });
-                this.fourthQuarterData = Object.values(groups["10"]).sort((a: any, b: any) => a.year - b.year);
+                this.fourthQuarterData = Object.values(groups["10"]).sort((a: any, b: any) => b.year - a.year);
                 console.log("sort after groups4: ", this.fourthQuarterData);
 
                 this.fourthQuarterData.forEach((element: any) => {
                   this.pmidCountQtr4.push(parseFloat(element.pmidCount));
                 });
                 console.log("sort after groups44: ", this.pmidCountQtr4);
-                //End fourth quarter
               }
-
+              //End fourth quarter
 
               // console.log("here11: ", groups);
               // console.log("here11val: ", Object.values(groups));                           
