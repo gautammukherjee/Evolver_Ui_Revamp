@@ -19,6 +19,11 @@
 	padding: 20px;
 }
 
+.degree-combinations-badge{
+    display: flex;
+    column-gap: 10px;
+}
+
 .bs-bars {
 	display: none;
 }
@@ -110,30 +115,60 @@
 }
 
 .level1-title {
-    background-color: #6C7572;
+	background-color: #6C7572;
     border-radius: 5px;
-    padding: 1px 0px !important;
-    margin: 2px 0px 0px 0px;
-    position: absolute;
+    padding: 1px 0px 1px 10px !important;
     font-size: 12px;
+    min-width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+	
+    span{
+        padding: 4px 10px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--secondaryColor);
+    }
 }
 
 .level2-title {
     background-color: #6C7572;
     border-radius: 5px;
-    padding: 1px !important;
-    margin: 2px 188px;
+    padding: 1px 0px 1px 10px !important;
     font-size: 12px;
-    position: absolute;
+    min-width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+	
+    span{
+        padding: 4px 10px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--secondaryColor);
+    }
 }
 
 .level3-title {
     background-color: #6C7572;
     border-radius: 5px;
-    padding: 1px !important;
-    margin: 2px 390px;
+    padding: 1px 0px 1px 10px !important;
     font-size: 12px;
-    position: absolute;
+    min-width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+	
+    span{
+        padding: 4px 10px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--secondaryColor);
+    }
 }
 
 .save-query-top-btn{
