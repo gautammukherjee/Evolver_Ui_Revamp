@@ -73,6 +73,7 @@ h2 {
         width: 100%;
         padding: var(--spacer-15);
         margin-left: var(--spacer-25);
+        border:1px solid var(--secondaryColor)
     }
 }
 
@@ -129,6 +130,10 @@ h2 {
         .degree-indicator {
             width: 120px;
             min-width: 120px;
+            padding: 5px 10px;
+            background-color: #bfcde9;
+            border-radius: 22px;
+            color: #000;
         }
 
         .degree-input-wrapper {

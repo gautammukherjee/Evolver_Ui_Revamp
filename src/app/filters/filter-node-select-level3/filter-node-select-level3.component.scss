@@ -28,6 +28,7 @@
         resize: both;
 
         .search-options{
+            padding: var(--spacer-5) 0;
             li{
                 cursor: pointer;
             }
