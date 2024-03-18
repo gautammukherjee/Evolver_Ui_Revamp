@@ -47,6 +47,12 @@ tspan{
         margin-right: 0;
         margin-top: 0;
         margin-bottom: 0;
+        height:100vh;
+        max-width: none;
+
+        &.modal-xl{
+            max-width:80%;
+        }
 
         .modal-content {
             height: 100%;
