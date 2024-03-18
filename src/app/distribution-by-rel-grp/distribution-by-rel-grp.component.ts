@@ -342,96 +342,167 @@ export class DistributionByRelGrpComponent implements OnInit {
 
   drawColumnChart(type: any) {
     if (type == 'bar') {
-      var chkVal = false
-    } else {
-      var chkVal = true
-    }
-    console.log("chkVal", chkVal);
+      // var chkVal = false;
 
-    Highcharts.chart('container', <any>{
-      chart: {
-        polar: chkVal,
-        type: 'column',
-        // marginBottom: 120
-      },
-      // chart: {
-      //   type: 'column',
-      //   plotBorderWidth: 1,
-      //   marginLeft: 100
-      // },
-
-      title: {
-        text: 'Distribution by Relation Group'
-      },
-      accessibility: {
-        announceNewData: {
-          enabled: true
-        }
-      },
-      xAxis: {
-        categories: this.categories,
-        labels: {
-          style: {
-            fontSize: '11px',
-            fontFamily: 'Verdana, sans-serif'
-          },
-          // distance: ((chkVal == true) ? '110%' : '60%'),
-          // y: ((chkVal == true) ? 5 : 2)
-        }
-      },
-      yAxis: {
-        type: 'logarithmic',
-        title: {
-          text: 'Article Count',
+      Highcharts.chart('container', <any>{
+        chart: {
+          // polar: chkVal,
+          type: 'column',
+          // marginBottom: 120
         },
-        // min: 0,
-        // endOnTick: false,
-        // showLastLabel: true,
-        // labels: {
-        //   format: '{value}%'
+        // chart: {
+        //   type: 'column',
+        //   plotBorderWidth: 1,
+        //   marginLeft: 100
         // },
-        // reversedStacks: false
-      },
-      legend: {
-        // align: 'left',
-        // x: 240,
-        verticalAlign: 'bottom',
-        align: 'center',
-        x: 0,
-        y: 0
-        // labelFormatter: function() {
-        //   return categories[0]
-        // },
-      },
-      tooltip: {
-        format: '<b>{key}</b><br/>{series.name}: {y}<br/>' //+ 'Total: {point.stackTotal}'          
-      },
-      plotOptions: {
-        // column: {
-        //   stacking: "normal"
-        // },
-        series: {
-          borderWidth: 0,
-          dataLabels: {
-            enabled: true,
-            format: '{point.y}'
+
+        title: {
+          text: 'Distribution by Relation Group'
+        },
+        accessibility: {
+          announceNewData: {
+            enabled: true
+          }
+        },
+        xAxis: {
+          categories: this.categories,
+          labels: {
+            style: {
+              fontSize: '11px',
+              fontFamily: 'Verdana, sans-serif'
+            },
+            // distance: ((chkVal == true) ? '110%' : '60%'),
+            // y: ((chkVal == true) ? 5 : 2)
+          }
+        },
+        yAxis: {
+          type: 'logarithmic',
+          title: {
+            text: 'Article Count',
           },
-          // stacking: "normal",
-          cursor: 'pointer',
-          point: {
-            events: {
-              click: (event: any) => {
-                // console.log(event);
-                this.modalRef = this.modalService.open(this.show_popup_event, { size: 'xl', keyboard: false, backdrop: 'static' });
-                this.onRegionSelection(event, type);
+          // min: 0,
+          // endOnTick: false,
+          // showLastLabel: true,
+          // labels: {
+          //   format: '{value}%'
+          // },
+          // reversedStacks: false
+        },
+        legend: {
+          // align: 'left',
+          // x: 240,
+          verticalAlign: 'bottom',
+          align: 'center',
+          x: 0,
+          y: 0
+          // labelFormatter: function() {
+          //   return categories[0]
+          // },
+        },
+        tooltip: {
+          format: '<b>{key}</b><br/>{series.name}: {y}<br/>' //+ 'Total: {point.stackTotal}'          
+        },
+        plotOptions: {
+          // column: {
+          //   stacking: "normal"
+          // },
+          series: {
+            borderWidth: 0,
+            dataLabels: {
+              enabled: true,
+              format: '{point.y}'
+            },
+            // stacking: "normal",
+            cursor: 'pointer',
+            point: {
+              events: {
+                click: (event: any) => {
+                  // console.log(event);
+                  this.modalRef = this.modalService.open(this.show_popup_event, { size: 'xl', keyboard: false, backdrop: 'static' });
+                  this.onRegionSelection(event, type);
+                }
               }
-            }
+            },
+          }
+        },
+        series:
+          this.finalLevelData
+      });
+    } else {
+      // var chkVal = true;
+      Highcharts.chart('container', <any>{
+        chart: {
+          polar: true,
+          type: 'column',
+          // marginBottom: 120
+        },
+        // chart: {
+        //   type: 'column',
+        //   plotBorderWidth: 1,
+        //   marginLeft: 100
+        // },
+
+        title: {
+          text: 'Distribution by Relation Group'
+        },
+        accessibility: {
+          announceNewData: {
+            enabled: true
+          }
+        },
+        xAxis: {
+          categories: this.categories,
+          labels: {
+            style: {
+              fontSize: '11px',
+              fontFamily: 'Verdana, sans-serif'
+            },
+            distance: '110%',
+            y: 5
+          }
+        },
+        yAxis: {
+          type: 'logarithmic',
+          title: {
+            text: 'Article Count',
           },
-        }
-      },
-      series:
-        this.finalLevelData
-    });
+        },
+        legend: {
+          // align: 'left',
+          // x: 240,
+          verticalAlign: 'bottom',
+          align: 'center',
+          x: 0,
+          y: 0
+        },
+        tooltip: {
+          format: '<b>{key}</b><br/>{series.name}: {y}<br/>' //+ 'Total: {point.stackTotal}'          
+        },
+        plotOptions: {
+          series: {
+            borderWidth: 0,
+            dataLabels: {
+              enabled: true,
+              format: '{point.y}'
+            },
+            // stacking: "normal",
+            cursor: 'pointer',
+            point: {
+              events: {
+                click: (event: any) => {
+                  // console.log(event);
+                  this.modalRef = this.modalService.open(this.show_popup_event, { size: 'xl', keyboard: false, backdrop: 'static' });
+                  this.onRegionSelection(event, type);
+                }
+              }
+            },
+          }
+        },
+        series:
+          this.finalLevelData
+      });
+    }
+    // console.log("chkVal", chkVal);
 
     this.graphLoader = false;
   }
