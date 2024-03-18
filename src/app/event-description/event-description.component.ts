@@ -413,7 +413,7 @@ export class EventDescriptionComponent implements OnInit {
         // }
         if ($element == "edgeNeCount") {
           this.loaderArticle = true;
-          this.modalRef = this.modalService.open(this.articleModal_Detail, { size: 'xl', keyboard: false, backdrop: 'static' });
+          this.modalRef = this.modalService.open(this.articleModal_Detail, { size: 'xl', windowClass:'rightWindow', keyboard: false, backdrop: 'static' });
           this.ArticlePopup(field.edgeNeId, field.sourcenode_name, field.destinationnode_name, field.edgeTypesID, field.level);
         }
         if ($element == "ctLists") {
