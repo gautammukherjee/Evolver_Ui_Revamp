@@ -344,8 +344,9 @@ export class EventDescriptionComponent implements OnInit {
                 temps["rank_score"] = (event.rank_score != null ? event.rank_score : 'N/A');
                 temps["edgeTypesID"] = edgeTypeIdsPost;
                 temps["edgeNeId"] = edgeTypeNeIdsPost;
-                temps["edgeNeCount"] = "<button class='btn btn-sm btn-primary'><i class='bi bi-card-heading'></i>&nbsp;Articles</button> &nbsp;";
-                temps["ctLists"] = "<button class='btn btn-sm btn-primary'><i class='bi bi-card-heading'></i>&nbsp;CT Lists</button> &nbsp;";
+                // temps["edgeNeCount"] = event.pmids + "&nbsp;&nbsp;<span class='btn btn-sm btn-primary'><i class='bi bi-card-heading'></i></span>";
+                temps["edgeNeCount"] = "<span class='btn btn-sm btn-primary'><i class='bi bi-list'></i></span>";
+                // temps["ctLists"] = "<button class='btn btn-sm btn-primary'><i class='bi bi-card-heading'></i>&nbsp;CT Lists</button> &nbsp;";
                 this.masterListsDataDetailsLoaded.push(temps);
               });
               this.masterListsDataDetailsCombined = this.masterListsDataDetailsLoaded;
@@ -413,7 +414,7 @@ export class EventDescriptionComponent implements OnInit {
         // }
         if ($element == "edgeNeCount") {
           this.loaderArticle = true;
-          this.modalRef = this.modalService.open(this.articleModal_Detail, { size: 'xl', windowClass:'rightWindow', keyboard: false, backdrop: 'static' });
+          this.modalRef = this.modalService.open(this.articleModal_Detail, { size: 'xl', windowClass: 'rightWindow', keyboard: false, backdrop: 'static' });
           this.ArticlePopup(field.edgeNeId, field.sourcenode_name, field.destinationnode_name, field.edgeTypesID, field.level);
         }
         if ($element == "ctLists") {
@@ -852,8 +853,9 @@ export class EventDescriptionComponent implements OnInit {
                 temps["rank_score"] = (event.rank_score != null ? event.rank_score : 'N/A');
                 temps["edgeTypesID"] = edgeTypeIdsPost;
                 temps["edgeNeId"] = edgeTypeNeIdsPost;
-                temps["edgeNeCount"] = "<button class='btn btn-sm btn-primary'><i class='bi bi-card-heading'></i>&nbsp;Articles</button> &nbsp;";
-                temps["ctLists"] = "<button class='btn btn-sm btn-primary'><i class='bi bi-card-heading'></i>&nbsp;CT Lists</button> &nbsp;";
+                // temps["edgeNeCount"] = event.pmids + "&nbsp;&nbsp;<span class='btn btn-sm btn-primary'><i class='bi bi-card-heading'></i></span>";
+                temps["edgeNeCount"] = "<span class='btn btn-sm btn-primary'><i class='bi bi-list'></i></span>";
+                // temps["ctLists"] = "<button class='btn btn-sm btn-primary'><i class='bi bi-card-heading'></i>&nbsp;CT Lists</button> &nbsp;";
                 this.masterListsDataDetailsExtra.push(temps);
                 j++;
               });
@@ -1347,8 +1349,8 @@ export class EventDescriptionComponent implements OnInit {
     console.log("elem1: ", elem);
     console.log("elem2: ", event.target.checked);
 
-    let newArray:any = [];
-    let selectedRankNodes:any=[];
+    let newArray: any = [];
+    let selectedRankNodes: any = [];
 
     if (event.target.checked) {
       selectedRankNodes.push(elem);
@@ -1357,13 +1359,13 @@ export class EventDescriptionComponent implements OnInit {
       console.log("chk1: ", this.masterListsDataDetailsCombined);
       console.log("chk1 length: ", this.masterListsDataDetailsCombined.length);
 
-      newArray = this.masterListsDataDetailsCombined.filter((obj:any) => selectedRankNodes.some((d: any) =>
+      newArray = this.masterListsDataDetailsCombined.filter((obj: any) => selectedRankNodes.some((d: any) =>
         d == obj.pmidCount
       ));
       console.log("chk2: ", newArray);
       console.log("chk2Length: ", newArray.length);
 
-      
+
     } else {
       console.log("chk2: ", this.masterListsDataDetailsCombined);
       // this.selectedRankNodes.splice(this.selectedRankNodes.indexOf(elem), 1);

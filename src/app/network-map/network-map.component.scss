@@ -14,35 +14,39 @@ ng2-cytoscape {
 .map-zoom-btngrp {
     position: absolute;
     right: 0;
+    top:0;
     z-index: 8;
     display: flex;
     align-items: center;
 }
 
-.degree-combinations-badge{
+.degree-combinations-badge {
     display: flex;
     column-gap: 10px;
 }
 
-.rank-dropdown{
+.rank-dropdown {
     position: absolute;
-    top:0;
-    right:10px;
-    button{
+    top: 0;
+    right: 10px;
+
+    button {
         text-align: left;
         // background-color: var(--filter-bar-bg) !important;
         // color: var(--text-white-all) !important;
         height: 26px;
         line-height: 16px;
     }
-    .dropdown-menu{
+
+    .dropdown-menu {
         background-color: #f4f5f5;
-        li{
+
+        li {
             font-size: 13px;
             display: flex;
             align-items: center;
 
-            input{
+            input {
                 margin-right: 5px;
             }
         }
@@ -53,7 +57,7 @@ ng2-cytoscape {
     // position: fixed;
     // margin: auto;
     // width: 350px;
-    height: calc(100vh - 70px);
+    height: calc(100vh - 0px);
     // -webkit-transform: translate3d(0%, 0, 0);
     // -ms-transform: translate3d(0%, 0, 0);
     // -o-transform: translate3d(0%, 0, 0);
@@ -72,7 +76,7 @@ ng2-cytoscape {
 
 .modal.right .modal-content {
     height: 100%;
-    overflow-y: auto;
+    // overflow-y: auto;
     // background-color: #fafbfc;
     background-color: #FCFCF2;
     color: lightgray;
@@ -95,16 +99,21 @@ ng2-cytoscape {
 }
 
 .modal-content {
-    border-radius: 0;
+    border-radius: 12px;
     border: none;
+    padding: 2px 15px;
 }
 
 .modal-header {
     border-bottom-color: #EEEEEE;
-    background-color: #32404E;
-    color: #fff;
-    display: inline !important;
+    // background-color: #32404E;
+    color: #000;
+    // display: inline !important;
 }
+
+// .customTable button {
+//     background-color: #EEEEEE !important;
+// }
 
 .close span {
     color: #fff;
@@ -241,55 +250,63 @@ ng2-cytoscape {
     // }
 }
 
-.network-map-legands{
+.network-map-legands {
     position: absolute;
     right: 10px;
     top: 50px;
 
-    .leg-row{
+    .leg-row {
         display: flex;
         align-items: center;
         column-gap: 5px;
-        .leg-box{
-            width:10px;
+
+        .leg-box {
+            width: 10px;
             min-width: 10px;
-            height:10px;
+            height: 10px;
             min-height: 10px;
-            
+
         }
-        .leg-box-target{
-            width:10px;
+
+        .leg-box-target {
+            width: 10px;
             min-width: 10px;
-            height:10px;
+            height: 10px;
             min-height: 10px;
-            
+
         }
-        .leg-name{
+
+        .leg-name {
             font-size: 11px;
             color: #000;
         }
 
-        &:nth-child(1){
-            .leg-box{
+        &:nth-child(1) {
+            .leg-box {
                 background-color: #BF63A2;
             }
-            .leg-box-target{
+
+            .leg-box-target {
                 background-color: #85C9E8;
             }
         }
-        &:nth-child(2){
-            .leg-box{
+
+        &:nth-child(2) {
+            .leg-box {
                 background-color: #8ceb34;
             }
-            .leg-box-target{
+
+            .leg-box-target {
                 background-color: #e4cf15;
             }
         }
-        &:nth-child(3){
-            .leg-box{
+
+        &:nth-child(3) {
+            .leg-box {
                 background-color: #00FFFF;
             }
-            .leg-box-target{
+
+            .leg-box-target {
                 background-color: #f7786b;
             }
         }
@@ -320,8 +337,8 @@ ng2-cytoscape {
     align-items: center;
     justify-content: space-between;
 
-    
-    span{
+
+    span {
         padding: 4px 10px;
         font-size: 13px;
         font-weight: 500;
@@ -339,8 +356,8 @@ ng2-cytoscape {
     align-items: center;
     justify-content: space-between;
 
-    
-    span{
+
+    span {
         padding: 4px 10px;
         font-size: 13px;
         font-weight: 500;
@@ -358,10 +375,11 @@ ng2-cytoscape {
     align-items: center;
     justify-content: space-between;
 
-    span{
+    span {
         padding: 4px 10px;
         font-size: 13px;
         font-weight: 500;
         background-color: var(--secondaryColor);
     }
 }
+

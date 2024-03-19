@@ -1,12 +1,12 @@
 <div class="card-panel-box">
 
-    <div class="card-panel-box-heading" (click)="reloadInvestigatorCountry()">
+    <div class="card-panel-box-heading">
         Trial Investigator Grouped by Country
         <i class="bi-arrows-expand" [hidden]="!hideCardBody" (click)="reloadInvestigatorCountry()"
-            style="position: absolute;right: 20px;color: white;"></i>
+            style="position: absolute;right: 20px;color: white; cursor: pointer;"></i>
 
         <i class="bi-arrows-collapse" [hidden]="hideCardBody" (click)="reloadInvestigatorCountry()"
-            style="position: absolute;right: 20px;color: white;"></i>
+            style="position: absolute;right: 20px;color: white; cursor: pointer;"></i>
     </div>
 
     <div class="card-panel-box-detail" [hidden]="hideCardBody">

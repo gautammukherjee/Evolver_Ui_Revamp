@@ -1,11 +1,11 @@
 <div class="card-panel-box">
-    <div class="card-panel-box-heading" (click)="reloadInvestigatorRelsData()">
+    <div class="card-panel-box-heading">
         Unique Clinical Trials Data
         <i class="bi-arrows-expand" [hidden]="!hideCardBody" (click)="reloadInvestigatorRelsData()"
-            style="position: absolute;right: 20px;color: white;"></i>
+            style="position: absolute;right: 20px;color: white; cursor: pointer;"></i>
 
         <i class="bi-arrows-collapse" [hidden]="hideCardBody" (click)="reloadInvestigatorRelsData()"
-            style="position: absolute;right: 20px;color: white;"></i>
+            style="position: absolute;right: 20px;color: white; cursor: pointer;"></i>
     </div>
 
     <div class="card-panel-box-detail" [hidden]="hideCardBody">

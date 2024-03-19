@@ -5,10 +5,10 @@
         <!-- <div id="particles-js" *ngIf="chkSelectEntities || masterListsData.length==0"></div> -->
         <!-- Comment is particles not required -->
 
-        <div class="customTable">
+        <div class="">
             <!--<h4>Network Map for <span style="text-transform: uppercase;"> {{mapTypes}} </span></h4>-->
             <!-- <h4 style="text-align: center;background-color: #7880BA;padding: 10px; color:#fff;">Network Map </h4> -->
-            
+
             <div class="dropdown rank-dropdown"
                 title="Rank establishes the probability of a destination term or entity being the closest match to the entity type; it is an independent measure and does not dictate the order of the combinations."
                 alt="Rank establishes the probability of a destination term or entity being the closest match to the entity type; it is an independent measure and does not dictate the order of the combinations.">
@@ -72,8 +72,7 @@
                         <span class="badge text-white">{{masterListsDataDetailsLengthLevelTwo}}</span></span>
                     <span class="text-white p-1 mr-2 level3-title"
                         *ngIf="thirdLoadApiResult!=undefined && masterListsDataDetailsLengthLevelThree > 0">3rd-degree
-                        <span
-                            class="badge text-white">{{masterListsDataDetailsLengthLevelThree}}</span></span>
+                        <span class="badge text-white">{{masterListsDataDetailsLengthLevelThree}}</span></span>
                 </div>
                 <div [ngClass]="isNetworkMapFullScreen == true ? 'network-map-full-screen' : ''">
 
@@ -137,7 +136,7 @@
                         </div>
                     </div>
 
-                    <div style="height: 100%; width: 99%; float: left; overflow: auto; overflow-y: hidden">
+                    <div style="margin-top:15px; height: 100%; width: 99%; float: left; overflow: auto; overflow-y: hidden">
                         <!-- <ng2-cytoscape [elements]="graphData" [layout]="layout" (select)="nodeChange($event)"></ng2-cytoscape> -->
                         <!-- [ngClass]="isNetworkMapFullScreen == true ? 'full-screen' : ''" -->
                         <div class="network-map-wrapper">
@@ -166,14 +165,18 @@
                     </div>
                     <!-- modal Node -->
 
-                    <div class="modal overlay right fade modal-nodedetails" id="myModalEdge" tabindex="-1" role="dialog">
+                    <div class="modal overlay right fade modal-nodedetails" id="myModalEdge" tabindex="-1"
+                        role="dialog">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>-->
+                                    <!-- <h5 class="modal-title">Details</h5> -->
                                     <h5 class="modal-title">Details</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
 

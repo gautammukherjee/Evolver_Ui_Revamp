@@ -286,23 +286,24 @@ export class NgCytoComponent implements OnChanges {
                                 var pubmedBaseUrl = "https://www.ncbi.nlm.nih.gov/pubmed/";
                                 // this.pubmedURLsDownload = "";
 
+                                this.pubmedEdgeDetails += '<div class="source-details">';
                                 this.pubmedEdgeDetails += '<div style="color: #BF63A2;"><strong>Source Name</strong></div>';
                                 this.pubmedEdgeDetails += '<div style="padding-bottom:1px; color: #BF63A2;">' + element._private.source[0]._private.data.name + '</div>';
                                 this.pubmedEdgeDetails += '<div style="color: #4B5DA1;"><strong>Destination Name</strong></div>';
                                 this.pubmedEdgeDetails += '<div style="padding-bottom:10px; color: #4B5DA1;">' + edge.name + '</div>';
+                                this.pubmedEdgeDetails += "</div>";
 
-                                this.pubmedEdgeDetails += "<div style='overflow:auto;max-height:525px;border:1px solid;padding:2px 4px;'>";
+                                this.pubmedEdgeDetails += "<div class='pmid-listing' style='overflow:auto;max-height:525px;border:1px solid;padding:2px 4px;'>";
                                 this.edgeTypeNameData.forEach((PMID: any) => {
-
                                     // const myFormattedDate = this.pipe.transform(PMID.publication_date, 'short');
                                     // console.log("PMID:: ", PMID.edge_type_name);
-                                    // this.pubmedEdgeDetails += "<div>";
-                                    this.pubmedEdgeDetails += "<div style='list-style: none; font-size: 14px; color:#32404E'><strong>PMID: </strong> <a target='_blank' style='color: #BF63A2 !important;' href='" + pubmedBaseUrl + PMID.pmid + "'>" + PMID.pmid + "</a></div>";
-                                    this.pubmedEdgeDetails += "<div style='font-size: 14px;color:#32404E'><strong>Edge Type: </strong>" + PMID.edge_type_name + "</div>";
-                                    this.pubmedEdgeDetails += "<div style='font-size: 14px;color:#32404E'><strong>Title: </strong>" + PMID.title + "</div>";
-                                    this.pubmedEdgeDetails += "<div style='font-size: 14px; color:#32404E'><strong>Publication Date : </strong>" + PMID.publication_date + "</div>";
-                                    this.pubmedEdgeDetails += "<hr style='color:#32404E'/>";
-                                    // this.pubmedEdgeDetails += "</div>";
+                                    this.pubmedEdgeDetails += "<div class='pmid-single'>";
+                                    this.pubmedEdgeDetails += "<p><strong>PMID: </strong><span><a target='_blank' style='color: #BF63A2 !important;' href='" + pubmedBaseUrl + PMID.pmid + "'>" + PMID.pmid + "</a></span></p>";
+                                    this.pubmedEdgeDetails += "<p><strong>Edge Type: </strong><span>" + PMID.edge_type_name + "</span></p>";
+                                    this.pubmedEdgeDetails += "<p><strong>Title: </strong><span>" + PMID.title + "</span></p>";
+                                    this.pubmedEdgeDetails += "<p><strong>Publication Date: </strong><span>" + PMID.publication_date + "</span></p>";
+
+                                    this.pubmedEdgeDetails += "</div>";
                                 });
                                 // this.pubmedEdgeDetails += "<div style='clear: both;'><hr/></div>";
                                 this.pubmedEdgeDetails += "</div>";

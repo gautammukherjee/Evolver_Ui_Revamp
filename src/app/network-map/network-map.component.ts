@@ -83,6 +83,7 @@ export class NetworkMapComponent implements OnInit {
   public selectedRankNodes: any = [1];
   public isLightTheme = true;
   noSourceNodeSelected: number=0;
+  sourceHeadings:boolean=true;
 
   constructor(
     private globalVariableService: GlobalVariableService,
