@@ -45,7 +45,7 @@ h2 {
         min-width: 230px;
         margin-left: -245px;
 
-        &.open{
+        &.open {
             margin-left: 0;
         }
 
@@ -70,12 +70,13 @@ h2 {
         width: 100%;
         padding: var(--spacer-15);
         margin-left: var(--spacer-25);
-        border:1px solid var(--secondaryColor)
+        border: 1px solid var(--secondaryColor)
     }
 }
 
 .custom-tabs-wrapper {
     position: relative;
+
     .nav-tabs {
         border: none;
         column-gap: var(--spacer-10);
@@ -96,7 +97,11 @@ h2 {
 
             &.pmid-button {
                 button {
-                    background-color: var(--primaryDarkColor);
+                    background-color: var(--primaryColor);
+
+                    &.active {
+                        background-color: var(--primaryDarkColor);
+                    }
                 }
             }
         }
@@ -160,6 +165,7 @@ h2 {
     .footer-bar {
         display: flex;
         align-items: center;
+
         .custom-btn {
             @include buttonsPrimary(12px, var(--spacer-5), var(--spacer-25));
         }

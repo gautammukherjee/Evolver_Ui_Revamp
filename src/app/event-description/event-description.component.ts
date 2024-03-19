@@ -854,7 +854,7 @@ export class EventDescriptionComponent implements OnInit {
                 temps["edgeTypesID"] = edgeTypeIdsPost;
                 temps["edgeNeId"] = edgeTypeNeIdsPost;
                 // temps["edgeNeCount"] = event.pmids + "&nbsp;&nbsp;<span class='btn btn-sm btn-primary'><i class='bi bi-card-heading'></i></span>";
-                temps["edgeNeCount"] = "<span class='btn btn-sm btn-primary'><i class='bi bi-list'></i></span>";
+                temps["edgeNeCount"] = "<span class='btn btn-sm btn-primary' style='background-color: var(--bs-btn-hover-bg)'><i class='bi bi-list'></i></span>";
                 // temps["ctLists"] = "<button class='btn btn-sm btn-primary'><i class='bi bi-card-heading'></i>&nbsp;CT Lists</button> &nbsp;";
                 this.masterListsDataDetailsExtra.push(temps);
                 j++;
