@@ -136,6 +136,13 @@ export class EventDescriptionComponent implements OnInit {
   // firstAPI: any;
   // secondAPI: any;
 
+  firstUniquePMIDApiResult: any;
+  secondUniquePMIDApiResult: any;
+  thirdUniquePMIDApiResult: any;
+  masterListsDataUniquePMIDOne: number = 0;
+  masterListsDataUniquePMIDTwo: number = 0;
+  masterListsDataUniquePMIDThree: number = 0;
+
   wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
 
   fileName: string = '';
@@ -227,17 +234,24 @@ export class EventDescriptionComponent implements OnInit {
       ///////////////// Start To get the complete data for level 1 and level 2 /////////////////////////////
       if (_filterParams.nnrt_id != undefined) {
         const firstAPIsFull = this.nodeSelectsService.getMasterListsRevampLevelOneCount(this.filterParams);
+        const firstAPIsPMIDCountFull = this.nodeSelectsService.getMasterListsRevampLevelOneUniquePMIDCount(this.filterParams);
         let combinedDataAPIFull;
+        let combinedDataAPIUniquePMID;
         if (_filterParams.nnrt_id2 != undefined) {
           const secondAPIFull = this.nodeSelectsService.getMasterListsRevampLevelTwoCount(this.filterParams);
+          const secondAPIsPMIDCountFull = this.nodeSelectsService.getMasterListsRevampLevelTwoUniquePMIDCount(this.filterParams);
           if (_filterParams.nnrt_id3 != undefined) {
             const thirdAPIFull = this.nodeSelectsService.getMasterListsMapRevampLevelThreeCount(this.filterParams);
+            const thirdAPIsPMIDCountFull = this.nodeSelectsService.getMasterListsRevampLevelThreeUniquePMIDCount(this.filterParams);
             combinedDataAPIFull = [firstAPIsFull, secondAPIFull, thirdAPIFull];
+            combinedDataAPIUniquePMID = [firstAPIsPMIDCountFull, secondAPIsPMIDCountFull, thirdAPIsPMIDCountFull];
           } else {
             combinedDataAPIFull = [firstAPIsFull, secondAPIFull];
+            combinedDataAPIUniquePMID = [firstAPIsPMIDCountFull, secondAPIsPMIDCountFull];
           }
         } else {
           combinedDataAPIFull = [firstAPIsFull];
+          combinedDataAPIUniquePMID = [firstAPIsPMIDCountFull];
         }
 
         forkJoin(combinedDataAPIFull) //we can use more that 2 api request 
@@ -259,8 +273,28 @@ export class EventDescriptionComponent implements OnInit {
                 this.masterListsDataDetailsLengthLevelThree = this.thirdCompleteApiResult.masterListsData[0].count;
               }
             });
+
+        forkJoin(combinedDataAPIUniquePMID) //we can use more that 2 api request 
+          .subscribe(
+            result => {
+              console.log("your unique PMID count: ", result);
+              //this will return list of array of the result
+              this.firstUniquePMIDApiResult = result[0];
+              this.secondUniquePMIDApiResult = result[1];
+              this.thirdUniquePMIDApiResult = result[2];
+              console.log("first uniue PMID count: ", this.firstUniquePMIDApiResult);
+              console.log("second uniue PMID count: ", this.secondUniquePMIDApiResult);
+              console.log("third uniue PMID count: ", this.thirdUniquePMIDApiResult);
+              this.masterListsDataUniquePMIDOne = this.firstUniquePMIDApiResult.masterListsUniquePMIDData[0].pmids;
+              if (this.secondUniquePMIDApiResult != undefined) {
+                this.masterListsDataUniquePMIDTwo = this.secondUniquePMIDApiResult.masterListsUniquePMIDData[0].pmids;
+              }
+              if (this.thirdUniquePMIDApiResult != undefined) {
+                this.masterListsDataUniquePMIDThree = this.thirdUniquePMIDApiResult.masterListsUniquePMIDData[0].pmids;
+              }
+            });
       }
-      ///////////////// End To get the complete data for level 1 and level 2 /////////////////////////////
+      ///////////////// End To get the complete data for level 1 and level 2 and level 3 /////////////////////////////
 
       //First Degree Data
       if (_filterParams.nnrt_id != undefined) {

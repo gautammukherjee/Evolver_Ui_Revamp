@@ -82,8 +82,16 @@ export class NetworkMapComponent implements OnInit {
   thirdCompleteApiResult: any;
   public selectedRankNodes: any = [1];
   public isLightTheme = true;
-  noSourceNodeSelected: number=0;
-  sourceHeadings:boolean=true;
+  noSourceNodeSelected: number = 0;
+  sourceHeadings: boolean = true;
+
+  //get the unique PMID count
+  firstUniquePMIDApiResult: any;
+  secondUniquePMIDApiResult: any;
+  thirdUniquePMIDApiResult: any;
+  masterListsDataUniquePMIDOne: number = 0;
+  masterListsDataUniquePMIDTwo: number = 0;
+  masterListsDataUniquePMIDThree: number = 0;
 
   constructor(
     private globalVariableService: GlobalVariableService,
@@ -151,7 +159,7 @@ export class NetworkMapComponent implements OnInit {
       || (_filterParams.source_node3 != undefined && _filterParams.nnrt_id3 != undefined)) {
       this.loadingMap = true;
       this.noDataFoundMap = false;
-      this.noSourceNodeSelected=0;
+      this.noSourceNodeSelected = 0;
 
       this.filterParams = this.globalVariableService.getFilterParams();
       console.log("master map for filter: ", this.filterParams);
@@ -159,18 +167,46 @@ export class NetworkMapComponent implements OnInit {
       ////////////***********/ Start To get the complete data for level 1 and level 2 ************ /////////////////////////
       if (_filterParams.nnrt_id != undefined) {
         const firstAPIsFull = this.nodeSelectsService.getMasterListsMapRevampLevelOneCount(this.filterParams);
+        const firstAPIsPMIDCountFull = this.nodeSelectsService.getMasterListsRevampLevelOneUniquePMIDCount(this.filterParams);
         let combinedDataAPIFull;
+        let combinedDataAPIUniquePMID;
         if (_filterParams.nnrt_id2 != undefined) {
           const secondAPIFull = this.nodeSelectsService.getMasterListsMapRevampLevelTwoCount(this.filterParams);
+          const secondAPIsPMIDCountFull = this.nodeSelectsService.getMasterListsRevampLevelTwoUniquePMIDCount(this.filterParams);
           if (_filterParams.nnrt_id3 != undefined) {
             const thirdAPIFull = this.nodeSelectsService.getMasterListsMapRevampLevelThreeCount(this.filterParams);
+            const thirdAPIsPMIDCountFull = this.nodeSelectsService.getMasterListsRevampLevelThreeUniquePMIDCount(this.filterParams);
             combinedDataAPIFull = [firstAPIsFull, secondAPIFull, thirdAPIFull];
+            combinedDataAPIUniquePMID = [firstAPIsPMIDCountFull, secondAPIsPMIDCountFull, thirdAPIsPMIDCountFull];
           } else {
             combinedDataAPIFull = [firstAPIsFull, secondAPIFull];
+            combinedDataAPIUniquePMID = [firstAPIsPMIDCountFull, secondAPIsPMIDCountFull];
           }
         } else {
           combinedDataAPIFull = [firstAPIsFull];
+          combinedDataAPIUniquePMID = [firstAPIsPMIDCountFull];
         }
+
+        //Get the Unique PMID count on the level wise
+        forkJoin(combinedDataAPIUniquePMID) //we can use more that 2 api request 
+          .subscribe(
+            result => {
+              // console.log("your unique PMID count: ", result);
+              //this will return list of array of the result
+              this.firstUniquePMIDApiResult = result[0];
+              this.secondUniquePMIDApiResult = result[1];
+              this.thirdUniquePMIDApiResult = result[2];
+              console.log("first uniue PMID count: ", this.firstUniquePMIDApiResult);
+              console.log("second uniue PMID count: ", this.secondUniquePMIDApiResult);
+              console.log("third uniue PMID count: ", this.thirdUniquePMIDApiResult);
+              this.masterListsDataUniquePMIDOne = this.firstUniquePMIDApiResult.masterListsUniquePMIDData[0].pmids;
+              if (this.secondUniquePMIDApiResult != undefined) {
+                this.masterListsDataUniquePMIDTwo = this.secondUniquePMIDApiResult.masterListsUniquePMIDData[0].pmids;
+              }
+              if (this.thirdUniquePMIDApiResult != undefined) {
+                this.masterListsDataUniquePMIDThree = this.thirdUniquePMIDApiResult.masterListsUniquePMIDData[0].pmids;
+              }
+            });
 
         forkJoin(combinedDataAPIFull) //we can use more that 2 api request 
           .subscribe(
@@ -279,7 +315,7 @@ export class NetworkMapComponent implements OnInit {
                     this.chkSelectEntities = false;
 
                     if (this.masterListsData.length > 0) {
-                      this.nodesCheckLength = false;                      
+                      this.nodesCheckLength = false;
                     } else {
                       this.nodesCheckLength = true;
                     }
@@ -343,7 +379,7 @@ export class NetworkMapComponent implements OnInit {
                       this.nodeData.push({
                         // data: { id: Math.floor(event.node_id), name: event.node, node_type: event.nodetype, weight: 100, colorCode: event.colourcode, shapeType: 'octagon' },
                         // data: { id: Math.floor(event.id), name: event.name.toLowerCase(), neIds: event.neIds, edgeTypeIds: event.edgeTypeIds, node_type: event.nodeType, weight: 100, colorCode: event.colorNode, shapeType: event.shapeType }
-                        data: { id: Math.floor(event.id), name: event.name, neIds: event.neIds, edgeTypeIds: event.edgeTypeIds, node_type: event.nodeType, weight: 100, colorCode: event.colorNode, shapeType: event.shapeType, colorLabel: (this.isLightTheme==true?'#000':'#fff') }
+                        data: { id: Math.floor(event.id), name: event.name, neIds: event.neIds, edgeTypeIds: event.edgeTypeIds, node_type: event.nodeType, weight: 100, colorCode: event.colorNode, shapeType: event.shapeType, colorLabel: (this.isLightTheme == true ? '#000' : '#fff') }
                       });
                     });
 
@@ -390,7 +426,7 @@ export class NetworkMapComponent implements OnInit {
       this.nodeData = [];
       this.edgeData = [];
       this.drawChart();
-    }else{
+    } else {
       this.noSourceNodeSelected = 1;
     }
   }

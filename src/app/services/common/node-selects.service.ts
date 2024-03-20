@@ -131,6 +131,19 @@ export class NodeSelectsService {
   getMasterListsRevampLevelThreeCount(params: any) {
     return this.http.post(this.API_URL + 'getMasterListsRevampLevelThreeCount', params, httpOptions);
   }
+
+  //new APIs UNIQUE PMID count
+  getMasterListsRevampLevelOneUniquePMIDCount(params: any) {
+    return this.http.post(this.API_URL + 'getMasterListsRevampLevelOneUniquePMIDCount', params, httpOptions);
+  }
+  getMasterListsRevampLevelTwoUniquePMIDCount(params: any) {
+    return this.http.post(this.API_URL + 'getMasterListsRevampLevelTwoUniquePMIDCount', params, httpOptions);
+  }
+  getMasterListsRevampLevelThreeUniquePMIDCount(params: any) {
+    return this.http.post(this.API_URL + 'getMasterListsRevampLevelThreeUniquePMIDCount', params, httpOptions);
+  }
+  //end PMID count
+
   //For download in details page
   getMasterListsRevampEdgeTypeLevelOne(params: any) {
     return this.http.post(this.API_URL + 'getMasterListsRevampEdgeTypeLevelOne', params, httpOptions);
