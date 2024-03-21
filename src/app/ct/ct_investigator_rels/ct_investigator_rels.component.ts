@@ -30,6 +30,7 @@ export class CTInvestigatorRelsComponent implements OnInit {
   hideCardBody: boolean = true;
   itemsPerPage: number = 2;
   notEmptyData: boolean = true;
+  noSourceNodeSelected: number = 0;
 
   constructor(
     private globalVariableService: GlobalVariableService,
@@ -47,6 +48,16 @@ export class CTInvestigatorRelsComponent implements OnInit {
         this.hideCardBody = true;
         // this.getCTDataInvestigatorWithRels();
       }
+
+       this.filterParams = this.globalVariableService.getFilterParams();
+        // console.log("params in CT1: ", this.filterParams);
+        if (this.filterParams.source_node != undefined) {
+          this.noSourceNodeSelected = 0;
+          this.getCTDataInvestigatorWithRels();
+        } else {
+          this.noSourceNodeSelected = 1;
+          this.notEmptyData = true;
+        }
     });
   }
 
@@ -127,7 +138,7 @@ export class CTInvestigatorRelsComponent implements OnInit {
       //showFilter: true,
       // filter: true,
       showFullscreen: true,
-      stickyHeader: true,
+      // stickyHeader: true,
       showExport: true,
       data: this.InvestigatorRelDetailsData,
       // onClickRow: (field: any, row: any, $element: any) => {
