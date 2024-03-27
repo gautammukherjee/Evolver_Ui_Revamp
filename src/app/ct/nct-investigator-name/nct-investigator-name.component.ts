@@ -48,7 +48,7 @@ export class NctInvestigatorNameComponent implements OnInit {
     this.ProceedDoFilterApply?.subscribe(data => {  // Calling from details, details working as mediator
       console.log("event Data in investigator name: ", data);
       if (data === undefined) { // data=undefined true when apply filter from side panel
-        // this.hideCardBody = true;
+        this.hideCardBody = true;
         // this.getCTInvestigatorName();
       }
     });
