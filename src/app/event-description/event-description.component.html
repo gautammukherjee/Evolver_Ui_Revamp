@@ -1,7 +1,7 @@
 <!-- <div class="search-options event-desc-wrapper" infinite-scroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50"
     (scrolled)="onDescScroll()" [scrollWindow]="false"> -->
 <div class="save-query-top-btn" *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">
-    <button class="btn btn-primary btn-sm" (click)="captureScenario(userScenario)">
+    <button class="btn btn-primary btn-sm" (click)="captureScenario(userScenario)" style="border-radius: 25px;">
         <i class="bi bi-sd-card" title="Save"></i>&nbsp;Save Query
     </button>
 </div>
@@ -13,7 +13,7 @@
 <div class="search-options">
     <div class="card-panel-box">
         <div class="customTable" style="border: 0px solid #ddd; min-height:400px;">
-            <div class="text-muted fs-2 text-center mb-4" *ngIf="(masterListsDataDetailsLengthLevelOne==0)">Please
+            <div class="text-muted fs-2 text-center mb-4" *ngIf="(masterListsDataDetailsLengthLevelOne==0)" ><br><br><br><br>Please
                 select
                 entities to
                 generate Details</div>
@@ -45,17 +45,17 @@
 
                         <div class="degree-combinations-badge">
                             <span class="text-white p-1 mr-2 level1-title"
-                                *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">1st-degree
+                                *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">1&deg; Neighbors 
                                 <span class="badge text-white" style="margin-left: 8px;">{{masterListsDataDetailsLengthLevelOne}}</span>
                                 <span class="badge text-white" style="margin-left: 8px; background-color: #e76642" title="Unique PMID Count" alt="Unique PMID Count">{{masterListsDataUniquePMIDOne}}</span>                            
                             </span>
                             <span class="text-white p-1 level2-title"
-                                *ngIf="secondLoadApiResult!=undefined && masterListsDataDetailsLengthLevelTwo > 0">2nd-degree
+                                *ngIf="secondLoadApiResult!=undefined && masterListsDataDetailsLengthLevelTwo > 0">2<sup>&deg;</sup> Neighbors 
                                 <span class="badge text-white" style="margin-left: 8px;">{{masterListsDataDetailsLengthLevelTwo}}</span>
                                 <span class="badge text-white" style="margin-left: 8px; background-color: #e76642" title="Unique PMID Count" alt="Unique PMID Count">{{masterListsDataUniquePMIDTwo}}</span>
                             </span>
                             <span class="text-white p-1 level3-title"
-                                *ngIf="thirdLoadApiResult!=undefined && masterListsDataDetailsLengthLevelThree > 0">3rd-degree
+                                *ngIf="thirdLoadApiResult!=undefined && masterListsDataDetailsLengthLevelThree > 0">3<sup>&deg;</sup> Neighbors 
                                 <span class="badge text-white" style="margin-left: 8px;">{{masterListsDataDetailsLengthLevelThree}}</span>
                                 <span class="badge text-white" style="margin-left: 8px; background-color: #e76642" title="Unique PMID Count" alt="Unique PMID Count">{{masterListsDataUniquePMIDThree}}</span>
                             </span>
