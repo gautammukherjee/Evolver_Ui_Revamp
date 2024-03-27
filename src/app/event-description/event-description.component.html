@@ -1,7 +1,7 @@
 <!-- <div class="search-options event-desc-wrapper" infinite-scroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50"
     (scrolled)="onDescScroll()" [scrollWindow]="false"> -->
 <div class="save-query-top-btn" *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">
-    <button class="btn btn-primary btn-sm" (click)="captureScenario(userScenario)" style="border-radius: 25px;">
+    <button class="btn btn-primary" (click)="captureScenario(userScenario)" style="border-radius: 25px;">
         <i class="bi bi-sd-card" title="Save"></i>&nbsp;Save Query
     </button>
 </div>
@@ -90,11 +90,11 @@
                             <!--<table id="showEventDescription" data-toolbar="#toolbar" data-search="true" data-page-size="50" data-page-list="[10, 25, 50, 100, All]">-->
                             <thead>
                                 <tr>
-                                    <th data-field="news_id" data-sortable="true" width="10%" class="align-middle">#
+                                    <th data-field="news_id" data-sortable="true" width="5%" class="align-middle">#
                                     </th>
-                                    <th data-field="sourcenode_name" data-sortable="true" width="10%"
+                                    <th data-field="sourcenode_name" data-sortable="true" width="15%"
                                         data-filter-control="input">Source</th>
-                                    <th data-field="destinationnode_name" data-sortable="true" width="10%"
+                                    <th data-field="destinationnode_name" data-sortable="true" width="25%"
                                         data-filter-control="input">Destination</th>
                                     <th data-field="level" data-sortable="true" width="10%" data-filter-control="select"
                                         data-tableexport-value="Level" class="align-middle">
@@ -109,7 +109,10 @@
                                         data-filter-control="select" data-tableexport-value="Rank" class="align-middle">
                                         Rank</th>
                                     <!-- <th data-field="edgeNeCount" data-sortable="true" data-filter-control="select" width="10%" class="align-middle">PMID Count</th> -->
-                                    <th data-field="edgeNeCount" width="10%">Articles</th>
+                                    <th data-field="edgeNeCount" width="15%" style="width:100px;" class="align-middle">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div style="position: absolute;z-index:1001;margin-top: 8px;" class="text-center">Articles</div>
+                                    </th>
                                     <!-- <th data-field="ctLists" width="10%"> -->
 
                                     <!-- <th data-field="edgeNe" data-sortable="true" width="10%">
