@@ -17,15 +17,16 @@
             <!-- <div class="overlay" *ngIf="loadingCTInvestigatorName">
                 <img style="margin:185px 653px;" src="../../assets/images/loader_big.gif" />
             </div> -->
-            <div class="card">
+            <div class="card" *ngIf="noSourceNodeSelected==0">
                 <div class="card-body">
-                    <div class="table-responsive-lg custom-fixed-header-table" style="max-height:400px; overflow-y: scroll;">
-                        
+                    <div class="table-responsive-lg custom-fixed-header-table"
+                        style="max-height:400px; overflow-y: scroll;">
+
                         <table id="CT_Investigator_name_data" data-toolbar="#toolbar" data-search="true"
-                        data-show-export="true" data-export-options='{"fileName": "evolverAI"}'
-                        data-show-columns="true" data-page-size="1000" data-filter-control="true"
-                        data-page-list="[10, 25, 50, 100, 500, all]" class="table-striped">
-                        
+                            data-show-export="true" data-export-options='{"fileName": "evolverAI"}'
+                            data-show-columns="true" data-page-size="1000" data-filter-control="true"
+                            data-page-list="[10, 25, 50, 100, 500, all]" class="table-striped">
+
                             <thead>
                                 <tr>
                                     <th data-field="investigator_name" data-sortable="true" data-visible="true"

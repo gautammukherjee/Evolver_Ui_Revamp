@@ -34,6 +34,7 @@ export class NctInvestigatorNameComponent implements OnInit {
   // public isloading: boolean = false;
   ctInvestigatorNameData: any = [];
   ctInvestigatorNameDetailsData: any = [];
+  noSourceNodeSelected: number = 0;
 
   constructor(
     private globalVariableService: GlobalVariableService,
@@ -126,7 +127,14 @@ export class NctInvestigatorNameComponent implements OnInit {
 
     this.hideCardBody = !this.hideCardBody;
     this.filterParams = this.globalVariableService.getFilterParams();
-    if (!this.hideCardBody)
+
+    if (this.filterParams.source_node != undefined) {
+      this.noSourceNodeSelected = 0;
+      if (!this.hideCardBody)
       this.getCTInvestigatorName();
+    } else {
+      this.noSourceNodeSelected = 1;
+    }
+
   }
 }
