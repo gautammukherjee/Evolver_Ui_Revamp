@@ -61,24 +61,38 @@
             </div>
 
             <!--<div class="table-responsive" *ngIf="nodesCheck">-->
-            <div class="table-responsive position-relative" *ngIf="noSourceNodeSelected==0">
+            <div class="table-responsive position-relative">
 
                 <div class="degree-combinations-badge">
                     <span class="text-white p-1 mr-2 level1-title"
                         *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">1st-degree
-                        <span class="badge text-white" style="margin-left: 8px;">{{masterListsDataDetailsLengthLevelOne}}</span>
-                        <span class="badge text-white" style="margin-left: 8px; background-color: var(--primaryColor);" title="Unique PMID Count" alt="Unique PMID Count">{{masterListsDataUniquePMIDOne}}</span>
+                        <span class="badge text-white"
+                            style="margin-left: 8px;">{{masterListsDataDetailsLengthLevelOne}}</span>
+                        <span class="badge text-white" style="margin-left: 8px; background-color: #e76642;"
+                            title="Unique PMID Count" alt="Unique PMID Count">{{masterListsDataUniquePMIDOne}}</span>
                     </span>
                     <span class="text-white p-1 mr-2 level2-title"
                         *ngIf="secondLoadApiResult!=undefined && masterListsDataDetailsLengthLevelTwo > 0">2nd-degree
-                        <span class="badge text-white" style="margin-left: 8px;">{{masterListsDataDetailsLengthLevelTwo}}</span>
-                        <span class="badge text-white" style="margin-left: 8px; background-color: var(--primaryColor);" title="Unique PMID Count" alt="Unique PMID Count">{{masterListsDataUniquePMIDTwo}}</span>
+                        <span class="badge text-white"
+                            style="margin-left: 8px;">{{masterListsDataDetailsLengthLevelTwo}}</span>
+                        <span class="badge text-white" style="margin-left: 8px; background-color: #e76642;"
+                            title="Unique PMID Count" alt="Unique PMID Count">{{masterListsDataUniquePMIDTwo}}</span>
                     </span>
                     <span class="text-white p-1 mr-2 level3-title"
                         *ngIf="thirdLoadApiResult!=undefined && masterListsDataDetailsLengthLevelThree > 0">3rd-degree
-                        <span class="badge text-white" style="margin-left: 8px;">{{masterListsDataDetailsLengthLevelThree}}</span>
-                        <span class="badge text-white" style="margin-left: 8px; background-color: var(--primaryColor);" title="Unique PMID Count" alt="Unique PMID Count">{{masterListsDataUniquePMIDThree}}</span>
+                        <span class="badge text-white"
+                            style="margin-left: 8px;">{{masterListsDataDetailsLengthLevelThree}}</span>
+                        <span class="badge text-white" style="margin-left: 8px; background-color: #e76642"
+                            title="Unique PMID Count" alt="Unique PMID Count">{{masterListsDataUniquePMIDThree}}</span>
                     </span>
+                </div>
+                <div class="leg-row-count">
+                    <div><label style="margin-left: 4px;">Combination</label>
+                        <div class="leg-box-count"></div>
+                    </div>
+                    <div><label style="margin-left: 4px;">PMID Count</label>
+                        <div class="leg-box-pmid-count"></div>
+                    </div>
                 </div>
                 <div [ngClass]="isNetworkMapFullScreen == true ? 'network-map-full-screen' : ''">
 
@@ -142,7 +156,8 @@
                         </div>
                     </div>
 
-                    <div style="margin-top:15px; height: 100%; width: 99%; float: left; overflow: auto; overflow-y: hidden">
+                    <div
+                        style="margin-top:15px; height: 100%; width: 99%; float: left; overflow: auto; overflow-y: hidden">
                         <!-- <ng2-cytoscape [elements]="graphData" [layout]="layout" (select)="nodeChange($event)"></ng2-cytoscape> -->
                         <!-- [ngClass]="isNetworkMapFullScreen == true ? 'full-screen' : ''" -->
                         <div class="network-map-wrapper">

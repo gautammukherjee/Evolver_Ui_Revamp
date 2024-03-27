@@ -3,7 +3,7 @@
 
   <div class="degree-filers-wrapper">
     <div class="degree-single">
-      <div class="degree-indicator">1<sup>st</sup> Degree</div>
+      <div class="degree-indicator" style="text-align: center;">1<sup>st</sup> Degree</div>
       <div class="degree-input-wrapper">
         <!-- <input type="text" class="form-control" placeholder="Disease to Gene" /> -->
         <div class="filter-single">
@@ -35,7 +35,7 @@
       <div [ngStyle]="{'display' : showLevels == false ? 'none' : 'block'}">
         <div *ngIf="currentLevel > 1" class="horizonal-filter-bar">
           <div class="degree-single">
-            <div class="degree-indicator">2<sup>nd</sup> Degree</div>
+            <div class="degree-indicator" style="text-align: center;">2<sup>nd</sup> Degree</div>
             <div class="degree-input-wrapper">
               <app-filter-node-select-level2 (onSelectNode2)='nodeChanged2("nodeLevel2Filter")'
                 [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-node-select-level2>
@@ -68,7 +68,7 @@
       <div [ngStyle]="{'display' : showLevels == false ? 'none' : 'block'}">
         <div *ngIf="currentLevel > 2" class="horizonal-filter-bar" style="width: 100%;margin-top: 20px;">
           <div class="degree-single">
-            <div class="degree-indicator">3<sup>rd</sup> Degree</div>
+            <div class="degree-indicator" style="text-align: center;">3<sup>rd</sup> Degree</div>
             <div class="degree-input-wrapper">
               <app-filter-node-select-level3 (onSelectNode3)='nodeChanged3("nodeLevel3Filter")'
                 [UpdateFilterDataApply]="doUpdateFilterDataApply"></app-filter-node-select-level3>
@@ -140,7 +140,7 @@
           </li>
 
 
-          <li class="nav-item pmid-button" role="presentation">
+          <li class="nav-item" role="presentation">
             <button class="nav-link" id="ct-tab" data-bs-toggle="tab" data-bs-target="#clinicalTrials" type="button"
               role="tab" aria-controls="clinicalTrials" aria-selected="false"
               (click)="onSubmitTab($event, 'ct')">CT</button>
@@ -170,6 +170,7 @@
             <app-ct_investigator_rels [ProceedDoFilterApply]="doFilterApplyTab5"></app-ct_investigator_rels>
             <app-ct_disease_assoc [ProceedDoFilterApply]="doFilterApplyTab5"></app-ct_disease_assoc>
             <app-investigator-by-country [ProceedDoFilterApply]="doFilterApplyTab5"></app-investigator-by-country>            
+            <app-nct-investigator-name [ProceedDoFilterApply]="doFilterApplyTab5"></app-nct-investigator-name>            
           </div>
         </div>
 

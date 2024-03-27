@@ -55,7 +55,8 @@ export class NctInvestigatorNameComponent implements OnInit {
   }
 
   getCTInvestigatorName() {
-    this.filterParams = this.globalVariableService.getFilterParams({ "offSetValue": 0, "limitValue": this.itemsPerPage });
+    // this.filterParams = this.globalVariableService.getFilterParams({ "offSetValue": 0, "limitValue": this.itemsPerPage });
+    this.filterParams = this.globalVariableService.getFilterParams();
     console.log("params in CT investi name: ", this.filterParams);
 
     if (this.filterParams.source_node != undefined) {
@@ -63,7 +64,7 @@ export class NctInvestigatorNameComponent implements OnInit {
       this.loadingCTInvestigatorName = true;
 
       //console.log("filterparams: ", _filterParams);
-      this.nodeSelectsService.getCTInvestigatorName(this.filterParams).subscribe(
+      this.nodeSelectsService.getCTInvestigatorName_new(this.filterParams).subscribe(
         data => {
           //console.log("data: ", data);
           this.result = data;
@@ -76,6 +77,8 @@ export class NctInvestigatorNameComponent implements OnInit {
             var temps: any = {};
             temps["investigator_id"] = event.investigator_id;
             temps["investigator_name"] = event.investigator_name;
+            temps["investigator_role"] = event.investigator_role;
+            temps["affiliation"] = event.affiliation;
             temps["count_nct_ids"] = event.count_nct_ids;
             this.ctInvestigatorNameDetailsData.push(temps);
           });
@@ -101,7 +104,7 @@ export class NctInvestigatorNameComponent implements OnInit {
       showToggle: true,
       showColumns: true,
       search: true,
-      pageSize: 25,
+      pageSize: 1000,
       // pageList: [10, 25, 50, 100, All],
       striped: true,
       //showFilter: true,

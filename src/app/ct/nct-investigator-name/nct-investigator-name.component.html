@@ -1,6 +1,6 @@
 <div class="card-panel-box">
     <div class="card-panel-box-heading">
-        Distinct values of NCT by Investigator Name
+        KOL
         <i class="bi-arrows-expand" [hidden]="!hideCardBody" (click)="reloadInvestigatorName()"
             style="position: absolute;right: 20px;color: white;"></i>
 
@@ -20,14 +20,23 @@
             <div class="card">
                 <div class="card-body">
                     <div class="table-responsive-lg custom-fixed-header-table" style="max-height:400px; overflow-y: scroll;">
+                        
                         <table id="CT_Investigator_name_data" data-toolbar="#toolbar" data-search="true"
-                            data-show-export="true" data-show-columns="true" data-page-size="50"
-                            data-filter-control="true" data-page-list="[10, 25, 50, 100, All]">
+                        data-show-export="true" data-export-options='{"fileName": "evolverAI"}'
+                        data-show-columns="true" data-page-size="1000" data-filter-control="true"
+                        data-page-list="[10, 25, 50, 100, 500, all]" class="table-striped">
+                        
                             <thead>
                                 <tr>
                                     <th data-field="investigator_name" data-sortable="true" data-visible="true"
                                         data-filter-control="input" width="3%">
                                         Name</th>
+                                    <th data-field="investigator_role" data-sortable="true" data-visible="true"
+                                        data-filter-control="input" width="3%">
+                                        Role</th>
+                                    <th data-field="affiliation" data-sortable="true" data-visible="true"
+                                        data-filter-control="input" width="3%">
+                                        Affiliation</th>
                                     <th data-field="count_nct_ids" data-sortable="true" data-filter-control="select"
                                         width="12%">
                                         Distinct values of Nct ID</th>
