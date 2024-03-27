@@ -187,3 +187,30 @@
     background-color: #B765A3;
     cursor: pointer;
 }
+
+.leg-row-count {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+
+    .leg-box-count {
+        width: 10px;
+        min-width: 10px;
+        height: 10px;
+        min-height: 10px;
+        background-color: #df9237;
+        margin-top: 8px;
+        float: left;
+    }
+
+    .leg-box-pmid-count {
+        width: 10px;
+        min-width: 10px;
+        height: 10px;
+        min-height: 10px;
+        background-color: #e76642;
+        margin-top: 8px;
+        float: left;
+    }
+   
+}
