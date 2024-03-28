@@ -75,6 +75,7 @@ export class EventDescriptionComponent implements OnInit {
   masterListsDataDetailsLoaded: any = [];
   masterListsDataDetailsExtra: any = [];
   masterListsDataDetailsCombined: any = [];
+  masterListsDataDetailsCombined_ORG: any = [];
   edgeTypesLists: any = [];
   public edgeTypes: any = [];
   public edgeHere: any = [];
@@ -133,6 +134,7 @@ export class EventDescriptionComponent implements OnInit {
   returnWithEdgeTypeResultsetData: boolean = false;
   detailsLists: Array<object> = [];
   detailsEdgeLists: Array<object> = [];
+  public selectedPMIDCount: any = [];
   // firstAPI: any;
   // secondAPI: any;
 
@@ -142,6 +144,7 @@ export class EventDescriptionComponent implements OnInit {
   masterListsDataUniquePMIDOne: number = 0;
   masterListsDataUniquePMIDTwo: number = 0;
   masterListsDataUniquePMIDThree: number = 0;
+  uniquePMIDCounts:any=[];
 
   wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
 
@@ -176,18 +179,18 @@ export class EventDescriptionComponent implements OnInit {
     this.filterParams = this.globalVariableService.getFilterParams();
     console.log("new Filters For Details: ", this.filterParams);
     this.filterParams = this.globalVariableService.getFilterParams({ "offSetValue": 0, "limitValue": this.itemsPerPage });
-    this.getEventDescription(this.filterParams);
+    this.getEventDescription(this.filterParams, null);
     // this.getEventTotalDescription(this.filterParams);
 
     this.ProceedDoFilterApply?.subscribe(data => {  // Calling from details, details working as mediator
-      //console.log("eventData: ", data);
+      console.log("eventData: ", data);
       this.notEmptyPost = true;
       this.currentPage = 1;
       if (data === undefined) { // data=undefined true when apply filter from side panel
         // this.hideCardBody = true;
         this.filterParams = this.globalVariableService.getFilterParams();
         this.filterParams = this.globalVariableService.getFilterParams({ "offSetValue": 0, "limitValue": this.itemsPerPage });
-        this.getEventDescription(this.filterParams);
+        this.getEventDescription(this.filterParams, null);
         // this.getEventTotalDescription(this.filterParams);
         console.log("new Filters for description: ", this.filterParams);
       }
@@ -216,7 +219,7 @@ export class EventDescriptionComponent implements OnInit {
   //   }
   // }
 
-  getEventDescription(_filterParams: any) {
+  getEventDescription(_filterParams: any, pmidChecked: any) {
     //console.log("abc = "+_limit.load_value);
 
     if ((_filterParams.source_node != undefined
@@ -352,6 +355,8 @@ export class EventDescriptionComponent implements OnInit {
               }
               console.log("Combined Data Load: ", this.masterListsData);
 
+              // here one checked
+
               this.loadingDesc = false;
               ////////// **************** End Merging the data into one place *******************////////////////
 
@@ -384,7 +389,11 @@ export class EventDescriptionComponent implements OnInit {
                 this.masterListsDataDetailsLoaded.push(temps);
               });
               this.masterListsDataDetailsCombined = this.masterListsDataDetailsLoaded;
+              this.masterListsDataDetailsCombined_ORG = this.masterListsDataDetailsLoaded;
               console.log("Total Combined Load Data: ", this.masterListsDataDetailsCombined);
+              //GET the unique PMID count
+              this.uniquePMIDCounts = [...new Set(this.masterListsDataDetailsCombined_ORG.map((item:any) => item.pmidCount))].sort((a:any,b:any) => a-b);
+              console.log(this.uniquePMIDCounts);            
               this.bootstrapTableChart();
             });
       }
@@ -400,6 +409,8 @@ export class EventDescriptionComponent implements OnInit {
   }
 
   bootstrapTableChart() {
+    // debugger
+    console.log("total Data: ", this.masterListsDataDetailsCombined)
     jQuery('#showEventDescription').bootstrapTable({
       bProcessing: true,
       bServerSide: true,
@@ -459,7 +470,7 @@ export class EventDescriptionComponent implements OnInit {
       },
     });
 
-    // jQuery('#showEventDescription').bootstrapTable("load", this.masterListsDataDetailsCombined);
+    jQuery('#showEventDescription').bootstrapTable("load", this.masterListsDataDetailsCombined);
 
     //start here for multi select but not working
     //   jQuery('#showEventDescription').bootstrapTable({
@@ -858,7 +869,7 @@ export class EventDescriptionComponent implements OnInit {
               }
               console.log("Combined Scroll Data: ", this.masterListsData);
               console.log("here combined: ", this.masterListsDataDetailsCombined);
-              console.log("here combined count: ", this.masterListsDataDetailsCombined.length);
+              // console.log("here combined count: ", this.masterListsDataDetailsCombined.length);
 
               this.loadingDesc = false;
               ////////// **************** End Merging the data into one place *******************////////////////
@@ -895,6 +906,7 @@ export class EventDescriptionComponent implements OnInit {
               });
               console.log("New data Scroll Added: ", this.masterListsDataDetailsExtra);
               this.masterListsDataDetailsCombined = this.masterListsDataDetailsCombined.concat(this.masterListsDataDetailsExtra);
+              this.masterListsDataDetailsCombined_ORG = this.masterListsDataDetailsCombined.concat(this.masterListsDataDetailsExtra);
               console.log("Total Combined Scroll Data: ", this.masterListsDataDetailsCombined);
               this.notscrolly = true;
               this.bootstrapTableChart();
@@ -1380,39 +1392,38 @@ export class EventDescriptionComponent implements OnInit {
   }
 
   selectPMIDCount(elem: any, event: any) {
-    console.log("elem1: ", elem);
-    console.log("elem2: ", event.target.checked);
+    console.log(elem);
+    console.log(event.target.checked);
+    if (elem != null) {
+      if (event.target.checked) {
+        this.selectedPMIDCount.push(elem);
+      } else {
+        this.selectedPMIDCount.splice(this.selectedPMIDCount.indexOf(elem), 1);
+      }
+      console.log("selectedPMIDCount: ", this.selectedPMIDCount);
+      console.log("before filter: ", this.masterListsDataDetailsCombined_ORG);
 
-    let newArray: any = [];
-    let selectedRankNodes: any = [];
-
-    if (event.target.checked) {
-      selectedRankNodes.push(elem);
-      console.log("pushThe count data: ", selectedRankNodes);
-
-      console.log("chk1: ", this.masterListsDataDetailsCombined);
-      console.log("chk1 length: ", this.masterListsDataDetailsCombined.length);
-
-      newArray = this.masterListsDataDetailsCombined.filter((obj: any) => selectedRankNodes.some((d: any) =>
-        d == obj.pmidCount
-      ));
-      console.log("chk2: ", newArray);
-      console.log("chk2Length: ", newArray.length);
-
-
+      if (this.selectedPMIDCount.length > 0) {
+        this.masterListsDataDetailsCombined = this.masterListsDataDetailsCombined_ORG.filter((obj: any) => this.selectedPMIDCount.some((d: any) =>
+          d == obj.pmidCount
+        ));
+        console.log("after filter: ", this.masterListsDataDetailsCombined);
+      } else {
+        this.masterListsDataDetailsCombined = this.masterListsDataDetailsCombined_ORG;
+        console.log("reset again: ", this.masterListsDataDetailsCombined);
+      }
     } else {
-      console.log("chk2: ", this.masterListsDataDetailsCombined);
-      // this.selectedRankNodes.splice(this.selectedRankNodes.indexOf(elem), 1);
+      this.masterListsDataDetailsCombined = this.masterListsDataDetailsCombined_ORG;
+      console.log("reset again: ", this.masterListsDataDetailsCombined);
     }
-    // console.log("selectedRankNodes: ", this.selectedRankNodes);
-
-    // this.globalVariableService.setSelectedRanks(this.selectedRankNodes);
-    // this.selectedRankNodes = Array.from(this.globalVariableService.getSelectedRanks());
-
-    // this.filterParams = this.globalVariableService.getFilterParams();
-    // console.log("Rank Map:: ", this.filterParams);
+    this.bootstrapTableChart();
     // if (this.filterParams.nnrt_id != undefined)
-    //   this.getMasterListsMap(this.filterParams, null);
+    //   this.masterListsDataDetailsCombined = newArray;
+
+    // debugger
+    // console.log("Total Combined New Data: ", newArray);
+    // this.notscrolly = true;
+    // this.getEventDescription(this.filterParams, this.selectedPMIDCount);
   }
 
 }
