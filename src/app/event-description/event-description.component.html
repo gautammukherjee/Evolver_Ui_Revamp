@@ -1,7 +1,7 @@
 <!-- <div class="search-options event-desc-wrapper" infinite-scroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50"
     (scrolled)="onDescScroll()" [scrollWindow]="false"> -->
 <div class="save-query-top-btn" *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">
-    <button class="btn btn-primary btn-sm" (click)="captureScenario(userScenario)">
+    <button class="btn btn-primary" (click)="captureScenario(userScenario)" style="border-radius: 25px;">
         <i class="bi bi-sd-card" title="Save"></i>&nbsp;Save Query
     </button>
 </div>
@@ -13,7 +13,7 @@
 <div class="search-options">
     <div class="card-panel-box">
         <div class="customTable" style="border: 0px solid #ddd; min-height:400px;">
-            <div class="text-muted fs-2 text-center mb-4" *ngIf="(masterListsDataDetailsLengthLevelOne==0)">Please
+            <div class="text-muted fs-2 text-center mb-4" *ngIf="(masterListsDataDetailsLengthLevelOne==0)" ><br><br><br><br>Please
                 select
                 entities to
                 generate Details</div>
@@ -45,28 +45,19 @@
 
                         <div class="degree-combinations-badge">
                             <span class="text-white p-1 mr-2 level1-title"
-                                *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">1st-degree
-                                <span class="badge text-white"
-                                    style="margin-left: 8px;">{{masterListsDataDetailsLengthLevelOne}}</span>
-                                <span class="badge text-white" style="margin-left: 8px; background-color: #e76642"
-                                    title="Unique PMID Count"
-                                    alt="Unique PMID Count">{{masterListsDataUniquePMIDOne}}</span>
+                                *ngIf="firstLoadApiResult!=undefined && masterListsDataDetailsLengthLevelOne > 0">1&deg; Neighbors 
+                                <span class="badge text-white" style="margin-left: 8px;">{{masterListsDataDetailsLengthLevelOne}}</span>
+                                <span class="badge text-white" style="margin-left: 8px; background-color: #e76642" title="Unique PMID Count" alt="Unique PMID Count">{{masterListsDataUniquePMIDOne}}</span>                            
                             </span>
                             <span class="text-white p-1 level2-title"
-                                *ngIf="secondLoadApiResult!=undefined && masterListsDataDetailsLengthLevelTwo > 0">2nd-degree
-                                <span class="badge text-white"
-                                    style="margin-left: 8px;">{{masterListsDataDetailsLengthLevelTwo}}</span>
-                                <span class="badge text-white" style="margin-left: 8px; background-color: #e76642"
-                                    title="Unique PMID Count"
-                                    alt="Unique PMID Count">{{masterListsDataUniquePMIDTwo}}</span>
+                                *ngIf="secondLoadApiResult!=undefined && masterListsDataDetailsLengthLevelTwo > 0">2<sup>&deg;</sup> Neighbors 
+                                <span class="badge text-white" style="margin-left: 8px;">{{masterListsDataDetailsLengthLevelTwo}}</span>
+                                <span class="badge text-white" style="margin-left: 8px; background-color: #e76642" title="Unique PMID Count" alt="Unique PMID Count">{{masterListsDataUniquePMIDTwo}}</span>
                             </span>
                             <span class="text-white p-1 level3-title"
-                                *ngIf="thirdLoadApiResult!=undefined && masterListsDataDetailsLengthLevelThree > 0">3rd-degree
-                                <span class="badge text-white"
-                                    style="margin-left: 8px;">{{masterListsDataDetailsLengthLevelThree}}</span>
-                                <span class="badge text-white" style="margin-left: 8px; background-color: #e76642"
-                                    title="Unique PMID Count"
-                                    alt="Unique PMID Count">{{masterListsDataUniquePMIDThree}}</span>
+                                *ngIf="thirdLoadApiResult!=undefined && masterListsDataDetailsLengthLevelThree > 0">3<sup>&deg;</sup> Neighbors 
+                                <span class="badge text-white" style="margin-left: 8px;">{{masterListsDataDetailsLengthLevelThree}}</span>
+                                <span class="badge text-white" style="margin-left: 8px; background-color: #e76642" title="Unique PMID Count" alt="Unique PMID Count">{{masterListsDataUniquePMIDThree}}</span>
                             </span>
                         </div>
 
@@ -79,20 +70,20 @@
                             </div>
                         </div>
 
-                        <div class="dropdown rank-dropdown" style="position: absolute;right: 0px;top: 40px;">
+                        <!-- <div class="dropdown rank-dropdown" style="position: absolute;right: 0px;top: 40px;">
                             <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="rank-dropdown"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 PMID Count
                             </button>
 
-                            <ul class="dropdown-menu" aria-labelledby="rank-dropdown" style="overflow-y: auto; max-height: 210px;">
+                            <ul class="dropdown-menu" aria-labelledby="rank-dropdown" style="overflow-y: auto; max-height: 210px;z-index:9999">
                                 <li class="dropdown-item" (click)="selectPMIDCount(null, $event)"> Reset</li>
                                 <li *ngFor="let uniquePMIDCount of uniquePMIDCounts" class="dropdown-item"><input
                                         type="checkbox" name="pmid_count"
                                         (click)="selectPMIDCount(uniquePMIDCount, $event)">&nbsp;{{uniquePMIDCount}}
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
 
                         <table id="showEventDescription" data-toolbar="#toolbar" data-toggle="table" data-search="true"
                             data-show-export="true" data-export-options='{"fileName": "evolverAI"}'
@@ -101,11 +92,11 @@
                             <!--<table id="showEventDescription" data-toolbar="#toolbar" data-search="true" data-page-size="50" data-page-list="[10, 25, 50, 100, All]">-->
                             <thead>
                                 <tr>
-                                    <th data-field="news_id" data-sortable="true" width="10%" class="align-middle">#
+                                    <th data-field="news_id" data-sortable="true" width="5%" class="align-middle">#
                                     </th>
-                                    <th data-field="sourcenode_name" data-sortable="true" width="10%"
+                                    <th data-field="sourcenode_name" data-sortable="true" width="15%"
                                         data-filter-control="input">Source</th>
-                                    <th data-field="destinationnode_name" data-sortable="true" width="10%"
+                                    <th data-field="destinationnode_name" data-sortable="true" width="25%"
                                         data-filter-control="input">Destination</th>
                                     <th data-field="level" data-sortable="true" width="10%" data-filter-control="select"
                                         data-tableexport-value="Level" class="align-middle">
@@ -121,7 +112,10 @@
                                         data-filter-control="select" data-tableexport-value="Rank" class="align-middle">
                                         Rank</th>
                                     <!-- <th data-field="edgeNeCount" data-sortable="true" data-filter-control="select" width="10%" class="align-middle">PMID Count</th> -->
-                                    <th data-field="edgeNeCount" width="10%">Articles</th>
+                                    <th data-field="edgeNeCount" width="15%" style="width:100px;" class="align-middle">
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <div style="position: absolute;z-index:1001;margin-top: 8px;" class="text-center">Articles</div>
+                                    </th>
                                     <!-- <th data-field="ctLists" width="10%"> -->
 
                                     <!-- <th data-field="edgeNe" data-sortable="true" width="10%">
