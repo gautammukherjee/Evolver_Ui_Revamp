@@ -12,7 +12,7 @@
 
 <div class="search-options">
     <div class="card-panel-box">
-        <div class="customTable" style="border: 0px solid #ddd; min-height:400px;">
+        <div class="" style="border: 0px solid #ddd; min-height:400px;">
             <div class="text-muted fs-2 text-center mb-4" *ngIf="(masterListsDataDetailsLengthLevelOne==0)" ><br><br><br><br>Please
                 select
                 entities to
@@ -29,7 +29,7 @@
 
             <!--<div class="card-panel-box-detail" [hidden]="hideCardBody">-->
             <div class="card-panel-box-detail p-0">
-                <div class="customTable " id="eventListTable">
+                <div class="" id="eventListTable">
                     <!-- <div class="text-muted fs-2 text-center mb-4">Please select entities to generate Details</div> -->
                     <div class="overlay text-center" *ngIf="loadingDesc">
                         <img style="margin:155px 508px;" src="../../assets/images/loader_big.gif" />
@@ -50,12 +50,12 @@
                                 <span class="badge text-white" style="margin-left: 8px; background-color: #e76642" title="Unique PMID Count" alt="Unique PMID Count">{{masterListsDataUniquePMIDOne}}</span>                            
                             </span>
                             <span class="text-white p-1 level2-title"
-                                *ngIf="secondLoadApiResult!=undefined && masterListsDataDetailsLengthLevelTwo > 0">2<sup>&deg;</sup> Neighbors 
+                                *ngIf="secondLoadApiResult!=undefined && masterListsDataDetailsLengthLevelTwo > 0">2&deg; Neighbors 
                                 <span class="badge text-white" style="margin-left: 8px;">{{masterListsDataDetailsLengthLevelTwo}}</span>
                                 <span class="badge text-white" style="margin-left: 8px; background-color: #e76642" title="Unique PMID Count" alt="Unique PMID Count">{{masterListsDataUniquePMIDTwo}}</span>
                             </span>
                             <span class="text-white p-1 level3-title"
-                                *ngIf="thirdLoadApiResult!=undefined && masterListsDataDetailsLengthLevelThree > 0">3<sup>&deg;</sup> Neighbors 
+                                *ngIf="thirdLoadApiResult!=undefined && masterListsDataDetailsLengthLevelThree > 0">3&deg; Neighbors 
                                 <span class="badge text-white" style="margin-left: 8px;">{{masterListsDataDetailsLengthLevelThree}}</span>
                                 <span class="badge text-white" style="margin-left: 8px; background-color: #e76642" title="Unique PMID Count" alt="Unique PMID Count">{{masterListsDataUniquePMIDThree}}</span>
                             </span>
@@ -100,7 +100,7 @@
                                         data-filter-control="input">Destination</th>
                                     <th data-field="level" data-sortable="true" width="10%" data-filter-control="select"
                                         data-tableexport-value="Level" class="align-middle">
-                                        Level</th>
+                                        Degree</th>
                                     <!-- <th data-field="edgeTypes" data-sortable="true" width="10%"
                                         data-filter-control="input">
                                         Edge Type</th> -->
@@ -298,7 +298,7 @@
                 <button class="btn btn-primary" (click)="captureScenario(userScenario)">Save Query</button>
             </div> -->
 
-            <a class="btn btn-primary" (click)="captureSentences(userSentences)">
+            <a class="btn btn-primary" style="margin-right: 5px;" (click)="captureSentences(userSentences)">
                 <i class="bi bi-sd-card" title="Download & Save"></i></a>
             <!-- <a class="btn btn-primary " (click)="articlesWithEvidenceData()">Download</a> -->
             <a class="btn btn-primary " (click)="scrollTop()">

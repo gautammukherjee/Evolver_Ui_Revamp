@@ -20,18 +20,18 @@
       </div>
     </div>
 
-    <div style="position: absolute;">
-      <img class="filter-spinner" *ngIf="loading" width="20px" src="../../assets/images/loader_small.gif" />
+    <!-- <div style="position: absolute;">
+      <img class="filter-spinner" *ngIf="loading" width="20px" src="../../assets/images/loader_small.gif" /> -->
       <!-- <span style="font-size: 13px;color: white;">
         [Count: {{destinationNodesLength}}]
       </span> -->
-      <span *ngIf="distinctDestinationNodesData.length>0">
+      <!-- <span *ngIf="distinctDestinationNodesData.length>0">
         <input type="checkbox" name="destinationNodeAll" [(ngModel)]="isAllSelected" [value]="destinationNodesDB"
           [checked]="" (change)="selectAll($event);">
         <span class="custom-control-description">&nbsp;Select Unique {{distinctDestinationNodesData.length}}
           Nodes</span>
       </span>
-    </div>
+    </div> -->
 
     <ul class="dropdown-menu" aria-labelledby="destination-node-filter">
       <!-- *ngIf="showSourceBody" -->
