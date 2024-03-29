@@ -344,6 +344,7 @@ export class DashboardComponent implements OnInit {
         this.doUpdateFilterDataApply.next({ clickOn: 'revert_from_ct' });
         this.hideAddLevelONCT = 0;
         this.cameFromCT = false;
+        this.currentLevel=1;
       } else {
         // this.doFilterApplyTab4.next(undefined);
       }
