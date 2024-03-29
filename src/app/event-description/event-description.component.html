@@ -79,7 +79,7 @@
                             <ul class="dropdown-menu" aria-labelledby="rank-dropdown" style="overflow-y: auto; max-height: 210px;z-index:9999">
                                 <li class="dropdown-item" (click)="selectPMIDCount(null, $event)"> Reset</li>
                                 <li *ngFor="let uniquePMIDCount of uniquePMIDCounts" class="dropdown-item"><input
-                                        type="checkbox" name="pmid_count"
+                                        type="checkbox" id="pmid_count" name="pmid_count"
                                         (click)="selectPMIDCount(uniquePMIDCount, $event)">&nbsp;{{uniquePMIDCount}}
                                 </li>
                             </ul>

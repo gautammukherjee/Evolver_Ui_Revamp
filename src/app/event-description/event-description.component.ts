@@ -1431,6 +1431,10 @@ export class EventDescriptionComponent implements OnInit {
         console.log("reset again: ", this.masterListsDataDetailsCombined);
       }
     } else {
+      $('#pmid_count[type=checkbox]').prop('checked',false);
+      this.selectedPMIDCount=[];
+      console.log("pmid Count: ", this.selectedPMIDCount);
+      
       this.masterListsDataDetailsCombined = this.masterListsDataDetailsCombined_ORG;
       console.log("reset again: ", this.masterListsDataDetailsCombined);
     }
