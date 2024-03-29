@@ -176,6 +176,8 @@ export class DashboardComponent implements OnInit {
   }
 
   onAddLevel() {
+    console.log("currentLevel: ", this.currentLevel);
+
 
     this.filterParams = this.globalVariableService.getFilterParams();
     console.log("filterparams main level click: ", this.filterParams['tabType']);
@@ -258,6 +260,7 @@ export class DashboardComponent implements OnInit {
         this.doUpdateFilterDataApply.next({ clickOn: 'revert_from_ct' });
         this.cameFromCT = false;
         this.hideAddLevelONCT = 0;
+        this.currentLevel=1;
       } else {
         // this.doFilterApply.next(undefined);
       }
@@ -285,6 +288,7 @@ export class DashboardComponent implements OnInit {
         this.doUpdateFilterDataApply.next({ clickOn: 'revert_from_ct' });
         this.hideAddLevelONCT = 0;
         this.cameFromCT = false;
+        this.currentLevel=1;
       } else {
         // this.doFilterApplyTab2.next(undefined);
       }
@@ -311,6 +315,7 @@ export class DashboardComponent implements OnInit {
         this.doUpdateFilterDataApply.next({ clickOn: 'revert_from_ct' });
         this.hideAddLevelONCT = 0;
         this.cameFromCT = false;
+        this.currentLevel=1;
       } else {
         // this.doFilterApplyTab3.next(undefined);
       }

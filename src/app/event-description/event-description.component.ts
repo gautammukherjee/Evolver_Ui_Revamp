@@ -88,7 +88,7 @@ export class EventDescriptionComponent implements OnInit {
   notEmptyPost: boolean = true;
   notscrolly: boolean = true;
   currentPage: number = 1;
-  itemsPerPage: number = 10000;
+  itemsPerPage: number = 100;
   public isloading: boolean = false;
   public loadingArticleSaved: boolean = false;
   loaderEvidence = false;
@@ -391,6 +391,7 @@ export class EventDescriptionComponent implements OnInit {
               this.masterListsDataDetailsCombined = this.masterListsDataDetailsLoaded;
               this.masterListsDataDetailsCombined_ORG = this.masterListsDataDetailsLoaded;
               console.log("Total Combined Load Data: ", this.masterListsDataDetailsCombined);
+              console.log("Total Combined Load Data ORG: ", this.masterListsDataDetailsCombined_ORG);
               //GET the unique PMID count
               this.uniquePMIDCounts = [...new Set(this.masterListsDataDetailsCombined_ORG.map((item:any) => item.pmidCount))].sort((a:any,b:any) => a-b);
               console.log(this.uniquePMIDCounts);            
@@ -419,7 +420,7 @@ export class EventDescriptionComponent implements OnInit {
       showToggle: true,
       showColumns: true,
       search: true,
-      pageSize: 500,
+      pageSize: 100,
       // pageList: [10, 25, 50, 100, All],
       striped: true,
       //showFilter: true,
@@ -788,7 +789,7 @@ export class EventDescriptionComponent implements OnInit {
   }
 
   loadNextDataSet() {
-    console.log("currentPage: ", this.currentPage);
+    // console.log("currentPage: ", this.currentPage);
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     this.filterParams = this.globalVariableService.getFilterParams({ "offSetValue": startIndex, "limitValue": this.itemsPerPage });
     this.notscrolly = true;
@@ -819,14 +820,14 @@ export class EventDescriptionComponent implements OnInit {
         forkJoin(combinedScrollDataAPI) //we can use more that 2 api request 
           .subscribe(
             result => {
-              console.log("you scroll here: ", result);
+              // console.log("you scroll here: ", result);
               //this will return list of array of the result
               this.firstScrollApiResult = result[0];
               this.secondScrollApiResult = result[1];
               this.thirdScrollApiResult = result[2];
-              console.log("first Scroll Api Result: ", this.firstScrollApiResult);
-              console.log("second Scroll Api Result: ", this.secondScrollApiResult);
-              console.log("third Scroll Api Result: ", this.thirdScrollApiResult);
+              // console.log("first Scroll Api Result: ", this.firstScrollApiResult);
+              // console.log("second Scroll Api Result: ", this.secondScrollApiResult);
+              // console.log("third Scroll Api Result: ", this.thirdScrollApiResult);
 
               if (this.thirdScrollApiResult != undefined) {
                 if (this.firstScrollApiResult.masterListsData.length === 0 && this.secondScrollApiResult.masterListsData.length === 0 && this.thirdScrollApiResult.masterListsData.length === 0) {
@@ -869,7 +870,7 @@ export class EventDescriptionComponent implements OnInit {
                 this.masterListsData = [].concat(firstLevelExtraDataStore, secondLevelExtraDataStore, this.masterListsDataDetailsExtraLevelThree);
               }
               console.log("Combined Scroll Data: ", this.masterListsData);
-              console.log("here combined: ", this.masterListsDataDetailsCombined);
+              // console.log("here combined: ", this.masterListsDataDetailsCombined);
               // console.log("here combined count: ", this.masterListsDataDetailsCombined.length);
 
               this.loadingDesc = false;
@@ -907,8 +908,24 @@ export class EventDescriptionComponent implements OnInit {
               });
               console.log("New data Scroll Added: ", this.masterListsDataDetailsExtra);
               this.masterListsDataDetailsCombined = this.masterListsDataDetailsCombined.concat(this.masterListsDataDetailsExtra);
-              this.masterListsDataDetailsCombined_ORG = this.masterListsDataDetailsCombined.concat(this.masterListsDataDetailsExtra);
+              this.masterListsDataDetailsCombined_ORG = this.masterListsDataDetailsCombined_ORG.concat(this.masterListsDataDetailsExtra);
               console.log("Total Combined Scroll Data: ", this.masterListsDataDetailsCombined);
+              console.log("Total Combined Scroll Data Scroll ORIGINAL: ", this.masterListsDataDetailsCombined_ORG);
+
+              //Selected filter applied when you load the page
+              if (this.selectedPMIDCount.length > 0) {
+                // debugger
+                this.masterListsDataDetailsCombined = this.masterListsDataDetailsCombined_ORG.filter((obj: any) => this.selectedPMIDCount.some((d: any) =>
+                  d == obj.pmidCount
+                ));
+                console.log("After Filter: ", this.masterListsDataDetailsCombined);
+              } else {
+                // debugger
+                this.masterListsDataDetailsCombined = this.masterListsDataDetailsCombined_ORG;
+                console.log("Before Filter: ", this.masterListsDataDetailsCombined);
+              }
+              //end here to filter the load more data
+
               this.notscrolly = true;
               this.bootstrapTableChart();
               this.loadingDesc = false;
