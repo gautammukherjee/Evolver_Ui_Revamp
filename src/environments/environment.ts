@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://127.0.0.1:8000/api/',
-  //  apiUrl: 'http://3.219.210.7:8080/evolver-backend/public/api/'
+  // apiUrl: 'http://127.0.0.1:8000/api/',
+   apiUrl: 'http://3.219.210.7:8080/evolver-backend/public/api/'
   //apiUrl: 'http://127.0.0.1:8000/api/',
   // apiUrl: 'http://172.31.83.201:8080/evolver-backend/public/api/'
 };
