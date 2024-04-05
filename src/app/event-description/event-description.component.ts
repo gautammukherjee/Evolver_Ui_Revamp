@@ -8,6 +8,7 @@ import { DatePipe } from '@angular/common';
 import * as moment from "moment";
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import * as XLSX from 'xlsx';
+var _ = require('lodash');
 
 declare var jQuery: any;
 
@@ -58,6 +59,7 @@ export class EventDescriptionComponent implements OnInit {
   masterListsData: any = [];
   masterListsDataNew: any = [];
   masterListsEdgeDataNew: any = [];
+  masterListsExtraColumnEdgeDataNew: any = [];
 
   masterListsDataDetailsLevelOne: any = [];
   masterListsDataDetailsLengthLevelOne: number = 0;
@@ -115,9 +117,19 @@ export class EventDescriptionComponent implements OnInit {
   firstLoadApiNewEdgeResult: any;
   secondLoadApiNewEdgeResult: any;
   thirdLoadApiNewEdgeResult: any;
+
+  firstLoadApiExtraColumnNewEdgeResult: any;
+  secondLoadApiExtraColumnNewEdgeResult: any;
+  thirdLoadApiExtraColumnNewEdgeResult: any;
+
   masterListsDataDetailsNewEdgeLevelOne: any = [];
   masterListsDataDetailsNewEdgeLevelTwo: any = [];
   masterListsDataDetailsNewEdgeLevelThree: any = [];
+
+  //Add extra column
+  masterListsDataDetailsExtraColumnNewEdgeLevelOne: any = [];
+  masterListsDataDetailsExtraColumnNewEdgeLevelTwo: any = [];
+  masterListsDataDetailsExtraColumnNewEdgeLevelThree: any = [];
 
   scenario: object = {};
   articleSentencesScenario: object = {};
@@ -144,7 +156,7 @@ export class EventDescriptionComponent implements OnInit {
   masterListsDataUniquePMIDOne: number = 0;
   masterListsDataUniquePMIDTwo: number = 0;
   masterListsDataUniquePMIDThree: number = 0;
-  uniquePMIDCounts:any=[];
+  uniquePMIDCounts: any = [];
 
   wopts: XLSX.WritingOptions = { bookType: 'xlsx', type: 'array' };
 
@@ -381,6 +393,7 @@ export class EventDescriptionComponent implements OnInit {
                 //temps["edgeType_articleType"] = event.edge_type_article_type_ne_ids;
                 temps["pmidCount"] = event.pmids;
                 temps["rank_score"] = (event.rank_score != null ? event.rank_score : 'N/A');
+                temps["ct_count"] = (event.ct_count != null ? event.ct_count : 'N/A');
                 temps["edgeTypesID"] = edgeTypeIdsPost;
                 temps["edgeNeId"] = edgeTypeNeIdsPost;
                 // temps["edgeNeCount"] = event.pmids + "&nbsp;&nbsp;<span class='btn btn-sm btn-primary'><i class='bi bi-card-heading'></i></span>";
@@ -393,8 +406,8 @@ export class EventDescriptionComponent implements OnInit {
               console.log("Total Combined Load Data: ", this.masterListsDataDetailsCombined);
               console.log("Total Combined Load Data ORG: ", this.masterListsDataDetailsCombined_ORG);
               //GET the unique PMID count
-              this.uniquePMIDCounts = [...new Set(this.masterListsDataDetailsCombined_ORG.map((item:any) => item.pmidCount))].sort((a:any,b:any) => a-b);
-              console.log(this.uniquePMIDCounts);            
+              this.uniquePMIDCounts = [...new Set(this.masterListsDataDetailsCombined_ORG.map((item: any) => item.pmidCount))].sort((a: any, b: any) => a - b);
+              console.log(this.uniquePMIDCounts);
               this.bootstrapTableChart();
             });
       }
@@ -429,7 +442,7 @@ export class EventDescriptionComponent implements OnInit {
       stickyHeader: true,
       showExport: true,
       exportOptions: {
-        ignoreColumn: [6],
+        ignoreColumn: [7],
         // columns: [6],
         // visible: [6,'true'],
       },
@@ -898,6 +911,7 @@ export class EventDescriptionComponent implements OnInit {
                 //temps["edgeType_articleType"] = event.edge_type_article_type_ne_ids;
                 temps["pmidCount"] = event.pmids;
                 temps["rank_score"] = (event.rank_score != null ? event.rank_score : 'N/A');
+                temps["ct_count"] = (event.ct_count != null ? event.ct_count : 'N/A');
                 temps["edgeTypesID"] = edgeTypeIdsPost;
                 temps["edgeNeId"] = edgeTypeNeIdsPost;
                 // temps["edgeNeCount"] = event.pmids + "&nbsp;&nbsp;<span class='btn btn-sm btn-primary'><i class='bi bi-card-heading'></i></span>";
@@ -1022,7 +1036,8 @@ export class EventDescriptionComponent implements OnInit {
                   'destinationnode': this.masterListsDataNew[i].destinationnode_name,
                   'level': this.masterListsDataNew[i].level,
                   'PMIDCount': this.masterListsDataNew[i].pmids,
-                  'RankScore': this.masterListsDataNew[i].rank_score
+                  'RankScore': this.masterListsDataNew[i].rank_score,
+                  'CTCount': (this.masterListsDataNew[i].ct_count != null ? this.masterListsDataNew[i].ct_count : 'N/A')
                 });
               }
               console.log("detailsLists: ", this.detailsLists);
@@ -1057,84 +1072,162 @@ export class EventDescriptionComponent implements OnInit {
       this.filterParams = this.globalVariableService.getFilterParams();
       if (this.filterParams.nnrt_id != undefined) {
         const firstNewEdgeTypeAPIs = this.nodeSelectsService.getMasterListsRevampEdgeTypeLevelOne(this.filterParams);
+        const firstExtraColumnNewEdgeTypeAPIs = this.nodeSelectsService.getMasterListsRevampExtraColumnEdgeTypeLevelOne(this.filterParams);
         let combinedDataNewEdgeTypeAPI;
+        let combinedDataExtraColumnNewEdgeTypeAPI: any;
         if (this.filterParams.nnrt_id2 != undefined) {
           const secondNewEdgeTypeAPI = this.nodeSelectsService.getMasterListsRevampEdgeTypeLevelTwo(this.filterParams);
+          const secondExtraColumnNewEdgeTypeAPIs = this.nodeSelectsService.getMasterListsRevampExtraColumnEdgeTypeLevelTwo(this.filterParams);
           if (this.filterParams.nnrt_id3 != undefined) {
             const thirdNewEdgeTypeAPI = this.nodeSelectsService.getMasterListsRevampEdgeTypeLevelThree(this.filterParams);
+            const thirdExtraColumnNewEdgeTypeAPIs = this.nodeSelectsService.getMasterListsRevampExtraColumnEdgeTypeLevelThree(this.filterParams);
             combinedDataNewEdgeTypeAPI = [firstNewEdgeTypeAPIs, secondNewEdgeTypeAPI, thirdNewEdgeTypeAPI];
+            combinedDataExtraColumnNewEdgeTypeAPI = [firstExtraColumnNewEdgeTypeAPIs, secondExtraColumnNewEdgeTypeAPIs, thirdExtraColumnNewEdgeTypeAPIs];
           } else {
             combinedDataNewEdgeTypeAPI = [firstNewEdgeTypeAPIs, secondNewEdgeTypeAPI];
+            combinedDataExtraColumnNewEdgeTypeAPI = [firstExtraColumnNewEdgeTypeAPIs, secondExtraColumnNewEdgeTypeAPIs];
           }
         } else {
           combinedDataNewEdgeTypeAPI = [firstNewEdgeTypeAPIs];
+          combinedDataExtraColumnNewEdgeTypeAPI = [firstExtraColumnNewEdgeTypeAPIs];
         }
 
         forkJoin(combinedDataNewEdgeTypeAPI) //we can use more that 2 api request 
           .subscribe(
-            result => {
-              console.log("you load here edge type: ", result);
-              //this will return list of array of the result
-              this.firstLoadApiNewEdgeResult = result[0];
-              this.secondLoadApiNewEdgeResult = result[1];
-              this.thirdLoadApiNewEdgeResult = result[2];
-              // console.log("first Load Api Edge Result: ", this.firstLoadApiNewEdgeResult);
-              // console.log("second Load Api Edge Result: ", this.secondLoadApiNewEdgeResult);
-              // console.log("third Load Api Edge Result: ", this.thirdLoadApiNewEdgeResult);
+            {
+              next: (result) => {
+                console.log("you load here edge type: ", result);
+                //this will return list of array of the result
+                this.firstLoadApiNewEdgeResult = result[0];
+                this.secondLoadApiNewEdgeResult = result[1];
+                this.thirdLoadApiNewEdgeResult = result[2];
+                // console.log("first Load Api Edge Result: ", this.firstLoadApiNewEdgeResult);
+                // console.log("second Load Api Edge Result: ", this.secondLoadApiNewEdgeResult);
+                // console.log("third Load Api Edge Result: ", this.thirdLoadApiNewEdgeResult);
 
-              ////////// **************** Merging the data into one place *******************////////////////              
-              this.masterListsDataDetailsNewEdgeLevelOne = this.firstLoadApiNewEdgeResult.masterListsDataEdges;
-              this.masterListsEdgeDataNew = this.masterListsDataDetailsNewEdgeLevelOne;
-              console.log("First Level New Edge Data: ", this.masterListsDataDetailsNewEdgeLevelOne);
-              let firstLevelNewDataStore = this.masterListsDataDetailsNewEdgeLevelOne; //Store the First level data
+                ////////// **************** Merging the data into one place *******************////////////////              
+                this.masterListsDataDetailsNewEdgeLevelOne = this.firstLoadApiNewEdgeResult.masterListsDataEdges;
+                this.masterListsEdgeDataNew = this.masterListsDataDetailsNewEdgeLevelOne;
+                console.log("First Level New Edge Data: ", this.masterListsDataDetailsNewEdgeLevelOne);
+                let firstLevelNewDataStore = this.masterListsDataDetailsNewEdgeLevelOne; //Store the First level data
 
-              //Second Degree Data
-              this.masterListsDataDetailsNewEdgeLevelTwo = [];
-              if (this.secondLoadApiNewEdgeResult != undefined) {
-                //Second level data and Combined data first and second level
-                this.masterListsDataDetailsNewEdgeLevelTwo = this.secondLoadApiNewEdgeResult.masterListsDataEdges;
-                console.log("Second Level New Edge Data: ", this.masterListsDataDetailsNewEdgeLevelTwo);
-                this.masterListsEdgeDataNew = [].concat(firstLevelNewDataStore, this.masterListsDataDetailsNewEdgeLevelTwo);
+                //Second Degree Data
+                this.masterListsDataDetailsNewEdgeLevelTwo = [];
+                if (this.secondLoadApiNewEdgeResult != undefined) {
+                  //Second level data and Combined data first and second level
+                  this.masterListsDataDetailsNewEdgeLevelTwo = this.secondLoadApiNewEdgeResult.masterListsDataEdges;
+                  console.log("Second Level New Edge Data: ", this.masterListsDataDetailsNewEdgeLevelTwo);
+                  this.masterListsEdgeDataNew = [].concat(firstLevelNewDataStore, this.masterListsDataDetailsNewEdgeLevelTwo);
+                }
+                let secondLevelNewDataStore = this.masterListsDataDetailsNewEdgeLevelTwo; //Store the First level data
+
+                //Third Degree Data
+                this.masterListsDataDetailsNewEdgeLevelThree = [];
+                if (this.thirdLoadApiNewEdgeResult != undefined) {
+                  this.masterListsDataDetailsNewEdgeLevelThree = this.thirdLoadApiNewEdgeResult.masterListsDataEdges;
+                  console.log("Third Level New Edge Data: ", this.masterListsDataDetailsNewEdgeLevelThree);
+                  this.masterListsEdgeDataNew = [].concat(firstLevelNewDataStore, secondLevelNewDataStore, this.masterListsDataDetailsNewEdgeLevelThree);
+                }
+                // console.log("Combined Data New Edge Load => : ", this.masterListsEdgeDataNew);
+                //End here
+              },
+              error: (err) => {
+                alert("Something's went wrong, Please try again!");
+                // this.loadingScenario = false;
+                this.returnWithEdgeTypeResultsetData = false;
+                console.log(err);
+              },
+              complete: () => {
+                // this.scenarioForm.value.filter_name = "";
+                // this.scenarioForm.value.user_comments = "";
+                // this.scenarioForm.value.result_set_checked = 0;
+                // this.loadingScenario = false;
+
+                //Extra column should be added in edge type download feature
+                forkJoin(combinedDataExtraColumnNewEdgeTypeAPI) //we can use more that 2 api request 
+                  .subscribe(
+                    {
+                      next: (result1: any) => {
+                        console.log("you load here extra column edge type: ", result1);
+                        //this will return list of array of the result
+                        this.firstLoadApiExtraColumnNewEdgeResult = result1[0];
+                        this.secondLoadApiExtraColumnNewEdgeResult = result1[1];
+                        this.thirdLoadApiExtraColumnNewEdgeResult = result1[2];
+
+                        ////////// **************** Merging the data into one place *******************////////////////              
+                        this.masterListsDataDetailsExtraColumnNewEdgeLevelOne = this.firstLoadApiExtraColumnNewEdgeResult.masterListsDataEdgesExtraColumn;
+                        this.masterListsExtraColumnEdgeDataNew = this.masterListsDataDetailsExtraColumnNewEdgeLevelOne;
+                        // console.log("First Level New Edge Data: ", this.masterListsDataDetailsExtraColumnNewEdgeLevelOne);
+                        let firstLevelNewDataStore = this.masterListsDataDetailsExtraColumnNewEdgeLevelOne; //Store the First level data
+
+                        //Second Degree Data
+                        this.masterListsDataDetailsExtraColumnNewEdgeLevelTwo = [];
+                        if (this.secondLoadApiExtraColumnNewEdgeResult != undefined) {
+                          //Second level data and Combined data first and second level
+                          this.masterListsDataDetailsExtraColumnNewEdgeLevelTwo = this.secondLoadApiExtraColumnNewEdgeResult.masterListsDataEdgesExtraColumn;
+                          // console.log("Second Level New Edge Data: ", this.masterListsDataDetailsExtraColumnNewEdgeLevelTwo);
+                          this.masterListsExtraColumnEdgeDataNew = [].concat(firstLevelNewDataStore, this.masterListsDataDetailsExtraColumnNewEdgeLevelTwo);
+                        }
+                        let secondLevelNewDataStore = this.masterListsDataDetailsExtraColumnNewEdgeLevelTwo; //Store the First level data
+
+                        //Third Degree Data
+                        this.masterListsDataDetailsExtraColumnNewEdgeLevelThree = [];
+                        if (this.thirdLoadApiExtraColumnNewEdgeResult != undefined) {
+                          this.masterListsDataDetailsExtraColumnNewEdgeLevelThree = this.thirdLoadApiExtraColumnNewEdgeResult.masterListsDataEdgesExtraColumn;
+                          // console.log("Third Level New Edge Data: ", this.masterListsDataDetailsExtraColumnNewEdgeLevelThree);
+                          this.masterListsExtraColumnEdgeDataNew = [].concat(firstLevelNewDataStore, secondLevelNewDataStore, this.masterListsDataDetailsExtraColumnNewEdgeLevelThree);
+                        }
+                        // console.log("Combined Data Extra column New Edge Load: ", this.masterListsExtraColumnEdgeDataNew);
+                        //End here
+                      },
+                      complete: () => {
+                        console.log("Combined Data New Edge Load 1=> : ", this.masterListsEdgeDataNew);
+                        console.log("Combined Data Extra column New Edge Load 2=> : ", this.masterListsExtraColumnEdgeDataNew);
+
+                        //GET the new array and add extra column into new array with combined and filter on the basis of ne_id                        
+                        let newCombinedArray: any[] = [];
+                        
+                        // let newCombinedArray = _(this.masterListsEdgeDataNew) 
+                        //         .differenceBy(this.masterListsExtraColumnEdgeDataNew, 'ne_id', 'level')
+                        //         .map(_.partial(_.pick, _, 'ne_id', 'level'))
+                        //         .value();
+                        // console.log(newCombinedArray);
+
+                        // for(let i=0; i<arr1.length; i++) {
+                        //   merged.push({
+                        //    ...arr1[i], 
+                        //    ...(arr2.find((itmInner) => itmInner.id === arr1[i].id))}
+                        //   );
+                        // }
+
+                        //Merge the two array into single array with pmid_array
+                        newCombinedArray = this.masterListsEdgeDataNew.map((item: any, i: any) => Object.assign({}, item, this.masterListsExtraColumnEdgeDataNew[i]));
+                        console.log("newCombinedArray: ", newCombinedArray);
+
+                        this.detailsEdgeLists = [];
+                        for (var i = 0; i < newCombinedArray.length; i++) {
+                          
+                          // let pmidArray = (newCombinedArray[i].pmid_array).replace(/[{}]/g, "");
+                          this.detailsEdgeLists.push({
+                            'news_id': i + 1,
+                            'sourcenode': newCombinedArray[i].sourcenode_name,
+                            'destinationnode': newCombinedArray[i].destinationnode_name,
+                            'level': newCombinedArray[i].level,
+                            'edgeTypeName': newCombinedArray[i].edge_type_name,
+                            'neId': newCombinedArray[i].ne_id,
+                            'PMIDCount': newCombinedArray[i].pmids,
+                            'RankScore': newCombinedArray[i].rank_score,
+                            'CTCount': (newCombinedArray[i].ct_count != null ? newCombinedArray[i].ct_count : 'N/A'),
+                            'pmid_array': newCombinedArray[i].pmid_array,
+                          });
+                        }
+                        console.log("detailsEdgeLists: ", this.detailsEdgeLists);
+                        //when finish all the task
+                        this.returnWithEdgeTypeResultsetData = false;
+                      }
+                    }
+                  );
               }
-              let secondLevelNewDataStore = this.masterListsDataDetailsNewEdgeLevelTwo; //Store the First level data
-
-              //Third Degree Data
-              this.masterListsDataDetailsNewEdgeLevelThree = [];
-              if (this.thirdLoadApiNewEdgeResult != undefined) {
-                this.masterListsDataDetailsNewEdgeLevelThree = this.thirdLoadApiNewEdgeResult.masterListsDataEdges;
-                console.log("Third Level New Edge Data: ", this.masterListsDataDetailsNewEdgeLevelThree);
-                this.masterListsEdgeDataNew = [].concat(firstLevelNewDataStore, secondLevelNewDataStore, this.masterListsDataDetailsNewEdgeLevelThree);
-              }
-              console.log("Combined Data New Edge Load: ", this.masterListsEdgeDataNew);
-              //End here
-
-              this.detailsEdgeLists = [];
-              for (var i = 0; i < this.masterListsEdgeDataNew.length; i++) {
-                this.detailsEdgeLists.push({
-                  'news_id': i + 1,
-                  'sourcenode': this.masterListsEdgeDataNew[i].sourcenode_name,
-                  'destinationnode': this.masterListsEdgeDataNew[i].destinationnode_name,
-                  'level': this.masterListsEdgeDataNew[i].level,
-                  'edgeTypeName': this.masterListsEdgeDataNew[i].edge_type_name,
-                  'neId': this.masterListsEdgeDataNew[i].ne_id,
-                  'PMIDCount': this.masterListsEdgeDataNew[i].pmids,
-                  'RankScore': this.masterListsEdgeDataNew[i].rank_score
-                });
-              }
-              console.log("detailsEdgeLists: ", this.detailsEdgeLists);
-            },
-            err => {
-              alert("Something's went wrong, Please try again!");
-              // this.loadingScenario = false;
-              this.returnWithEdgeTypeResultsetData = false;
-              console.log(err);
-            },
-            () => {
-              // this.scenarioForm.value.filter_name = "";
-              // this.scenarioForm.value.user_comments = "";
-              // this.scenarioForm.value.result_set_checked = 0;
-              // this.loadingScenario = false;
-              this.returnWithEdgeTypeResultsetData = false;
             });
       }//end if nnrt_id is not empty tag closed
     } else {
@@ -1221,6 +1314,7 @@ export class EventDescriptionComponent implements OnInit {
               };
               console.log("your scenario2: ", this.scenario);
 
+              //here to add one column in download
               this.scenarioService.addUserScenario(this.scenario).subscribe(
                 data => {
                   const datas: any = data;
@@ -1245,7 +1339,6 @@ export class EventDescriptionComponent implements OnInit {
                   this.loadingScenario = false;
                 }
               );
-
             }
 
           }
@@ -1431,10 +1524,10 @@ export class EventDescriptionComponent implements OnInit {
         console.log("reset again: ", this.masterListsDataDetailsCombined);
       }
     } else {
-      $('#pmid_count[type=checkbox]').prop('checked',false);
-      this.selectedPMIDCount=[];
+      $('#pmid_count[type=checkbox]').prop('checked', false);
+      this.selectedPMIDCount = [];
       console.log("pmid Count: ", this.selectedPMIDCount);
-      
+
       this.masterListsDataDetailsCombined = this.masterListsDataDetailsCombined_ORG;
       console.log("reset again: ", this.masterListsDataDetailsCombined);
     }

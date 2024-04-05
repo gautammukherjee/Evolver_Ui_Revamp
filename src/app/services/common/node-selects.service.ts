@@ -155,6 +155,18 @@ export class NodeSelectsService {
     return this.http.post(this.API_URL + 'getMasterListsRevampEdgeTypeLevelThree', params, httpOptions);
   }
 
+  //Add extra column
+  getMasterListsRevampExtraColumnEdgeTypeLevelOne(params: any) {
+    return this.http.post(this.API_URL + 'getMasterListsRevampExtraColumnEdgeTypeLevelOne', params, httpOptions);
+  }
+  getMasterListsRevampExtraColumnEdgeTypeLevelTwo(params: any) {
+    return this.http.post(this.API_URL + 'getMasterListsRevampExtraColumnEdgeTypeLevelTwo', params, httpOptions);
+  }
+  getMasterListsRevampExtraColumnEdgeTypeLevelThree(params: any) {
+    return this.http.post(this.API_URL + 'getMasterListsRevampExtraColumnEdgeTypeLevelThree', params, httpOptions);
+  }
+
+
   //network map
   getMasterListsMapRevampLevelOne(params: any) {
     return this.http.post(this.API_URL + 'getMasterListsMapRevampLevelOne', params, httpOptions);
